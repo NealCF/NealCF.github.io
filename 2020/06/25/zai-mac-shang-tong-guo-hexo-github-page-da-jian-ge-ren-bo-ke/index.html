@@ -530,7 +530,7 @@ drwxr-xr-x  293 builder34  staff   9.2K  6 25 10:42 node_modules
 drwxr-xr-x   14 builder34  staff   448B  6 25 10:40 public
 drwxr-xr-x    5 builder34  staff   160B  4 17 23:12 scaffolds
 drwxr-xr-x    3 builder34  staff    96B  6 25 10:57 source
-drwxr-xr-x    6 builder34  staff   192B  6 25 11:33 themes</code></pre><p>themes文件夹是我们博客主题的存放地方，大家可以在<a href="https://hexo.io/themes/上选择自己喜欢的主题，建议选择文档描述清楚的，可以减轻自己的配置测试的次数。我所使用的是：[hexo-theme-matery](https://github.com/blinkfox/hexo-theme-matery)。" target="_blank" rel="noopener">https://hexo.io/themes/上选择自己喜欢的主题，建议选择文档描述清楚的，可以减轻自己的配置测试的次数。我所使用的是：[hexo-theme-matery](https://github.com/blinkfox/hexo-theme-matery)。</a> </p>
+drwxr-xr-x    6 builder34  staff   192B  6 25 11:33 themes</code></pre><p>themes文件夹是我们博客主题的存放地方，大家可以在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a>  上选择自己喜欢的主题，建议选择文档描述清楚的，可以减轻自己的配置测试的次数。我所使用的是：<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank" rel="noopener">hexo-theme-matery</a>。 </p>
 <pre><code>$ cd themes/
 $ git clone https://github.com/blinkfox/hexo-theme-matery.git</code></pre><p>在Hexo配置文件（$your_blog_path/_config.yml）中把主题设置修改为hexo-theme-matery。</p>
 <pre><code>修改 Hexo 根目录下的 _config.yml 的 theme 的值：theme: hexo-theme-matery</code></pre><p>_config.yml 文件的其它修改建议:<br>请修改 _config.yml 的 url 的值为你的网站主 URL（如：<a href="http://xxx.github.io）。" target="_blank" rel="noopener">http://xxx.github.io）。</a><br>建议修改两个 per_page 的分页条数值为 6 的倍数，如：12、18 等，这样文章列表在各个屏幕下都能较好的显示。<br>如果你是中文用户，则建议修改 language 的值为 zh-CN，timezone的值为 Asia/Shanghai。</p>
@@ -552,7 +552,7 @@ $ hexo generate
 $ hexo deploy
 <span class="token comment" spellcheck="true">#也可以使用组合命令(替代上面2条命令)：生成静态命令并部署到远程站点</span>
 $ hexo deploy <span class="token operator">-</span>g</code></pre>
-<h2 id="设置博客域名"><a href="#设置博客域名" class="headerlink" title="设置博客域名"></a>设置博客域名</h2><p>进入自己博客的repository仓库，默认博客域名为<a href="https://your_githubName.github.io。可以通过类似如下的页面进行设置自定义域名：">https://your_githubName.github.io。可以通过类似如下的页面进行设置自定义域名：</a></p>
+<h2 id="设置博客域名"><a href="#设置博客域名" class="headerlink" title="设置博客域名"></a>设置博客域名</h2><p>进入自己博客的repository仓库，默认博客域名为<a href="https://your_githubName.github.io。" target="_blank" rel="noopener">https://your_githubName.github.io。</a> 可以通过类似如下的页面进行设置自定义域名：</p>
 <p>![image-20200625152625436](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625152625436.png)</p>
 <p>![image-20200625152629998](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625152629998.png)</p>
 <p>所填的自定义域名是需要自己已经注册，并且如果勾选了 Enforce HTTPS 的话，你的域名是需要ssl证书。</p>
