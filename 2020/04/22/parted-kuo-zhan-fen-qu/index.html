@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="15875238112259, Share,Technology,Grown">
+    <meta name="keywords" content="parted扩展分区, Share,Technology,Grown">
     <meta name="description" content="世人慌慌张张不过图这碎银几两，偏这碎银几两能解万种惆怅！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>15875238112259 | 星辰大海</title>
+    <title>parted扩展分区 | 星辰大海</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">15875238112259</h1>
+                    <h1 class="description center-align post-title">parted扩展分区</h1>
                 </div>
             </div>
         </div>
@@ -386,21 +386,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-22
+                    2020-06-25
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    600
+                    833
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 
@@ -415,15 +415,29 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>#清除分区信息<br>[root@disk-test ~]# umount /mnt<br>[root@disk-test ~]# dd if=/dev/zero of=/dev/vdb bs=1M count=1000<br>1000+0 records in<br>1000+0 records out<br>1048576000 bytes (1.0 GB) copied, 15.9085 s, 65.9 MB/s<br>[root@disk-test ~]#<br>[root@disk-test ~]#<br>[root@disk-test ~]#<br>[root@disk-test ~]# lsblk<br>NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT<br>sr0     11:0    1 1024M  0 rom<br>sr1     11:1    1  464K  0 rom<br>vda    253:0    0   40G  0 disk<br>└─vda1 253:1    0   40G  0 part /<br>vdb    253:16   0  110G  0 disk </p>
-<p>#格式化磁盘并挂载<br>[root@disk-test ~]# mkfs.xfs /dev/vdb<br>meta-data=/dev/vdb               isize=512    agcount=4, agsize=7208960 blks<br>         =                       sectsz=512   attr=2, projid32bit=1<br>         =                       crc=1        finobt=0, sparse=0<br>data     =                       bsize=4096   blocks=28835840, imaxpct=25<br>         =                       sunit=0      swidth=0 blks<br>naming   =version 2              bsize=4096   ascii-ci=0 ftype=1<br>log      =internal log           bsize=4096   blocks=14080, version=2<br>         =                       sectsz=512   sunit=0 blks, lazy-count=1<br>realtime =none                   extsz=4096   blocks=0, rtextents=0<br>[root@disk-test ~]# </p>
-<p>[root@disk-test ~]# mount /dev/vdb /mnt </p>
-<p>#确认分区信息<br>[root@disk-test ~]# lsblk<br>NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT<br>sr0     11:0    1 1024M  0 rom<br>sr1     11:1    1  464K  0 rom<br>vda    253:0    0   40G  0 disk<br>└─vda1 253:1    0   40G  0 part /<br>vdb    253:16   0  110G  0 disk /mnt<br>[root@disk-test ~]# df -Th<br>Filesystem     Type      Size  Used Avail Use% Mounted on<br>/dev/vda1      ext4       40G  1.2G   37G   4% /<br>devtmpfs       devtmpfs  873M     0  873M   0% /dev<br>tmpfs          tmpfs     883M     0  883M   0% /dev/shm<br>tmpfs          tmpfs     883M   17M  866M   2% /run<br>tmpfs          tmpfs     883M     0  883M   0% /sys/fs/cgroup<br>tmpfs          tmpfs     177M     0  177M   0% /run/user/0<br>/dev/vdb       xfs       110G   33M  110G   1% /mnt</p>
-<p>#后台扩容磁盘<br>[root@disk-test ~]# lsblk<br>NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT<br>sr0     11:0    1 1024M  0 rom<br>sr1     11:1    1  464K  0 rom<br>vda    253:0    0   40G  0 disk<br>└─vda1 253:1    0   40G  0 part /<br>vdb    253:16   0  120G  0 disk /mnt</p>
-<p>#确认文件系统没有变化<br>[root@disk-test ~]# df -Th<br>Filesystem     Type      Size  Used Avail Use% Mounted on<br>/dev/vda1      ext4       40G  1.2G   37G   4% /<br>devtmpfs       devtmpfs  873M     0  873M   0% /dev<br>tmpfs          tmpfs     883M     0  883M   0% /dev/shm<br>tmpfs          tmpfs     883M   17M  866M   2% /run<br>tmpfs          tmpfs     883M     0  883M   0% /sys/fs/cgroup<br>tmpfs          tmpfs     177M     0  177M   0% /run/user/0<br>/dev/vdb       xfs       110G   33M  110G   1% /mnt</p>
-<p>#自增涨文件系统<br>[root@disk-test ~]# xfs_growfs /dev/vdb<br>meta-data=/dev/vdb               isize=512    agcount=4, agsize=7208960 blks<br>         =                       sectsz=512   attr=2, projid32bit=1<br>         =                       crc=1        finobt=0 spinodes=0<br>data     =                       bsize=4096   blocks=28835840, imaxpct=25<br>         =                       sunit=0      swidth=0 blks<br>naming   =version 2              bsize=4096   ascii-ci=0 ftype=1<br>log      =internal               bsize=4096   blocks=14080, version=2<br>         =                       sectsz=512   sunit=0 blks, lazy-count=1<br>realtime =none                   extsz=4096   blocks=0, rtextents=0<br>data blocks changed from 28835840 to 31457280</p>
-<p>#确认文件系统大小<br>[root@disk-test ~]# df -Th<br>Filesystem     Type      Size  Used Avail Use% Mounted on<br>/dev/vda1      ext4       40G  1.2G   37G   4% /<br>devtmpfs       devtmpfs  873M     0  873M   0% /dev<br>tmpfs          tmpfs     883M     0  883M   0% /dev/shm<br>tmpfs          tmpfs     883M   17M  866M   2% /run<br>tmpfs          tmpfs     883M     0  883M   0% /sys/fs/cgroup<br>tmpfs          tmpfs     177M     0  177M   0% /run/user/0<br>/dev/vdb       xfs       120G   33M  120G   1% /mnt</p>
-<p>#写文件系统，确认没问题<br>[root@disk-test ~]# cd /mnt/<br>[root@disk-test mnt]# touch 1.txt</p>
+                <h2 id="parted扩展分区"><a href="#parted扩展分区" class="headerlink" title="parted扩展分区"></a>parted扩展分区</h2><p>title: parted扩展分区<br>categories: 操作系统<br>tags: </p>
+<ul>
+<li>parted</li>
+<li>xfs_growfs</li>
+</ul>
+<hr>
+<h1 id="vdb-100G-标准分区"><a href="#vdb-100G-标准分区" class="headerlink" title="vdb 100G 标准分区"></a>vdb 100G 标准分区</h1><p>[root@disk-test ~]#<br>[root@disk-test ~]# parted /dev/vdc mklabel gpt<br>Error: Could not stat device /dev/vdc - No such file or directory.<br>Retry/Cancel? ^C<br>[root@disk-test ~]# parted /dev/vdb mklabel gpt<br>Information: You may need to update /etc/fstab.</p>
+<p>[root@disk-test ~]# echo “Ignore” | parted /dev/vdb “mkpart primary xfs 0 -1”<br>Warning: The resulting partition is not properly aligned for best performance.<br>Information: You may need to update /etc/fstab.</p>
+<p>[root@disk-test ~]# partprobe<br>Warning: Unable to open /dev/sr1 read-write (Read-only file system).  /dev/sr1 has been opened read-only.<br>[root@disk-test ~]# lsblk<br>NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT<br>sr0     11:0    1 1024M  0 rom<br>sr1     11:1    1  464K  0 rom<br>vda    253:0    0   40G  0 disk<br>└─vda1 253:1    0   40G  0 part /<br>vdb    253:16   0  100G  0 disk<br>└─vdb1 253:17   0  100G  0 part<br>[root@disk-test ~]# mkfs.xfs /dev/vdb1<br>meta-data=/dev/vdb1              isize=512    agcount=4, agsize=6553538 blks<br>         =                       sectsz=512   attr=2, projid32bit=1<br>         =                       crc=1        finobt=0, sparse=0<br>data     =                       bsize=4096   blocks=26214151, imaxpct=25<br>         =                       sunit=0      swidth=0 blks<br>naming   =version 2              bsize=4096   ascii-ci=0 ftype=1<br>log      =internal log           bsize=4096   blocks=12799, version=2<br>         =                       sectsz=512   sunit=0 blks, lazy-count=1<br>realtime =none                   extsz=4096   blocks=0, rtextents=0</p>
+<p>[root@disk-test ~]#<br>[root@disk-test ~]# </p>
+<h1 id="挂载分区，写入数据"><a href="#挂载分区，写入数据" class="headerlink" title="挂载分区，写入数据"></a>挂载分区，写入数据</h1><p>[root@disk-test ~]# mount /dev/vdb1 /mnt<br>[root@disk-test ~]# lsblk<br>NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT<br>sr0     11:0    1 1024M  0 rom<br>sr1     11:1    1  464K  0 rom<br>vda    253:0    0   40G  0 disk<br>└─vda1 253:1    0   40G  0 part /<br>vdb    253:16   0  100G  0 disk<br>└─vdb1 253:17   0  100G  0 part /mnt<br>[root@disk-test ~]# touch /mnt/test.txt<br>[root@disk-test ~]# cp /var/log/dmesg /mnt/</p>
+<h1 id="卸载分区"><a href="#卸载分区" class="headerlink" title="卸载分区"></a>卸载分区</h1><p>[root@disk-test ~]# umount /mnt</p>
+<h1 id="后台扩容磁盘"><a href="#后台扩容磁盘" class="headerlink" title="后台扩容磁盘"></a>后台扩容磁盘</h1><p>[root@disk-test ~]# lsblk<br>NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT<br>sr0     11:0    1 1024M  0 rom<br>sr1     11:1    1  464K  0 rom<br>vda    253:0    0   40G  0 disk<br>└─vda1 253:1    0   40G  0 part /<br>vdb    253:16   0  110G  0 disk<br>└─vdb1 253:17   0  100G  0 part </p>
+<h1 id="扩容分区vdb1"><a href="#扩容分区vdb1" class="headerlink" title="扩容分区vdb1"></a>扩容分区vdb1</h1><blockquote>
+<p>parte进入后需要fix分区表（存放位置及GPT标示的可用空间）<br>[root@disk-test ~]# parted /dev/vdb<br>GNU Parted 3.1<br>Using /dev/vdb<br>Welcome to GNU Parted! Type ‘help’ to view a list of commands.<br>(parted) print<br>Error: The backup GPT table is not at the end of the disk, as it should be.  This might mean that another operating system believes the disk is smaller.  Fix, by moving the backup to the end (and removing the old backup)?<br>Fix/Ignore/Cancel? Fix<br>Warning: Not all of the space available to /dev/vdb appears to be used, you can fix the GPT to use all of the space (an extra 20971520 blocks) or continue with the current setting?<br>Fix/Ignore? Fix<br>Model: Virtio Block Device (virtblk)<br>Disk /dev/vdb: 118GB<br>Sector size (logical/physical): 512B/512B<br>Partition Table: gpt<br>Disk Flags: </p>
+</blockquote>
+<p>Number  Start   End    Size   File system  Name     Flags<br> 1      17.4kB  107GB  107GB  xfs          primary</p>
+<p>(parted) resizepart 1 100%<br>(parted) quit<br>Information: You may need to update /etc/fstab.</p>
+<h1 id="刷新分区表"><a href="#刷新分区表" class="headerlink" title="刷新分区表"></a>刷新分区表</h1><p>[root@disk-test ~]# partprobe<br>Warning: Unable to open /dev/sr1 read-write (Read-only file system).  /dev/sr1 has been opened read-only.</p>
+<p>[root@disk-test ~]# lsblk<br>NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT<br>sr0     11:0    1 1024M  0 rom<br>sr1     11:1    1  464K  0 rom<br>vda    253:0    0   40G  0 disk<br>└─vda1 253:1    0   40G  0 part /<br>vdb    253:16   0  110G  0 disk<br>└─vdb1 253:17   0  110G  0 part </p>
+<h1 id="挂载分区，增长文件系统"><a href="#挂载分区，增长文件系统" class="headerlink" title="挂载分区，增长文件系统"></a>挂载分区，增长文件系统</h1><p>[root@disk-test ~]# mount /dev/vdb1 /mnt<br>[root@disk-test ~]# xfs_growfs /dev/vdb1<br>meta-data=/dev/vdb1              isize=512    agcount=4, agsize=6553538 blks<br>         =                       sectsz=512   attr=2, projid32bit=1<br>         =                       crc=1        finobt=0 spinodes=0<br>data     =                       bsize=4096   blocks=26214151, imaxpct=25<br>         =                       sunit=0      swidth=0 blks<br>naming   =version 2              bsize=4096   ascii-ci=0 ftype=1<br>log      =internal               bsize=4096   blocks=12799, version=2<br>         =                       sectsz=512   sunit=0 blks, lazy-count=1<br>realtime =none                   extsz=4096   blocks=0, rtextents=0<br>data blocks changed from 26214151 to 28835831</p>
+<p>#确认文件系统大小<br>[root@disk-test ~]# df -Th<br>Filesystem     Type      Size  Used Avail Use% Mounted on<br>/dev/vda1      ext4       40G  1.2G   37G   4% /<br>devtmpfs       devtmpfs  873M     0  873M   0% /dev<br>tmpfs          tmpfs     883M     0  883M   0% /dev/shm<br>tmpfs          tmpfs     883M   17M  866M   2% /run<br>tmpfs          tmpfs     883M     0  883M   0% /sys/fs/cgroup<br>tmpfs          tmpfs     177M     0  177M   0% /run/user/0<br>/dev/vdb1      xfs       110G   33M  110G   1% /mnt</p>
+<h1 id="确认目录内容信息"><a href="#确认目录内容信息" class="headerlink" title="确认目录内容信息"></a>确认目录内容信息</h1><p>[root@disk-test ~]# cd /mnt/<br>[root@disk-test mnt]# du -sm *<br>1       dmesg<br>0       test.txt</p>
 
             </div>
             <hr/>
@@ -449,7 +463,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/04/22/15875238112259/">http://yoursite.com/2020/04/22/15875238112259/</a>
+                    <a href="http://yoursite.com/2020/04/22/parted-kuo-zhan-fen-qu/">http://yoursite.com/2020/04/22/parted-kuo-zhan-fen-qu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -552,20 +566,24 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/22/15875256388038/">
+                <a href="/2020/04/22/ci-pan-wu-fen-qu-xfs-growfs-kuo-zhan-wen-jian-xi-tong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="15875256388038">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="磁盘无分区xfs_growfs扩展文件系统">
                         
-                        <span class="card-title">15875256388038</span>
+                        <span class="card-title">磁盘无分区xfs_growfs扩展文件系统</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            安装必备的工具[root@disk-test ~]# yum install -y gdisk
-清除分区信息[root@disk-test ~]# lsblkNAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOIN
+                            磁盘无分区xfs_growfs扩展文件系统title: 磁盘无分区xfs_growfs扩展文件系统categories: 操作系统tags: 
+
+xfs_growfs
+
+
+清除分区信息[root@disk-test ~]# umount /
                         
                     </div>
                     <div class="publish-info">
@@ -587,22 +605,28 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/22/15875210657332/">
+                <a href="/2020/04/22/parted-kuo-zhan-fen-qu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="15875210657332">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="parted扩展分区">
                         
-                        <span class="card-title">15875210657332</span>
+                        <span class="card-title">parted扩展分区</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            vdb 100G 标准分区[root@disk-test ~]#[root@disk-test ~]# parted /dev/vdc mklabel gptError: Could not stat device /dev/vdc - N
+                            parted扩展分区title: parted扩展分区categories: 操作系统tags: 
+
+parted
+xfs_growfs
+
+
+vdb 100G 标准分区[root@disk-test ~]#[root@disk-test ~
                         
                     </div>
                     <div class="publish-info">
@@ -617,6 +641,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -857,7 +882,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3.8k</span>&nbsp;字
+                class="white-color">2.3k</span>&nbsp;字
             
             
             
