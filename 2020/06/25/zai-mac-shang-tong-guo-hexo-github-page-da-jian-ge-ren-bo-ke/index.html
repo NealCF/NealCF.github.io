@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="磁盘无分区xfs_growfs扩展文件系统, Share,Technology,Grown">
+    <meta name="keywords" content="在MAC上通过Hexo+Github Page搭建个人博客, Share,Technology,Grown">
     <meta name="description" content="世人慌慌张张不过图这碎银几两，偏这碎银几两能解万种惆怅！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>磁盘无分区xfs_growfs扩展文件系统 | 星辰大海</title>
+    <title>在MAC上通过Hexo+Github Page搭建个人博客 | 星辰大海</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">磁盘无分区xfs_growfs扩展文件系统</h1>
+                    <h1 class="description center-align post-title">在MAC上通过Hexo+Github Page搭建个人博客</h1>
                 </div>
             </div>
         </div>
@@ -367,8 +367,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/xfs-growfs/">
-                                <span class="chip bg-color">xfs_growfs</span>
+                            <a href="/tags/Mac/">
+                                <span class="chip bg-color">Mac</span>
+                            </a>
+                        
+                            <a href="/tags/Hexo/">
+                                <span class="chip bg-color">Hexo</span>
+                            </a>
+                        
+                            <a href="/tags/Github-Page/">
+                                <span class="chip bg-color">Github Page</span>
                             </a>
                         
                     </div>
@@ -379,8 +387,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                操作系统
+                            <a href="/categories/other/" class="post-category">
+                                other
                             </a>
                         
                     </div>
@@ -392,7 +400,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-22
+                    2020-06-25
                 </div>
                 
 
@@ -406,14 +414,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    641
+                    2.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    9 分
                 </div>
                 
 
@@ -428,81 +436,101 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="清除分区信息"><a href="#清除分区信息" class="headerlink" title="清除分区信息"></a>清除分区信息</h2><pre><code>[root@disk-test ~]# umount /mnt
-[root@disk-test ~]# dd if=/dev/zero of=/dev/vdb bs=1M count=1000
-1000+0 records in
-1000+0 records out
-1048576000 bytes (1.0 GB) copied, 15.9085 s, 65.9 MB/s
-[root@disk-test ~]# 
-[root@disk-test ~]# 
-[root@disk-test ~]# 
-[root@disk-test ~]# lsblk
-NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sr0     11:0    1 1024M  0 rom  
-sr1     11:1    1  464K  0 rom  
-vda    253:0    0   40G  0 disk 
-└─vda1 253:1    0   40G  0 part /
-vdb    253:16   0  110G  0 disk </code></pre><h2 id="格式化磁盘并挂载"><a href="#格式化磁盘并挂载" class="headerlink" title="格式化磁盘并挂载"></a>格式化磁盘并挂载</h2><pre><code>[root@disk-test ~]# mkfs.xfs /dev/vdb
-meta-data=/dev/vdb               isize=512    agcount=4, agsize=7208960 blks
-         =                       sectsz=512   attr=2, projid32bit=1
-         =                       crc=1        finobt=0, sparse=0
-data     =                       bsize=4096   blocks=28835840, imaxpct=25
-         =                       sunit=0      swidth=0 blks
-naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
-log      =internal log           bsize=4096   blocks=14080, version=2
-         =                       sectsz=512   sunit=0 blks, lazy-count=1
-realtime =none                   extsz=4096   blocks=0, rtextents=0
-[root@disk-test ~]# 
+                <h2 id="环境描述"><a href="#环境描述" class="headerlink" title="环境描述"></a>环境描述</h2><p>OS：macOS Mojave 10.14.5<br>Repositories：<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a><br>评论功能：<a href="https://livere.com/" target="_blank" rel="noopener">https://livere.com/</a><br>留言板功能：<a href="https://www.daocloud.io/" target="_blank" rel="noopener">https://www.daocloud.io/</a></p>
+<p>参考文献：<a href="https://blog.csdn.net/weixin_41160054/article/details/89531921" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41160054/article/details/89531921</a></p>
+<p>​                   <a href="https://www.jianshu.com/p/921efd17b844" target="_blank" rel="noopener">https://www.jianshu.com/p/921efd17b844</a></p>
+<p>​                   <a href="https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1" target="_blank" rel="noopener">https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1</a></p>
+<h2 id="仓库准备"><a href="#仓库准备" class="headerlink" title="仓库准备"></a>仓库准备</h2><h3 id="Github仓库建立"><a href="#Github仓库建立" class="headerlink" title="Github仓库建立"></a>Github仓库建立</h3><p>登录<a href="https://github.com/后，点击右上角头像，点击“Your" target="_blank" rel="noopener">https://github.com/后，点击右上角头像，点击“Your</a> repositories”后进入个人github仓库。而后点击“New”创建新的仓库，因为我们要建网站，所以我们的「Repository name」应该和我们的github名字保持一致。同时仓库属性为public。设置完成后点击下方的“create repository”<br>例如：你的账户名字为NealCF，那么我们需要填写的是NealCF.github.io。同时，因为我自己的网站已经搭建好了，所以出现了下面的警告⚠️，不用在意。</p>
+<p>![image-20200625142434759](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625142434759.png)</p>
+<p>![image-20200625142448912](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625142448912.png)</p>
+<p>![image-20200625142455009](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625142455009.png)</p>
+<h3 id="配置github仓库免密"><a href="#配置github仓库免密" class="headerlink" title="配置github仓库免密"></a>配置github仓库免密</h3><p>生成新的SSH keys：</p>
+<pre><code>$ ssh-keygen -t rsa -C &quot;你的邮箱地址&quot;
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa):&lt;回车&gt;
+Enter passphrase (empty for no passphrase):&lt;输入加密串&gt;&lt;如不想设置密码可直接回车表示为空&gt;
+Enter same passphrase again:&lt;再次输入加密串&gt;&lt;接着回车确认&gt;
+Your identification has been saved in /Users/你的名字/.ssh/id_rsa).
+Your public key has been saved in /Users/你的名字/.ssh/id_rsa.pub.
+The key fingerprint is:
+43:c5:5b:5f:b1:f1:50:43:ad:20:a6:92:6a:1f:9a:3a &quot;你的邮箱地址&quot; </code></pre><p>打开本地刚生成的.ssh/id_rsa.pub（若看不到，则需显示隐藏文件）,准确复制文件中所有内容。然后进入github主页，点击右上角头像进入settings，选择SSH and GPG keys，再点击New SSH Key。将内容复制进key，title可以为空。最后Add SSH key。<br>可以通过如下命令进行测试是否成功：</p>
+<pre><code>$ ssh -T git@GitHub.com #全部复制，无需更改</code></pre><p>若出现以下提示，表示SSH key添加成功：</p>
+<pre><code>The authenticity of host &#39;GitHub.com (207.97.227.239)&#39; can&#39;t be established.
+RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)?&lt;输入yes&gt;
+Hi 你的用户名! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code></pre><p>测试github pages是否创建成功：</p>
+<pre><code>echo &quot;# 你的用户名.github.io&quot; &gt;&gt; README.md
+git init    
+git add README.md
+git commit -m &quot;first commit&quot;
+git remote add origin https://github.com/你的用户名/你的用户名.github.io.git
+git push -u origin master</code></pre><p>之后在浏览器中输入 【你的名字】.github.io ，如果成功出现页面，并且页面上是你刚输入的地址，那么github pages配置成功。</p>
+<h2 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h2><h3 id="什么是Node-js"><a href="#什么是Node-js" class="headerlink" title="什么是Node.js"></a>什么是Node.js</h3><p>简单的说 Node.js 就是运行在服务端的 JavaScript。Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。更多Node.js的基础教程参考：<a href="https://www.runoob.com/nodejs/nodejs-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/nodejs/nodejs-tutorial.html</a></p>
+<h3 id="Node-js的组成"><a href="#Node-js的组成" class="headerlink" title="Node.js的组成"></a>Node.js的组成</h3><p>ECMAScript（语言基础，如：语法、数据类型结构以及一些内置对象）<br>OS（操作系统）<br>file（文件系统）<br>net（网络系统）<br>database（数据库）<br>注意：</p>
+<p>ECMAScript （是js的标准，js是它的具体实现和扩展，他描述语言的语法和基本对象，如：语法、运算符、语句、继承机制、数据结构以及一些内置对象）<br>DOM（文档对象模型，描述处理网页内容的方法和接口，将整个文档document解析成dom树供用户使用js对文档进行处理）。<br>BOM（浏览器对象模型，描述可以和浏览器窗口交互的方法和接口「对象结构」，如：window对象，history，location，navigator等）</p>
+<h3 id="Node-js安装-1"><a href="#Node-js安装-1" class="headerlink" title="Node.js安装"></a>Node.js安装</h3><blockquote>
+<p>需要注意的是，在我们安装<code>node.js</code>的时候，也需要同时安装<code>npm</code>。而这是最容易出问题的地方。</p>
+</blockquote>
+<h4 id="什么是npm"><a href="#什么是npm" class="headerlink" title="什么是npm"></a>什么是npm</h4><p>npm的全称node package manager，是一个node包的管理工具。</p>
+<p>npm（Node Package Manager）是Node.js下的主流套件管理程式。它在Node.js v0.6.x版本之后，内建于Node系统。通过npm可以协助开发者安装、卸载、删除、更新Node.js套件。因此安装Node.js的时候最好一起也安装npm!</p>
+<h4 id="如何安装Node-js和npm"><a href="#如何安装Node-js和npm" class="headerlink" title="如何安装Node.js和npm"></a>如何安装Node.js和npm</h4><blockquote>
+<p>使用一个node version manager来安装 <code>Node.js</code>和<code>npm</code>。</p>
+</blockquote>
+<p>第一步：安装nvm和确认是否成功</p>
+<pre><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</code></pre><p>然后，输入代码</p>
+<pre><code>command -v nvm</code></pre><p>返回结果为nvm：</p>
+<p>![image-20200625144450053](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625144450053.png)</p>
+<p>若无此返回结果可重启terminal后尝试。</p>
+<p>第二步：用nvm安装node</p>
+<pre><code>nvm install node # &quot;node&quot; is an alias for the latest version</code></pre><p>![image-20200625144654479](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625144654479.png)</p>
+<h2 id="Hexo安装"><a href="#Hexo安装" class="headerlink" title="Hexo安装"></a>Hexo安装</h2><p>hexo的安装只需要使用npm进行安装，包的名字为hexo-cli</p>
+<pre><code>npm install -g hexo-cli</code></pre><h2 id="网站配置"><a href="#网站配置" class="headerlink" title="网站配置"></a>网站配置</h2><p>安装 Hexo 完成后，我们可以在本地新建一个文件夹或采用下载仓库的方式进行完整初始化。</p>
+<h3 id="下载仓库"><a href="#下载仓库" class="headerlink" title="下载仓库"></a>下载仓库</h3><p>规划好网站在本地的存放位置后，将github上的仓库clone下来，进行网站初始化：</p>
+<p>备注：我规划的位置为/Users/{用户名}/Documents下。</p>
+<pre><code>$ cd /Users/cjm/Documents/
+$ git clone https://github.com/yourGithubName/yourGithubName.github.io</code></pre><h3 id="清空本地仓库目录，进行网站初始化"><a href="#清空本地仓库目录，进行网站初始化" class="headerlink" title="清空本地仓库目录，进行网站初始化"></a>清空本地仓库目录，进行网站初始化</h3><blockquote>
+<p>必须确认当前工作目录是否为本地仓库目录。或可采用mv进行目录重命名后新建原目录的方式</p>
+</blockquote>
+<pre><code>进入本地仓库目录：
+$ cd /Users/cjm/Documents/NealCF.github.io/
+确认目录结构：
+$ pwd
+/Users/cjm/Documents/NealCF.github.io
 
-[root@disk-test ~]# mount /dev/vdb /mnt </code></pre><h2 id="确认分区信息"><a href="#确认分区信息" class="headerlink" title="确认分区信息"></a>确认分区信息</h2><pre><code>[root@disk-test ~]# lsblk
-NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sr0     11:0    1 1024M  0 rom  
-sr1     11:1    1  464K  0 rom  
-vda    253:0    0   40G  0 disk 
-└─vda1 253:1    0   40G  0 part /
-vdb    253:16   0  110G  0 disk /mnt
-[root@disk-test ~]# df -Th
-Filesystem     Type      Size  Used Avail Use% Mounted on
-/dev/vda1      ext4       40G  1.2G   37G   4% /
-devtmpfs       devtmpfs  873M     0  873M   0% /dev
-tmpfs          tmpfs     883M     0  883M   0% /dev/shm
-tmpfs          tmpfs     883M   17M  866M   2% /run
-tmpfs          tmpfs     883M     0  883M   0% /sys/fs/cgroup
-tmpfs          tmpfs     177M     0  177M   0% /run/user/0
-/dev/vdb       xfs       110G   33M  110G   1% /mnt</code></pre><h2 id="后台扩容磁盘"><a href="#后台扩容磁盘" class="headerlink" title="后台扩容磁盘"></a>后台扩容磁盘</h2><pre><code>[root@disk-test ~]# lsblk
-NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sr0     11:0    1 1024M  0 rom  
-sr1     11:1    1  464K  0 rom  
-vda    253:0    0   40G  0 disk 
-└─vda1 253:1    0   40G  0 part /
-vdb    253:16   0  120G  0 disk /mnt</code></pre><h2 id="确认文件系统没有变化"><a href="#确认文件系统没有变化" class="headerlink" title="确认文件系统没有变化"></a>确认文件系统没有变化</h2><pre><code>[root@disk-test ~]# df -Th
-Filesystem     Type      Size  Used Avail Use% Mounted on
-/dev/vda1      ext4       40G  1.2G   37G   4% /
-devtmpfs       devtmpfs  873M     0  873M   0% /dev
-tmpfs          tmpfs     883M     0  883M   0% /dev/shm
-tmpfs          tmpfs     883M   17M  866M   2% /run
-tmpfs          tmpfs     883M     0  883M   0% /sys/fs/cgroup
-tmpfs          tmpfs     177M     0  177M   0% /run/user/0
-/dev/vdb       xfs       110G   33M  110G   1% /mnt</code></pre><h2 id="自增涨文件系统"><a href="#自增涨文件系统" class="headerlink" title="自增涨文件系统"></a>自增涨文件系统</h2><pre><code>[root@disk-test ~]# xfs_growfs /dev/vdb
-meta-data=/dev/vdb               isize=512    agcount=4, agsize=7208960 blks
-         =                       sectsz=512   attr=2, projid32bit=1
-         =                       crc=1        finobt=0 spinodes=0
-data     =                       bsize=4096   blocks=28835840, imaxpct=25
-         =                       sunit=0      swidth=0 blks
-naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
-log      =internal               bsize=4096   blocks=14080, version=2
-         =                       sectsz=512   sunit=0 blks, lazy-count=1
-realtime =none                   extsz=4096   blocks=0, rtextents=0
-data blocks changed from 28835840 to 31457280</code></pre><h2 id="确认文件系统大小"><a href="#确认文件系统大小" class="headerlink" title="确认文件系统大小"></a>确认文件系统大小</h2><pre><code>[root@disk-test ~]# df -Th
-Filesystem     Type      Size  Used Avail Use% Mounted on
-/dev/vda1      ext4       40G  1.2G   37G   4% /
-devtmpfs       devtmpfs  873M     0  873M   0% /dev
-tmpfs          tmpfs     883M     0  883M   0% /dev/shm
-tmpfs          tmpfs     883M   17M  866M   2% /run
-tmpfs          tmpfs     883M     0  883M   0% /sys/fs/cgroup
-tmpfs          tmpfs     177M     0  177M   0% /run/user/0
-/dev/vdb       xfs       120G   33M  120G   1% /mnt</code></pre><h2 id="写文件系统，确认没问题"><a href="#写文件系统，确认没问题" class="headerlink" title="写文件系统，确认没问题"></a>写文件系统，确认没问题</h2><pre><code>[root@disk-test ~]# cd /mnt/
-[root@disk-test mnt]# touch 1.txt</code></pre>
+确认目录中文件内容（包含隐藏文件）
+$ ls -al
+
+清空本地仓库内容
+$ rm -rf *</code></pre><h3 id="Hexo初始化"><a href="#Hexo初始化" class="headerlink" title="Hexo初始化"></a>Hexo初始化</h3><p>建立初始化方式如下：</p>
+<pre><code>$ cd /Users/cjm/Documents/NealCF.github.io/
+$ hexo init ./
+$ hexo generate</code></pre><p>下面介绍几个常用的hexo命令(括号里面的命令为缩写形式，效果一样)：</p>
+<ol>
+<li>hexo generate(hexo g) #生成静态文件，会在当前目录下生成一个新的叫做public的文件夹</li>
+<li>hexo new “postTitle” #新建博客文章</li>
+<li>hexo new page “pageTitle” #新建1个页面</li>
+<li>hexo server(hexo s) #启动本地web服务预览(加参数–debug,用于调试，如：hexo s –debug)</li>
+<li>hexo deploy(hexo d) #部署播客到远端（比如Github,coding,heroku等平台）</li>
+</ol>
+<p>在命令行中输入<code>hexo s --debug</code>后，运行成功后，可以在浏览器中输入：<a href="http://localhost:4000看到自己新建的博客了。">http://localhost:4000看到自己新建的博客了。</a></p>
+<h3 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h3><p>一般我们初始化博客的文件夹后，文件结构大概如下：</p>
+<pre><code>$ ll
+total 1352
+-rw-r--r--    1 builder34  staff    32B  4 14 01:34 README.md
+-rw-r--r--    1 builder34  staff   2.3K  6 25 10:40 _config.yml
+-rw-r--r--    1 builder34  staff    32K  6 26 15:50 db.json
+-rw-r--r--    1 builder34  staff   458K  6 26 15:56 debug.log
+drwxr-xr-x  293 builder34  staff   9.2K  6 25 10:42 node_modules
+-rw-r--r--    1 builder34  staff   110K  6 22 23:59 package-lock.json
+-rw-r--r--    1 builder34  staff   564B  6 22 23:59 package.json
+drwxr-xr-x   14 builder34  staff   448B  6 25 10:40 public
+drwxr-xr-x    5 builder34  staff   160B  4 17 23:12 scaffolds
+drwxr-xr-x    3 builder34  staff    96B  6 25 10:57 source
+drwxr-xr-x    6 builder34  staff   192B  6 25 11:33 themes</code></pre><p>themes文件夹是我们博客主题的存放地方，大家可以在<a href="https://hexo.io/themes/上选择自己喜欢的主题，建议选择文档描述清楚的，可以减轻自己的配置测试的次数。我所使用的是：[hexo-theme-matery](https://github.com/blinkfox/hexo-theme-matery)。" target="_blank" rel="noopener">https://hexo.io/themes/上选择自己喜欢的主题，建议选择文档描述清楚的，可以减轻自己的配置测试的次数。我所使用的是：[hexo-theme-matery](https://github.com/blinkfox/hexo-theme-matery)。</a> </p>
+<pre><code>$ cd themes/
+$ git clone https://github.com/blinkfox/hexo-theme-matery.git</code></pre><p>在Hexo配置文件（$your_blog_path/_config.yml）中把主题设置修改为hexo-theme-matery。</p>
+<pre><code>修改 Hexo 根目录下的 _config.yml 的 theme 的值：theme: hexo-theme-matery</code></pre><p>_config.yml 文件的其它修改建议:<br>请修改 _config.yml 的 url 的值为你的网站主 URL（如：<a href="http://xxx.github.io）。" target="_blank" rel="noopener">http://xxx.github.io）。</a><br>建议修改两个 per_page 的分页条数值为 6 的倍数，如：12、18 等，这样文章列表在各个屏幕下都能较好的显示。<br>如果你是中文用户，则建议修改 language 的值为 zh-CN。</p>
+
             </div>
             <hr/>
 
@@ -527,7 +555,7 @@ tmpfs          tmpfs     177M     0  177M   0% /run/user/0
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nealcf.github.io/2020/04/22/ci-pan-wu-fen-qu-xfs-growfs-kuo-zhan-wen-jian-xi-tong/">http://nealcf.github.io/2020/04/22/ci-pan-wu-fen-qu-xfs-growfs-kuo-zhan-wen-jian-xi-tong/</a>
+                    <a href="http://nealcf.github.io/2020/06/25/zai-mac-shang-tong-guo-hexo-github-page-da-jian-ge-ren-bo-ke/">http://nealcf.github.io/2020/06/25/zai-mac-shang-tong-guo-hexo-github-page-da-jian-ge-ren-bo-ke/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,8 +593,16 @@ tmpfs          tmpfs     177M     0  177M   0% /run/user/0
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/xfs-growfs/">
-                                    <span class="chip bg-color">xfs_growfs</span>
+                                <a href="/tags/Mac/">
+                                    <span class="chip bg-color">Mac</span>
+                                </a>
+                            
+                                <a href="/tags/Hexo/">
+                                    <span class="chip bg-color">Hexo</span>
+                                </a>
+                            
+                                <a href="/tags/Github-Page/">
+                                    <span class="chip bg-color">Github Page</span>
                                 </a>
                             
                         </div>
@@ -630,9 +666,68 @@ tmpfs          tmpfs     177M     0  177M   0% /run/user/0
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/06/25/zai-mac-shang-tong-guo-hexo-github-page-da-jian-ge-ren-bo-ke/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="在MAC上通过Hexo+Github Page搭建个人博客">
+                        
+                        <span class="card-title">在MAC上通过Hexo+Github Page搭建个人博客</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Mac Node.js Hexo Github 等等，开始动手吧
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/other/" class="post-category">
+                                    other
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Mac/">
+                        <span class="chip bg-color">Mac</span>
+                    </a>
+                    
+                    <a href="/tags/Hexo/">
+                        <span class="chip bg-color">Hexo</span>
+                    </a>
+                    
+                    <a href="/tags/Github-Page/">
+                        <span class="chip bg-color">Github Page</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/06/25/hello-world/">
                     <div class="card-image">
@@ -650,9 +745,9 @@ tmpfs          tmpfs     177M     0  177M   0% /run/user/0
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -660,58 +755,6 @@ tmpfs          tmpfs     177M     0  177M   0% /run/user/0
                             
                         </span>
                     </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/04/22/ci-pan-wu-fen-qu-xfs-growfs-kuo-zhan-wen-jian-xi-tong/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="磁盘无分区xfs_growfs扩展文件系统">
-                        
-                        <span class="card-title">磁盘无分区xfs_growfs扩展文件系统</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            清除分区信息[root@disk-test ~]# umount /mnt
-[root@disk-test ~]# dd if=/dev/zero of=/dev/vdb bs=1M count=1000
-1000+0 records in
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-22
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                    操作系统
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/xfs-growfs/">
-                        <span class="chip bg-color">xfs_growfs</span>
-                    </a>
-                    
                 </div>
                 
             </div>
