@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, Share,Technology,Grown">
+    <meta name="keywords" content="deploy kubernetes by kuberspray, Share,Technology,Grown">
     <meta name="description" content="世人慌慌张张不过图这碎银几两，偏这碎银几两能解万种惆怅！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | 星辰和大海</title>
+    <title>deploy kubernetes by kuberspray | 星辰和大海</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">deploy kubernetes by kuberspray</h1>
                 </div>
             </div>
         </div>
@@ -379,28 +379,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-25
+                    2020-05-21
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-06-25
+                    2020-05-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    7 分
                 </div>
                 
 
@@ -415,16 +415,215 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+                <h1 id="Deploy-kubernetes-by-kuberspray"><a href="#Deploy-kubernetes-by-kuberspray" class="headerlink" title="Deploy kubernetes by kuberspray"></a>Deploy kubernetes by kuberspray</h1><hr>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>​        部署Kubernetes除了手动方式外，还有诸如Kubeadm、Kubespray、Breeze、Rancher、kargo等多种自动化方式。工具没有好坏之分，能干事、效率高就行。这里，笔者仍使用Kubespray部署当前K8s最新版本（用着真的很贴身），可自动化部署HA集群、可灵活定制开发、高稳定性等。</p>
+<h1 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h1><table>
+<thead>
+<tr>
+<th>IP</th>
+<th>主机名</th>
+<th>角色</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.10.100</td>
+<td>Ansible-client</td>
+<td>ansible的部署节点</td>
+</tr>
+<tr>
+<td>192.168.10.101</td>
+<td>Kube-master1</td>
+<td>Master,node</td>
+</tr>
+<tr>
+<td>192.168.10.102</td>
+<td>Kube-master2</td>
+<td>Master,node</td>
+</tr>
+<tr>
+<td>192.168.10.103</td>
+<td>Kube-master3</td>
+<td>Master,node</td>
+</tr>
+</tbody></table>
+<h1 id="Kubernetes版本"><a href="#Kubernetes版本" class="headerlink" title="Kubernetes版本"></a>Kubernetes版本</h1><p> 1.15.0</p>
+<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><ol>
+<li><p>关闭selinux(all)<br> <code>sed -i &#39;/^SELINUX=/s/permissive/disabled/&#39; /etc/selinux/config</code></p>
+</li>
+<li><p>关闭fiewalld(all)<br> <code>systemctl stop firewalld &amp;&amp; systemctl disable firewalld</code></p>
+</li>
+<li><p>升级内核(k8s)</p>
+<blockquote>
+<ol>
+<li><p>载入公钥<br> rpm –import <a href="https://www.elrepo.org/RPM-GPG-KEY-elrepo.org" target="_blank" rel="noopener">https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</a></p>
+</li>
+<li><p>升级安装ELRepo<br> rpm -Uvh <a href="http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm" target="_blank" rel="noopener">http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm</a></p>
+</li>
+<li><p>载入elrepo-kernel元数据<br> yum –disablerepo=* –enablerepo=elrepo-kernel repolist</p>
+</li>
+<li><p>查看可用的rpm包<br> yum –disablerepo=* –enablerepo=elrepo-kernel list kernel*</p>
+<blockquote>
+<p>说明：</p>
+<pre><code>lt  ：long term support，长期支持版本；
+ml：mainline，主线版本；</code></pre></blockquote>
+</li>
+<li><p>安装最新版本的kernel<br>yum –disablerepo=* –enablerepo=elrepo-kernel install  kernel-ml.&gt;x86_64  -y</p>
+</li>
+<li><p>删除旧版本工具包<br>yum remove kernel-tools-libs.x86_64 kernel-tools.x86_64  -y</p>
+</li>
+<li><p>安装新版本工具包<br>yum –disablerepo=* –enablerepo=elrepo-kernel install kernel-ml-tools.x86_64  -y</p>
+</li>
+<li><p>查看内核插入顺序<br> [root@server-1 ~]# awk -F &#39; ‘$1==”menuentry “ {print i++ “ : “ $2}’ /etc/grub2.cfg<br> 0 : CentOS Linux (4.20.12-1.el7.elrepo.x86_64) 7 (Core)<br> 1 : CentOS Linux (3.10.0-957.5.1.el7.x86_64) 7 (Core)<br> 2 : CentOS Linux (3.10.0-957.el7.x86_64) 7 (Core)<br> 3 : CentOS Linux (0-rescue-ca0f6fb3c5f24478abc0a2e275281d7a) 7 (Core)</p>
+</li>
+<li><p>查看当前实际启动顺序<br> grub2-editenv list</p>
+</li>
+<li><p>设置默认启动<br>  grub2-set-default 0<br>  grub2-editenv list</p>
+</li>
+<li><p>reboot</p>
+</li>
+<li><p>卸载掉旧的kernel</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>安装ansible(ansible-client)</p>
+</li>
+</ol>
+<pre><code>yum install -y epel-release
+yum install -y python-pip ansible python36 python36-pip
+pip install --upgrade jinja2
+pip3 install --upgrade jinja2</code></pre><h1 id="配置kubespray-ansible-client"><a href="#配置kubespray-ansible-client" class="headerlink" title="配置kubespray(ansible-client)"></a>配置kubespray(ansible-client)</h1><p>线上不使用master分支，建议切换至最新tag<br>地址： <a href="https://kubespray.io" target="_blank" rel="noopener">https://kubespray.io</a></p>
+<ol>
+<li><p>安装git</p>
+<pre><code>yum install git -y
+git clone https://github.com/kubernetes-incubator/kubespray.git
+cd kubespray/
+git branch -va 查看remote的分支
+git checkout -b v版本号 remote/../.. 选一个新的，bug可能少</code></pre></li>
+<li><p>安装requirements.txt中的依赖</p>
+<p><code>pip install -r requirements.txt</code></p>
+</li>
+<li><p>复制inventory模板作为自己的集群inventory文件</p>
+<p><code>cp -r inventory/sample inventory/mycluster</code></p>
+</li>
+<li><p>使用inventory_builder，初始化inventory文件</p>
+<pre><code>IPS=(192.168.10.101 192.168.10.102 192.168.10.103)
+CONFIG_FILE=inventory/mycluster/hosts.yml
+python3 contrib/inventory_builder/inventory.py ${IPS[@]}</code></pre><blockquote>
+<p>设置两个环境变量IPS和CONFIG_FILE 代入inventory.py的脚本来生成hosts.yml文件</p>
+</blockquote>
+</li>
+<li><p>确认inventory文件生成无误</p>
+<pre><code>cat inventory/mycluster/hosts.yml 
 
+[all]
+k8s-master1    ansible_host=192.168.10.101 ip=192.168.10.101
+k8s-master2    ansible_host=192.168.10.102 ip=192.168.10.102
+k8s-master3    ansible_host=192.168.10.103 ip=192.168.10.103
+
+[kube-master]
+k8s-master1
+k8s-master2
+k8s-master3
+
+[kube-node]
+k8s-master1
+k8s-master2
+k8s-master3
+
+[etcd]
+k8s-master1
+k8s-master2
+k8s-master3
+
+[k8s-cluster:children]
+kube-node
+kube-master
+
+[calico-rr]</code></pre><blockquote>
+<p><em>Note:</em></p>
+<p>稍加修改主机名，如我的kube-master1-3，安装过程中会自动修改主机名和node master名称。<br>生产环境，master和etcd 请配置在不同节点。</p>
+<p>这里是测试环境，因硬件资源紧张就将master和etcd部署在相同节点了。</p>
+</blockquote>
+</li>
+<li><p>查看或修改默认参数</p>
+<pre><code>at inventory/mycluster/group_vars/k8s-cluster/k8s-cluster.yml
+
+kube_version: v1.15.0   / 我修改为1.15.0，镜像缓存网站可能没有最新的镜像
+kube_network_plugin: calico
+kube_service_addresses: 10.233.0.0/18
+ube_pods_subnet: 10.233.64.0/18
+kube_proxy_mode: ipvs</code></pre></li>
+</ol>
+<h1 id="修改代理-kubespray"><a href="#修改代理-kubespray" class="headerlink" title="修改代理(kubespray)"></a>修改代理(kubespray)</h1><p>代理网站地址： <a href="https://github.com/Azure/container-service-for-azure-china/blob/master/aks/README.md#22-container-registry-proxy" target="_blank" rel="noopener">Azure中国Github</a> <a href="http://mirror.azure.cn/help/gcr-proxy-cache.html" target="_blank" rel="noopener">Azure中国Web</a></p>
+<p>把脚本中的docker.io、grc.io和quay.io地址修改成azure中国的地址：</p>
+<pre><code>sed -i &#39;s@gcr\.io@gcr\.azk8s\.cn@g&#39;  role/download/defaults
+sed -i &#39;s@docker\.io@dockerhub\.azk8s\.cn@g&#39; role/download/defaults
+sed -i &#39;s@quay\.io@quay\.azk8s\.cn@g&#39; role/download/defaults
+sed -i &#39;s@gcr\.io@gcr\.azk8s\.cn@g&#39; inventory/mycluster/group_vars/k8s-cluster/k8s-cluster.yml</code></pre><h1 id="配置内核参数-k8s"><a href="#配置内核参数-k8s" class="headerlink" title="配置内核参数(k8s)"></a>配置内核参数(k8s)</h1><pre><code>添加内核参数开启路由转发等功能
+cat &lt;&lt; eof
+net.ipv4.ip_forward=1
+net.ipv4.ip_local_reserved_ports=30000-32767
+net.bridge.bridge-nf-call-iptables=1
+net.bridge.bridge-nf-call-arptables=1
+net.bridge.bridge-nf-call-ip6tables=1
+eof &gt;&gt; /etc/sysctl.conf
+sysctl -p</code></pre><h1 id="部署集群-kubespray"><a href="#部署集群-kubespray" class="headerlink" title="部署集群(kubespray)"></a>部署集群(kubespray)</h1><p><code>ansible-playbook -i inventory/mycluster/hosts.yml cluster.yml -b -v</code></p>
+<h1 id="验证-k8s"><a href="#验证-k8s" class="headerlink" title="验证(k8s)"></a>验证(k8s)</h1><pre><code>[root@kube-master1 ~]# kubectl get node
+NAME           STATUS   ROLES    AGE   VERSION
+kube-master1   Ready    master   72m   v1.15.0
+kube-master2   Ready    master   73m   v1.15.0
+kube-master3   Ready    master   72m   v1.15.0</code></pre><blockquote>
+<p><em>Note:</em></p>
+<p>可以看到节点都是ready状态了，说明部署成功。</p>
+</blockquote>
+<h1 id="部署测试"><a href="#部署测试" class="headerlink" title="部署测试"></a>部署测试</h1><pre><code># 创建一个nginx
+kubectl create nginx --image=nginx:1.7.9 --port=80 
+
+# 暴露nginx端口
+kubectl expose deployment nginx --type=NodePort
+
+# 查看nginx服务详情 
+kubectl get svc nginx
+
+NAME    TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+nginx   NodePort   10.233.22.159   &lt;none&gt;        80:31758/TCP   5m58s
+
+# 访问测试
+curl 192.168.10.101:31758</code></pre><h1 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h1><p><strong>etcd高可用</strong></p>
+<p>etcd本身就支持集群模式，所以啥都不用考虑，只要保证节点数量足够，升级备份之类的事情，kubespray已经帮你做了。</p>
+<p>由于etcd采用<code>Raft</code>一致性算法，集群规模最好不要超过9个，推荐<code>3，5，7，9</code>个数量。具体看集群规模。如果性能不够，宁可多分配资源，也最好不要超过9个。</p>
+<p>这里能选择偶数个节点吗？ 最好不要这样。原因有二：</p>
+<ul>
+<li>偶数个节点集群不可用风险更高，表现在选主过程中，有较大概率或等额选票，从而触发下一轮选举。</li>
+<li>偶数个节点集群在某些网络分割的场景下无法正常工作。试想，当网络分割发生后，将集群节点对半分割开。此时集群将无法工作。按照RAFT协议，此时集群写操作无法使得大多数节点同意，从而导致写失败，集群无法正常工作。</li>
+</ul>
+<p><strong>kube-apiserver 高可用</strong><br><a href="https://kubespray.io/#/docs/ha-mode" target="_blank" rel="noopener">https://kubespray.io/#/docs/ha-mode</a><br>haproxy</p>
+<pre><code>yum install -y haproxy keepalived
+vim /etc/haproxy/haproxy.cfg 
+listen kubernetes-apiserver-https
+  bind *:8443
+  option ssl-hello-chk
+  mode tcp
+  timeout client 3h
+  timeout server 3h
+  server master1 192.168.10.81:6443
+  server master2 192.168.10.82:6443
+  server master3 192.168.10.83:6443
+  balance roundrobin</code></pre><h1 id="维护命令"><a href="#维护命令" class="headerlink" title="维护命令"></a>维护命令</h1><pre><code>如果需要扩容Work节点，则修改hosts.yml文件，增加新增的机器信息 执行命令：
+ansible-playbook -i inventory/mycluster/hosts.yml scale.yml -b -v -k
+
+将hosts.yml文件中的master和etcd的机器增加到多台，执行部署命令
+ansible-playbook -i inventory/mycluster/hosts.yml cluster.yml -b -vvv
+
+刪除节点，如果不指定节点就是刪除整个集群：
+ansible-playbook -i inventory/mycluster/hosts.yml remove-node.yml -b -v
+
+卸载执行命令：
+ansible-playbook -i inventory/mycluster/hosts.yml reset.yml -b -vvv
+
+升级K8s集群，选择对应的k8s版本信息，执行升级命令。涉及文件为upgrade-cluster.yml。
+ansible-playbook upgrade-cluster.yml -b -i inventory/mycluster/hosts.yml -e kube_version=vX.XX.XX -vvv</code></pre>
             </div>
             <hr/>
 
@@ -449,7 +648,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/06/25/hello-world/">http://yoursite.com/2020/06/25/hello-world/</a>
+                    <a href="http://yoursite.com/2020/05/21/deploy-kubernetes-by-kuberspray/">http://yoursite.com/2020/05/21/deploy-kubernetes-by-kuberspray/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -548,10 +747,9 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2020/06/25/hello-world/">
                     <div class="card-image">
@@ -569,9 +767,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -580,7 +778,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -591,25 +788,25 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/21/deploy-kubernetes-by-kuberspray/">
+                <a href="/2020/04/22/15875256388038/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="deploy kubernetes by kuberspray">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="15875256388038">
                         
-                        <span class="card-title">deploy kubernetes by kuberspray</span>
+                        <span class="card-title">15875256388038</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Deploy kubernetes by kuberspray
-前言​        部署Kubernetes除了手动方式外，还有诸如Kubeadm、Kubespray、Breeze、Rancher、kargo等多种自动化方式。工具没有好坏
+                            安装必备的工具[root@disk-test ~]# yum install -y gdisk
+清除分区信息[root@disk-test ~]# lsblkNAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOIN
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-22
                             </span>
                         <span class="publish-author">
                             

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, Share,Technology,Grown">
+    <meta name="keywords" content="15875256388038, Share,Technology,Grown">
     <meta name="description" content="世人慌慌张张不过图这碎银几两，偏这碎银几两能解万种惆怅！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | 星辰和大海</title>
+    <title>15875256388038 | 星辰和大海</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">15875256388038</h1>
                 </div>
             </div>
         </div>
@@ -379,28 +379,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-25
+                    2020-04-22
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-06-25
+                    2020-05-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    730
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -415,15 +415,21 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+                <h1 id="安装必备的工具"><a href="#安装必备的工具" class="headerlink" title="安装必备的工具"></a>安装必备的工具</h1><p>[root@disk-test ~]# yum install -y gdisk</p>
+<h1 id="清除分区信息"><a href="#清除分区信息" class="headerlink" title="清除分区信息"></a>清除分区信息</h1><p>[root@disk-test ~]# lsblk<br>NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT<br>sr0     11:0    1 1024M  0 rom<br>sr1     11:1    1  464K  0 rom<br>vda    253:0    0   40G  0 disk<br>└─vda1 253:1    0   40G  0 part /<br>vdb    253:16   0  120G  0 disk </p>
+<p>[root@disk-test ~]# dd if=/dev/zero of=/dev/vdb bs=1M count=1000  </p>
+<p>#磁盘分区<br>[root@disk-test ~]# parted /dev/vdb mklabel gpt<br>Warning: The existing disk label on /dev/vdb will be destroyed and all data on this disk will be lost. Do you want to continue?<br>Yes/No? yes<br>Information: You may need to update /etc/fstab.</p>
+<p>[root@disk-test ~]# echo “Ignore” | parted /dev/vdb “mkpart primary xfs 0 -1”<br>Warning: The resulting partition is not properly aligned for best performance.<br>Information: You may need to update /etc/fstab.</p>
+<p>[root@disk-test ~]# partprobe<br>Warning: Unable to open /dev/sr1 read-write (Read-only file system).  /dev/sr1 has been opened read-only.<br>[root@disk-test ~]# lsblk<br>NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT<br>sr0     11:0    1 1024M  0 rom<br>sr1     11:1    1  464K  0 rom<br>vda    253:0    0   40G  0 disk<br>└─vda1 253:1    0   40G  0 part /<br>vdb    253:16   0  120G  0 disk<br>└─vdb1 253:17   0  120G  0 part </p>
+<p>#格式化并挂载<br>[root@disk-test ~]# mkfs.xfs /dev/vdb1<br>meta-data=/dev/vdb1              isize=512    agcount=4, agsize=7864258 blks<br>         =                       sectsz=512   attr=2, projid32bit=1<br>         =                       crc=1        finobt=0, sparse=0<br>data     =                       bsize=4096   blocks=31457031, imaxpct=25<br>         =                       sunit=0      swidth=0 blks<br>naming   =version 2              bsize=4096   ascii-ci=0 ftype=1<br>log      =internal log           bsize=4096   blocks=15359, version=2<br>         =                       sectsz=512   sunit=0 blks, lazy-count=1<br>realtime =none                   extsz=4096   blocks=0, rtextents=0<br>[root@disk-test ~]#<br>[root@disk-test ~]# mount /dev/vdb1 /mnt</p>
+<p>#持续写入文件<br>[root@disk-test ~]# cat test.sh<br>for ((i=1;i&lt;1000;i++))<br>do<br>echo $i<br>echo $i&gt;&gt;/mnt/test.txt<br>sleep 1<br>done</p>
+<p>[root@disk-test ~]# bash test.sh</p>
+<p>#后台扩容磁盘<br>[root@disk-test ~]# lsblk<br>NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT<br>sr0     11:0    1 1024M  0 rom<br>sr1     11:1    1  464K  0 rom<br>vda    253:0    0   40G  0 disk<br>└─vda1 253:1    0   40G  0 part /<br>vdb    253:16   0  130G  0 disk<br>└─vdb1 253:17   0  120G  0 part /mnt</p>
+<h1 id="自增长分区"><a href="#自增长分区" class="headerlink" title="自增长分区"></a>自增长分区</h1><p>[root@disk-test ~]# growpart /dev/vdb 1<br>CHANGED: partition=1 start=34 old: size=251656254 end=251656288 new: size=272629692 end=272629726<br>[root@disk-test ~]# lsblk<br>NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT<br>sr0     11:0    1 1024M  0 rom<br>sr1     11:1    1  464K  0 rom<br>vda    253:0    0   40G  0 disk<br>└─vda1 253:1    0   40G  0 part /<br>vdb    253:16   0  130G  0 disk<br>└─vdb1 253:17   0  130G  0 part /mnt</p>
+<h1 id="确认文件系统无变化"><a href="#确认文件系统无变化" class="headerlink" title="确认文件系统无变化"></a>确认文件系统无变化</h1><p>[root@disk-test ~]# df -Th<br>Filesystem     Type      Size  Used Avail Use% Mounted on<br>/dev/vda1      ext4       40G  1.3G   36G   4% /<br>devtmpfs       devtmpfs  873M     0  873M   0% /dev<br>tmpfs          tmpfs     883M     0  883M   0% /dev/shm<br>tmpfs          tmpfs     883M   17M  866M   2% /run<br>tmpfs          tmpfs     883M     0  883M   0% /sys/fs/cgroup<br>/dev/vdb1      xfs       120G   33M  120G   1% /mnt<br>tmpfs          tmpfs     177M     0  177M   0% /run/user/0</p>
+<h1 id="自增长文件系统"><a href="#自增长文件系统" class="headerlink" title="自增长文件系统"></a>自增长文件系统</h1><p>[root@disk-test ~]# xfs_growfs /dev/vdb1<br>meta-data=/dev/vdb1              isize=512    agcount=4, agsize=7864258 blks<br>         =                       sectsz=512   attr=2, projid32bit=1<br>         =                       crc=1        finobt=0 spinodes=0<br>data     =                       bsize=4096   blocks=31457031, imaxpct=25<br>         =                       sunit=0      swidth=0 blks<br>naming   =version 2              bsize=4096   ascii-ci=0 ftype=1<br>log      =internal               bsize=4096   blocks=15359, version=2<br>         =                       sectsz=512   sunit=0 blks, lazy-count=1<br>realtime =none                   extsz=4096   blocks=0, rtextents=0<br>data blocks changed from 31457031 to 34078711</p>
+<h1 id="确认文件系统大小变化并确保数据可持续写入"><a href="#确认文件系统大小变化并确保数据可持续写入" class="headerlink" title="确认文件系统大小变化并确保数据可持续写入"></a>确认文件系统大小变化并确保数据可持续写入</h1><p>[root@disk-test ~]# df -Th<br>Filesystem     Type      Size  Used Avail Use% Mounted on<br>/dev/vda1      ext4       40G  1.3G   36G   4% /<br>devtmpfs       devtmpfs  873M     0  873M   0% /dev<br>tmpfs          tmpfs     883M     0  883M   0% /dev/shm<br>tmpfs          tmpfs     883M   17M  866M   2% /run<br>tmpfs          tmpfs     883M     0  883M   0% /sys/fs/cgroup<br>/dev/vdb1      xfs       130G   33M  130G   1% /mnt<br>tmpfs          tmpfs     177M     0  177M   0% /run/user/0</p>
+<p>[root@disk-test ~]# tail -f /mnt/test.txt<br>351<br>352<br>353<br>354<br>355<br>356<br>357<br>358<br>359<br>360<br>361<br>362<br>363</p>
 
             </div>
             <hr/>
@@ -449,7 +455,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/06/25/hello-world/">http://yoursite.com/2020/06/25/hello-world/</a>
+                    <a href="http://yoursite.com/2020/04/22/15875256388038/">http://yoursite.com/2020/04/22/15875256388038/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -548,48 +554,9 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
-            <div class="card">
-                <a href="/2020/06/25/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Neal
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-            </div>
-        </div>
-        
-        
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2020/05/21/deploy-kubernetes-by-kuberspray/">
                     <div class="card-image">
@@ -608,8 +575,45 @@
                         
                     </div>
                     <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-21
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Neal
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/04/22/15875238112259/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="15875238112259">
+                        
+                        <span class="card-title">15875238112259</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            #清除分区信息[root@disk-test ~]# umount /mnt[root@disk-test ~]# dd if=/dev/zero of=/dev/vdb bs=1M count=10001000+0 records in1
+                        
+                    </div>
+                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-22
                             </span>
                         <span class="publish-author">
                             
