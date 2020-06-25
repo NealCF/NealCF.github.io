@@ -414,14 +414,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.1k
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    12 分
                 </div>
                 
 
@@ -436,7 +436,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="环境描述"><a href="#环境描述" class="headerlink" title="环境描述"></a>环境描述</h2><p>OS：macOS Mojave 10.14.5<br>Repositories：<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a><br>评论功能：<a href="https://livere.com/" target="_blank" rel="noopener">https://livere.com/</a><br>留言板功能：<a href="https://www.daocloud.io/" target="_blank" rel="noopener">https://www.daocloud.io/</a></p>
+                <p>开篇提示，此文档为自己的部署过程，顾做一次搬运工文章搬运工，也是第一次写博客练手啦。</p>
+<h2 id="环境描述"><a href="#环境描述" class="headerlink" title="环境描述"></a>环境描述</h2><p>OS：macOS Mojave 10.14.5<br>Repositories：<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a><br>评论功能：<a href="https://livere.com/" target="_blank" rel="noopener">https://livere.com/</a><br>留言板功能：<a href="https://www.daocloud.io/" target="_blank" rel="noopener">https://www.daocloud.io/</a></p>
 <p>参考文献：<a href="https://blog.csdn.net/weixin_41160054/article/details/89531921" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41160054/article/details/89531921</a></p>
 <p>​                   <a href="https://www.jianshu.com/p/921efd17b844" target="_blank" rel="noopener">https://www.jianshu.com/p/921efd17b844</a></p>
 <p>​                   <a href="https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1" target="_blank" rel="noopener">https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1</a></p>
@@ -513,7 +514,10 @@ $ hexo generate</code></pre><p>下面介绍几个常用的hexo命令(括号里�
 <li>hexo deploy(hexo d) #部署播客到远端（比如Github,coding,heroku等平台）</li>
 </ol>
 <p>在命令行中输入<code>hexo s --debug</code>后，运行成功后，可以在浏览器中输入：<a href="http://localhost:4000看到自己新建的博客了。">http://localhost:4000看到自己新建的博客了。</a></p>
-<h3 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h3><p>一般我们初始化博客的文件夹后，文件结构大概如下：</p>
+<h3 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h3><blockquote>
+<p>在本地仓库的根目录下存在_config.yml，同时在theme下的每个主图目录内仍有_config.yml。根config.yml为全局配置，主题的config.yml为主题自定义配置。配置过程中注意区分。</p>
+</blockquote>
+<p>一般我们初始化博客的文件夹后，文件结构大概如下：</p>
 <pre><code>$ ll
 total 1352
 -rw-r--r--    1 builder34  staff    32B  4 14 01:34 README.md
@@ -529,7 +533,43 @@ drwxr-xr-x    3 builder34  staff    96B  6 25 10:57 source
 drwxr-xr-x    6 builder34  staff   192B  6 25 11:33 themes</code></pre><p>themes文件夹是我们博客主题的存放地方，大家可以在<a href="https://hexo.io/themes/上选择自己喜欢的主题，建议选择文档描述清楚的，可以减轻自己的配置测试的次数。我所使用的是：[hexo-theme-matery](https://github.com/blinkfox/hexo-theme-matery)。" target="_blank" rel="noopener">https://hexo.io/themes/上选择自己喜欢的主题，建议选择文档描述清楚的，可以减轻自己的配置测试的次数。我所使用的是：[hexo-theme-matery](https://github.com/blinkfox/hexo-theme-matery)。</a> </p>
 <pre><code>$ cd themes/
 $ git clone https://github.com/blinkfox/hexo-theme-matery.git</code></pre><p>在Hexo配置文件（$your_blog_path/_config.yml）中把主题设置修改为hexo-theme-matery。</p>
-<pre><code>修改 Hexo 根目录下的 _config.yml 的 theme 的值：theme: hexo-theme-matery</code></pre><p>_config.yml 文件的其它修改建议:<br>请修改 _config.yml 的 url 的值为你的网站主 URL（如：<a href="http://xxx.github.io）。" target="_blank" rel="noopener">http://xxx.github.io）。</a><br>建议修改两个 per_page 的分页条数值为 6 的倍数，如：12、18 等，这样文章列表在各个屏幕下都能较好的显示。<br>如果你是中文用户，则建议修改 language 的值为 zh-CN。</p>
+<pre><code>修改 Hexo 根目录下的 _config.yml 的 theme 的值：theme: hexo-theme-matery</code></pre><p>_config.yml 文件的其它修改建议:<br>请修改 _config.yml 的 url 的值为你的网站主 URL（如：<a href="http://xxx.github.io）。" target="_blank" rel="noopener">http://xxx.github.io）。</a><br>建议修改两个 per_page 的分页条数值为 6 的倍数，如：12、18 等，这样文章列表在各个屏幕下都能较好的显示。<br>如果你是中文用户，则建议修改 language 的值为 zh-CN，timezone的值为 Asia/Shanghai。</p>
+<p>具体配置文档为：<a href="https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1" target="_blank" rel="noopener">https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1</a></p>
+<h3 id="Hexo部署到github"><a href="#Hexo部署到github" class="headerlink" title="Hexo部署到github"></a>Hexo部署到github</h3><p>安装hexo deployer 插件</p>
+<pre><code>使用 hexo deploy 命名部署到github所需要的hexo插件
+$ npm install hexo-deployer-git --save</code></pre><p>配置根_config.yml的deloyment:</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># Deployment</span>
+<span class="token comment" spellcheck="true">## Docs: https://hexo.io/docs/deployment.html</span>
+deploy:
+  type: <span class="token function">git</span>
+  repo: https://github.com/your_githubName/your_githubName.github.io.git</code></pre>
+<p>生成静态页面并部署到远端github pages</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true">#删除静态文件,即 public 文件</span>
+$ hexo clean
+<span class="token comment" spellcheck="true">#生成静态文件,即 public 文件</span>
+$ hexo generate
+<span class="token comment" spellcheck="true">#部署到远程站点</span>
+$ hexo deploy
+<span class="token comment" spellcheck="true">#也可以使用组合命令(替代上面2条命令)：生成静态命令并部署到远程站点</span>
+$ hexo deploy <span class="token operator">-</span>g</code></pre>
+<h2 id="设置博客域名"><a href="#设置博客域名" class="headerlink" title="设置博客域名"></a>设置博客域名</h2><p>进入自己博客的repository仓库，默认博客域名为<a href="https://your_githubName.github.io。可以通过类似如下的页面进行设置自定义域名：">https://your_githubName.github.io。可以通过类似如下的页面进行设置自定义域名：</a></p>
+<p>![image-20200625152625436](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625152625436.png)</p>
+<p>![image-20200625152629998](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625152629998.png)</p>
+<p>所填的自定义域名是需要自己已经注册，并且如果勾选了 Enforce HTTPS 的话，你的域名是需要ssl证书。</p>
+<h2 id="注意事项-自行判读是否配置"><a href="#注意事项-自行判读是否配置" class="headerlink" title="注意事项(自行判读是否配置)"></a>注意事项(自行判读是否配置)</h2><h3 id="上传README-md并防止被渲染成文章"><a href="#上传README-md并防止被渲染成文章" class="headerlink" title="上传README.md并防止被渲染成文章"></a>上传README.md并防止被渲染成文章</h3><pre><code>#在博客根目录下，新建或编辑你的README.md文件
+$ vim README.md
+$ mv README.md ./sources
+#修改_config.yml文件,设置不渲染的文件
+$ vim _config.yml
+skip_render: README.md</code></pre><h3 id="自定义域名重置问题"><a href="#自定义域名重置问题" class="headerlink" title="自定义域名重置问题"></a>自定义域名重置问题</h3><p>每次<code>hexo deploy</code>后Github Pages自定义域名会被重置，需要在sources目录下新建CNAME文件(注意为全大写无后缀的文件哦),文件内容为你需要映射到的自定义域名：</p>
+<pre><code>$ vim CNAME
+blog.monbuilder.top
+
+$ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配合Hexo配置Typora" class="headerlink" title="配合Hexo配置Typora"></a>配合Hexo配置Typora</h2><p>使用typora添加图片配置，参考<a href="https://wanglin0c.github.io/2020/06/25/blog_hexo/" target="_blank" rel="noopener">https://wanglin0c.github.io/2020/06/25/blog_hexo/</a></p>
+<p>配置typora的图像设置部分，偏好设置&gt;图像，选择复制到指定路径，并勾选”优先使用相对路径”，这样在粘贴图片到文档上的时候，就会在文档所在目录创建一个同名的目录存放该文档上的图片，并且图片的路径显示为该文件夹的相对路径，如“blog_hexo/xxxxx.png”，此时typora就可以显示该相对路径的图片，如图：</p>
+<p>![image-20200625153331989](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625153331989.png)</p>
+<p>修改hexo配置，如我的项目myblog_web目录下的配置文件_config.yml, 修改post_asset_folder的值为true，即使用相对路径。</p>
+<pre><code>post_asset_folder: true1</code></pre><p>本地安装插件， 执行命令<code>npm install hexo-image-link --save</code> 解决typora图片路径问题，本地预览的时候就可以看到图片了。</p>
 
             </div>
             <hr/>
@@ -996,7 +1036,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">2.8k</span>&nbsp;字
+                class="white-color">3.6k</span>&nbsp;字
             
             
             
