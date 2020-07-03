@@ -11,6 +11,12 @@
         <content type="html"><![CDATA[<h2 id="CSS心跳说明"><a href="#CSS心跳说明" class="headerlink" title="CSS心跳说明"></a>CSS心跳说明</h2><p> CSS 服务通过多种心跳机制实时监控集群状态，提供脑裂保护等基础集群服务功能。 CSS 服务有2种心跳机制： 一种是通过私有网络的<code>Network Heartbeat</code>，另一种是通过Voting Disk的<code>Disk Heartbeat</code>.<br>这2种心跳都有最大延时，对于<code>Disk Heartbeat</code>， 这个延时叫作IOT (I/O Timeout);对于<code>Network Heartbeat</code>, 这个延时叫MC(Misscount)。 这2个参数都以秒为单位，缺省时IOT大于MC</p><h2 id="MC调整方式"><a href="#MC调整方式" class="headerlink" title="MC调整方式"></a>MC调整方式</h2><pre><code>su - grid#获取当前心跳值crsctl get css misscount#设置新的心跳值crsctl set css misscount    240</code></pre><h2 id="disktimeout调整方式"><a href="#disktimeout调整方式" class="headerlink" title="disktimeout调整方式"></a>disktimeout调整方式</h2><pre><code>su - grid#获取当前心跳值crsctl get css disktimeout#设置新的心跳值crsctl set css disktimeout  300</code></pre><h2 id="asm心跳时间间隔调整"><a href="#asm心跳时间间隔调整" class="headerlink" title="asm心跳时间间隔调整"></a>asm心跳时间间隔调整</h2><pre><code>在rac正常状态下 grid账号下执行：sqlplus / as sysasmalter system set &quot;_asm_hbeatiowait&quot;=120 scope=spfile sid=&#39;*&#39;;重启crs服务/u01/app/11.2.0/grid/bin./crsctl stop cluster -all./crsctl start cluster -all检查参数：show parameter  _asm_hbeatiowait;</code></pre>]]></content>
       
       
+      <categories>
+          
+          <category> oracle </category>
+          
+      </categories>
+      
       
         <tags>
             
