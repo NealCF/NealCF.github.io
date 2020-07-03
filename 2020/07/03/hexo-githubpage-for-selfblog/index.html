@@ -400,7 +400,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-25
+                    2020-07-03
                 </div>
                 
 
@@ -442,11 +442,11 @@
 <p>​                   <a href="https://www.jianshu.com/p/921efd17b844" target="_blank" rel="noopener">https://www.jianshu.com/p/921efd17b844</a></p>
 <p>​                   <a href="https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1" target="_blank" rel="noopener">https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1</a></p>
 <h2 id="仓库准备"><a href="#仓库准备" class="headerlink" title="仓库准备"></a>仓库准备</h2><h3 id="Github仓库建立"><a href="#Github仓库建立" class="headerlink" title="Github仓库建立"></a>Github仓库建立</h3><p>登录<a href="https://github.com/后，点击右上角头像，点击“Your" target="_blank" rel="noopener">https://github.com/后，点击右上角头像，点击“Your</a> repositories”后进入个人github仓库。而后点击“New”创建新的仓库，因为我们要建网站，所以我们的「Repository name」应该和我们的github名字保持一致。同时仓库属性为public。设置完成后点击下方的“create repository”<br>例如：你的账户名字为NealCF，那么我们需要填写的是NealCF.github.io。同时，因为我自己的网站已经搭建好了，所以出现了下面的警告⚠️，不用在意。</p>
-<img src="/2020/06/25/hexo-githubpage-for-selfblog/image-20200625142434759.png" class="" title="image-20200625142434759">
+<img src="/2020/07/03/hexo-githubpage-for-selfblog/image-20200625142434759.png" class="" title="image-20200625142434759">
 
-<img src="/2020/06/25/hexo-githubpage-for-selfblog/image-20200625142448912.png" class="" title="image-20200625142448912">
+<img src="/2020/07/03/hexo-githubpage-for-selfblog/image-20200625142448912.png" class="" title="image-20200625142448912">
 
-<img src="/2020/06/25/hexo-githubpage-for-selfblog/image-20200625142455009.png" class="" title="image-20200625142455009">
+<img src="/2020/07/03/hexo-githubpage-for-selfblog/image-20200625142455009.png" class="" title="image-20200625142455009">
 
 <h3 id="配置github仓库免密"><a href="#配置github仓库免密" class="headerlink" title="配置github仓库免密"></a>配置github仓库免密</h3><p>生成新的SSH keys：</p>
 <pre><code>$ ssh-keygen -t rsa -C &quot;你的邮箱地址&quot;
@@ -483,7 +483,7 @@ git push -u origin master</code></pre><p>之后在浏览器中输入 【你的�
 <p>第一步：安装nvm和确认是否成功</p>
 <pre><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</code></pre><p>然后，输入代码</p>
 <pre><code>command -v nvm</code></pre><p>返回结果为nvm：</p>
-<img src="/2020/06/25/hexo-githubpage-for-selfblog/image-20200625144450053.png" class="" title="image-20200625144450053">
+<img src="/2020/07/03/hexo-githubpage-for-selfblog/image-20200625144450053.png" class="" title="image-20200625144450053">
 
 <p>若无此返回结果可重启terminal后尝试。</p>
 <p>第二步：用nvm安装node</p>
@@ -560,9 +560,9 @@ $ hexo deploy
 <span class="token comment" spellcheck="true">#也可以使用组合命令(替代上面2条命令)：生成静态命令并部署到远程站点</span>
 $ hexo deploy <span class="token operator">-</span>g</code></pre>
 <h2 id="设置博客域名"><a href="#设置博客域名" class="headerlink" title="设置博客域名"></a>设置博客域名</h2><p>进入自己博客的repository仓库，默认博客域名为<a href="https://your_githubName.github.io。" target="_blank" rel="noopener">https://your_githubName.github.io。</a> 可以通过类似如下的页面进行设置自定义域名：</p>
-<img src="/2020/06/25/hexo-githubpage-for-selfblog/image-20200625152625436.png" class="" title="image-20200625152625436">
+<img src="/2020/07/03/hexo-githubpage-for-selfblog/image-20200625152625436.png" class="" title="image-20200625152625436">
 
-<img src="/2020/06/25/hexo-githubpage-for-selfblog/image-20200625152629998.png" class="" title="image-20200625152629998">
+<img src="/2020/07/03/hexo-githubpage-for-selfblog/image-20200625152629998.png" class="" title="image-20200625152629998">
 
 <p>所填的自定义域名是需要自己已经注册，并且如果勾选了 Enforce HTTPS 的话，你的域名是需要ssl证书。</p>
 <h2 id="注意事项-自行判读是否配置"><a href="#注意事项-自行判读是否配置" class="headerlink" title="注意事项(自行判读是否配置)"></a>注意事项(自行判读是否配置)</h2><h3 id="上传README-md并防止被渲染成文章"><a href="#上传README-md并防止被渲染成文章" class="headerlink" title="上传README.md并防止被渲染成文章"></a>上传README.md并防止被渲染成文章</h3><pre><code>#在博客根目录下，新建或编辑你的README.md文件
@@ -576,7 +576,7 @@ blog.monbuilder.top
 
 $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配合Hexo配置Typora" class="headerlink" title="配合Hexo配置Typora"></a>配合Hexo配置Typora</h2><p>使用typora添加图片配置，参考<a href="https://wanglin0c.github.io/2020/06/25/blog_hexo/" target="_blank" rel="noopener">https://wanglin0c.github.io/2020/06/25/blog_hexo/</a></p>
 <p>配置typora的图像设置部分，偏好设置&gt;图像，选择复制到指定路径，并勾选”优先使用相对路径”，这样在粘贴图片到文档上的时候，就会在文档所在目录创建一个同名的目录存放该文档上的图片，并且图片的路径显示为该文件夹的相对路径，如“blog_hexo/xxxxx.png”，此时typora就可以显示该相对路径的图片，如图：</p>
-<img src="/2020/06/25/hexo-githubpage-for-selfblog/image-20200625153331989.png" class="" title="image-20200625153331989">
+<img src="/2020/07/03/hexo-githubpage-for-selfblog/image-20200625153331989.png" class="" title="image-20200625153331989">
 
 <p>修改hexo配置，如我的项目myblog_web目录下的配置文件_config.yml, 修改post_asset_folder的值为true，即使用相对路径。</p>
 <pre><code>post_asset_folder: true1</code></pre><p>本地安装插件， 执行命令<code>npm install hexo-image-link --save</code> 解决typora图片路径问题，本地预览的时候就可以看到图片了。</p>
@@ -605,7 +605,7 @@ $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nealcf.github.io/2020/06/25/hexo-githubpage-for-selfblog/">http://nealcf.github.io/2020/06/25/hexo-githubpage-for-selfblog/</a>
+                    <a href="http://nealcf.github.io/2020/07/03/hexo-githubpage-for-selfblog/">http://nealcf.github.io/2020/07/03/hexo-githubpage-for-selfblog/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -716,9 +716,68 @@ $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/07/03/hexo-githubpage-for-selfblog/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="在MAC上通过Hexo+Github Page搭建个人博客">
+                        
+                        <span class="card-title">在MAC上通过Hexo+Github Page搭建个人博客</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Mac Node.js Hexo Github 等等，开始动手吧
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/other/" class="post-category">
+                                    other
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Mac/">
+                        <span class="chip bg-color">Mac</span>
+                    </a>
+                    
+                    <a href="/tags/Hexo/">
+                        <span class="chip bg-color">Hexo</span>
+                    </a>
+                    
+                    <a href="/tags/Github-Page/">
+                        <span class="chip bg-color">Github Page</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/07/03/css-xin-tiao-shuo-ming-ji-diao-zheng-fang-shi/">
                     <div class="card-image">
@@ -736,9 +795,9 @@ $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配�
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -766,43 +825,6 @@ $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配�
                         <span class="chip bg-color">css</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/06/25/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Neal
-                            
-                        </span>
-                    </div>
                 </div>
                 
             </div>
@@ -1044,7 +1066,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3.8k</span>&nbsp;字
+                class="white-color">8.4k</span>&nbsp;字
             
             
             

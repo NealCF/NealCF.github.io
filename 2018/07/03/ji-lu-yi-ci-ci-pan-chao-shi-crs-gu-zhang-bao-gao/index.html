@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="磁盘无分区xfs_growfs扩展文件系统, Share,Technology,Grown">
+    <meta name="keywords" content="记录一次磁盘超时CRS故障报告, Share,Technology,Grown">
     <meta name="description" content="世人慌慌张张不过图这碎银几两，偏这碎银几两能解万种惆怅！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>磁盘无分区xfs_growfs扩展文件系统 | 星辰大海</title>
+    <title>记录一次磁盘超时CRS故障报告 | 星辰大海</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -250,7 +250,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">磁盘无分区xfs_growfs扩展文件系统</h1>
+                    <h1 class="description center-align post-title">记录一次磁盘超时CRS故障报告</h1>
                 </div>
             </div>
         </div>
@@ -367,8 +367,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/xfs-growfs/">
-                                <span class="chip bg-color">xfs_growfs</span>
+                            <a href="/tags/oracle/">
+                                <span class="chip bg-color">oracle</span>
+                            </a>
+                        
+                            <a href="/tags/rac/">
+                                <span class="chip bg-color">rac</span>
+                            </a>
+                        
+                            <a href="/tags/crs/">
+                                <span class="chip bg-color">crs</span>
                             </a>
                         
                     </div>
@@ -379,8 +387,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                操作系统
+                            <a href="/categories/oracle/" class="post-category">
+                                oracle
                             </a>
                         
                     </div>
@@ -392,28 +400,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-22
+                    2018-07-03
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-06-25
+                    2020-07-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    641
+                    4.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    25 分
                 </div>
                 
 
@@ -428,81 +436,372 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="清除分区信息"><a href="#清除分区信息" class="headerlink" title="清除分区信息"></a>清除分区信息</h2><pre><code>[root@disk-test ~]# umount /mnt
-[root@disk-test ~]# dd if=/dev/zero of=/dev/vdb bs=1M count=1000
-1000+0 records in
-1000+0 records out
-1048576000 bytes (1.0 GB) copied, 15.9085 s, 65.9 MB/s
-[root@disk-test ~]# 
-[root@disk-test ~]# 
-[root@disk-test ~]# 
-[root@disk-test ~]# lsblk
-NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sr0     11:0    1 1024M  0 rom  
-sr1     11:1    1  464K  0 rom  
-vda    253:0    0   40G  0 disk 
-└─vda1 253:1    0   40G  0 part /
-vdb    253:16   0  110G  0 disk </code></pre><h2 id="格式化磁盘并挂载"><a href="#格式化磁盘并挂载" class="headerlink" title="格式化磁盘并挂载"></a>格式化磁盘并挂载</h2><pre><code>[root@disk-test ~]# mkfs.xfs /dev/vdb
-meta-data=/dev/vdb               isize=512    agcount=4, agsize=7208960 blks
-         =                       sectsz=512   attr=2, projid32bit=1
-         =                       crc=1        finobt=0, sparse=0
-data     =                       bsize=4096   blocks=28835840, imaxpct=25
-         =                       sunit=0      swidth=0 blks
-naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
-log      =internal log           bsize=4096   blocks=14080, version=2
-         =                       sectsz=512   sunit=0 blks, lazy-count=1
-realtime =none                   extsz=4096   blocks=0, rtextents=0
-[root@disk-test ~]# 
+                <h2 id="环境描述"><a href="#环境描述" class="headerlink" title="环境描述"></a>环境描述</h2><p>首先：这是oracle11g 一个bug ！！！！！</p>
+<p>OS：AIX7</p>
+<p>ORACLE：11.2.0.4</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>早晨发现db集群数据库的2节点db2的crs服务相关进程异常宕掉，且该节点的asm中OCRVOTE磁盘组处于dismount状态，监听listener_scan1无法正常连接。运维人员重启了集群服务及数据库后恢复正常。</p>
+<h2 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h2><p>日志内容较多，可以根据自身情况对号入座</p>
+<h3 id="alert日志信息"><a href="#alert日志信息" class="headerlink" title="alert日志信息"></a>alert日志信息</h3><h4 id="节点1"><a href="#节点1" class="headerlink" title="节点1"></a>节点1</h4><p>db1 数据库 alert日志</p>
+<pre><code>Wed Apr 17 03:28:41 2019
+Archived Log entry 70662 added for thread 1 sequence 45676 ID 0x69424941 dest 1:
+Wed Apr 17 03:39:59 2019
+ALTER SYSTEM SET service_names=&#39;SYS$SYS.KUPC$S_1_20190417031059.HISDB&#39; SCOPE=MEMORY SID=&#39;hisdb1&#39;;
+ALTER SYSTEM SET service_names=&#39;hisdb&#39; SCOPE=MEMORY SID=&#39;hisdb1&#39;;
+Wed Apr 17 03:40:04 2019
+ALTER SYSTEM SET service_names=&#39;SYS$SYS.KUPC$C_1_20190417034003.HISDB&#39; SCOPE=MEMORY SID=&#39;hisdb1&#39;;
+ALTER SYSTEM SET service_names=&#39;SYS$SYS.KUPC$C_1_20190417034003.HISDB&#39;,&#39;SYS$SYS.KUPC$S_1_20190417034003.HISDB&#39; SCOPE=MEMORY SID=&#39;hisdb1&#39;;
+Wed Apr 17 03:40:04 2019
+DM00 started with pid=319, OS id=34407144, job CLINIC_EMR.SYS_EXPORT_SCHEMA_01
+Wed Apr 17 03:40:06 2019
+DW00 started with pid=376, OS id=38667000, wid=1, job CLINIC_EMR.SYS_EXPORT_SCHEMA_01
+Wed Apr 17 03:40:50 2019
+Thread 1 advanced to log sequence 45678 (LGWR switch)
+  Current log# 5 seq# 45678 mem# 0: +REDO/hisdb/onlinelog/group_5.256.853305003
+  Current log# 5 seq# 45678 mem# 1: +REDO/hisdb/onlinelog/group_5.257.853305003
+  Current log# 5 seq# 45678 mem# 2: +DATA/hisdb/onlinelog/group_5.273.853305005
+Wed Apr 17 03:40:50 2019
+Archived Log entry 70665 added for thread 1 sequence 45677 ID 0x69424941 dest 1:
+…………此次省略重复信息……………….
+Wed Apr 17 04:28:04 2019
+Thread 1 advanced to log sequence 45679 (LGWR switch)
+  Current log# 7 seq# 45679 mem# 0: +REDO/hisdb/onlinelog/group_7.260.853305027
+  Current log# 7 seq# 45679 mem# 1: +REDO/hisdb/onlinelog/group_7.261.853305029
+  Current log# 7 seq# 45679 mem# 2: +DATA/hisdb/onlinelog/group_7.275.853305029
+Wed Apr 17 04:28:05 2019
+Archived Log entry 70666 added for thread 1 sequence 45678 ID 0x69424941 dest 1:
+…………此次省略正常输出……………….
+Wed Apr 17 07:36:02 2019
+Thread 1 advanced to log sequence 45680 (LGWR switch)
+  Current log# 8 seq# 45680 mem# 0: +REDO/hisdb/onlinelog/group_8.262.853305031
+  Current log# 8 seq# 45680 mem# 1: +REDO/hisdb/onlinelog/group_8.263.853305031
+  Current log# 8 seq# 45680 mem# 2: +DATA/hisdb/onlinelog/group_8.276.853305031
+Wed Apr 17 07:36:03 2019
+Archived Log entry 70667 added for thread 1 sequence 45679 ID 0x69424941 dest 1:
+Wed Apr 17 07:40:31 2019</code></pre><p>db1 asm alert日志</p>
+<pre><code>Wed Apr 17 03:40:26 2019
+ Received dirty detach msg from inst 2 for dom 2
+Wed Apr 17 03:40:26 2019
+List of instances:
+ 1 2
+Dirty detach reconfiguration started (new ddet inc 1, cluster inc 12)
+ Global Resource Directory partially frozen for dirty detach
+* dirty detach - domain 2 invalid = TRUE 
+ 28 GCS resources traversed, 0 cancelled
+Dirty Detach Reconfiguration complete
+Wed Apr 17 03:40:26 2019
+NOTE: SMON starting instance recovery for group OCRVOTE domain 2 (mounted)
+NOTE: F1X0 found on disk 0 au 2 fcn 0.0
+NOTE: F1X0 found on disk 1 au 2 fcn 0.0
+NOTE: F1X0 found on disk 2 au 2 fcn 0.0
+NOTE: starting recovery of thread=1 ckpt=25.110 group=2 (OCRVOTE)
+NOTE: SMON waiting for thread 1 recovery enqueue
+NOTE: SMON about to begin recovery lock claims for diskgroup 2 (OCRVOTE)
+Wed Apr 17 03:40:26 2019
+NOTE: PST enabling heartbeating (grp 2)
+NOTE: SMON successfully validated lock domain 2
+NOTE: advancing ckpt for group 2 (OCRVOTE) thread=1 ckpt=25.110
+NOTE: SMON did instance recovery for group OCRVOTE domain 2</code></pre><h4 id="节点2"><a href="#节点2" class="headerlink" title="节点2"></a>节点2</h4><p>db2 数据库 alert 日志无异常输出，发现其实2节点的数据库状态是正常的。日志正常切换</p>
+<p>db2 asm alert 日志:</p>
+<p>通过分析alert_+ASM2.log日志， 发现OCRVOTE在Wed Apr 17 03:40:03 2019已经被dismount，具体如下：</p>
+<pre><code>Wed Apr 17 03:40:03 2019
+WARNING: dirty detached from domain 2
+NOTE: cache dismounted group 2/0x8C01ED8D (OCRVOTE) 
+SQL&gt; alter diskgroup OCRVOTE dismount force /* ASM SERVER:2348936589 */ 
+Wed Apr 17 03:40:33 2019
+Errors in file /u01/oragrid/grid/diag/asm/+asm/+ASM2/trace/+ASM2_ora_2622396.trc:
+ORA-15078: ASM diskgroup was forcibly dismounted
+…………此次省略重复信息……………….
+WARNING: requested mirror side 1 of virtual extent 5 logical extent 0 offset 704512 is not allocated; I/O request failed
+WARNING: requested mirror side 2 of virtual extent 5 logical extent 1 offset 704512 is not allocated; I/O request failed
+Errors in file /u01/oragrid/grid/diag/asm/+asm/+ASM2/trace/+ASM2_ora_2622396.trc:
+ORA-15078: ASM diskgroup was forcibly dismounted
+ORA-15078: ASM diskgroup was forcibly dismounted
+Wed Apr 17 05:26:26 2019
+SQL&gt; alter diskgroup OCRVOTE check /* proxy */ 
+ORA-15032: not all alterations performed
+ORA-15001: diskgroup &quot;OCRVOTE&quot; does not exist or is not mounted
+ERROR: alter diskgroup OCRVOTE check /* proxy */
+Wed Apr 17 05:26:52 2019
+NOTE: client exited [2360238]
+Wed Apr 17 05:26:53 2019
+NOTE: [crsd.bin@hisdbb (TNS V1-V3) 8257820] opening OCR file
+…………此次省略重复信息……………….
+通过该dismount的/* ASM SERVER:2348936589 */部分，可以知道该操作为asm自己完成，而非
+手工完成。我们继续向上查找CRS_DG磁盘组被dismount的原因。
+Wed Apr 17 03:40:02 2019
+WARNING: Waited 15 secs for write IO to PST disk 0 in group 2.
+WARNING: Waited 15 secs for write IO to PST disk 1 in group 2.
+WARNING: Waited 15 secs for write IO to PST disk 2 in group 2.
+WARNING: Waited 15 secs for write IO to PST disk 0 in group 2.
+WARNING: Waited 15 secs for write IO to PST disk 1 in group 2.
+WARNING: Waited 15 secs for write IO to PST disk 2 in group 2.
 
-[root@disk-test ~]# mount /dev/vdb /mnt </code></pre><h2 id="确认分区信息"><a href="#确认分区信息" class="headerlink" title="确认分区信息"></a>确认分区信息</h2><pre><code>[root@disk-test ~]# lsblk
-NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sr0     11:0    1 1024M  0 rom  
-sr1     11:1    1  464K  0 rom  
-vda    253:0    0   40G  0 disk 
-└─vda1 253:1    0   40G  0 part /
-vdb    253:16   0  110G  0 disk /mnt
-[root@disk-test ~]# df -Th
-Filesystem     Type      Size  Used Avail Use% Mounted on
-/dev/vda1      ext4       40G  1.2G   37G   4% /
-devtmpfs       devtmpfs  873M     0  873M   0% /dev
-tmpfs          tmpfs     883M     0  883M   0% /dev/shm
-tmpfs          tmpfs     883M   17M  866M   2% /run
-tmpfs          tmpfs     883M     0  883M   0% /sys/fs/cgroup
-tmpfs          tmpfs     177M     0  177M   0% /run/user/0
-/dev/vdb       xfs       110G   33M  110G   1% /mnt</code></pre><h2 id="后台扩容磁盘"><a href="#后台扩容磁盘" class="headerlink" title="后台扩容磁盘"></a>后台扩容磁盘</h2><pre><code>[root@disk-test ~]# lsblk
-NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sr0     11:0    1 1024M  0 rom  
-sr1     11:1    1  464K  0 rom  
-vda    253:0    0   40G  0 disk 
-└─vda1 253:1    0   40G  0 part /
-vdb    253:16   0  120G  0 disk /mnt</code></pre><h2 id="确认文件系统没有变化"><a href="#确认文件系统没有变化" class="headerlink" title="确认文件系统没有变化"></a>确认文件系统没有变化</h2><pre><code>[root@disk-test ~]# df -Th
-Filesystem     Type      Size  Used Avail Use% Mounted on
-/dev/vda1      ext4       40G  1.2G   37G   4% /
-devtmpfs       devtmpfs  873M     0  873M   0% /dev
-tmpfs          tmpfs     883M     0  883M   0% /dev/shm
-tmpfs          tmpfs     883M   17M  866M   2% /run
-tmpfs          tmpfs     883M     0  883M   0% /sys/fs/cgroup
-tmpfs          tmpfs     177M     0  177M   0% /run/user/0
-/dev/vdb       xfs       110G   33M  110G   1% /mnt</code></pre><h2 id="自增涨文件系统"><a href="#自增涨文件系统" class="headerlink" title="自增涨文件系统"></a>自增涨文件系统</h2><pre><code>[root@disk-test ~]# xfs_growfs /dev/vdb
-meta-data=/dev/vdb               isize=512    agcount=4, agsize=7208960 blks
-         =                       sectsz=512   attr=2, projid32bit=1
-         =                       crc=1        finobt=0 spinodes=0
-data     =                       bsize=4096   blocks=28835840, imaxpct=25
-         =                       sunit=0      swidth=0 blks
-naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
-log      =internal               bsize=4096   blocks=14080, version=2
-         =                       sectsz=512   sunit=0 blks, lazy-count=1
-realtime =none                   extsz=4096   blocks=0, rtextents=0
-data blocks changed from 28835840 to 31457280</code></pre><h2 id="确认文件系统大小"><a href="#确认文件系统大小" class="headerlink" title="确认文件系统大小"></a>确认文件系统大小</h2><pre><code>[root@disk-test ~]# df -Th
-Filesystem     Type      Size  Used Avail Use% Mounted on
-/dev/vda1      ext4       40G  1.2G   37G   4% /
-devtmpfs       devtmpfs  873M     0  873M   0% /dev
-tmpfs          tmpfs     883M     0  883M   0% /dev/shm
-tmpfs          tmpfs     883M   17M  866M   2% /run
-tmpfs          tmpfs     883M     0  883M   0% /sys/fs/cgroup
-tmpfs          tmpfs     177M     0  177M   0% /run/user/0
-/dev/vdb       xfs       120G   33M  120G   1% /mnt</code></pre><h2 id="写文件系统，确认没问题"><a href="#写文件系统，确认没问题" class="headerlink" title="写文件系统，确认没问题"></a>写文件系统，确认没问题</h2><pre><code>[root@disk-test ~]# cd /mnt/
-[root@disk-test mnt]# touch 1.txt</code></pre>
+这里看到的group 2就是OCRVOTE磁盘组，可以看到这里出现了对PST进行IO操作超时的warming。 PST是asm磁盘组状态的一种心跳检测机制，当对磁盘组PST的IO操作超过_asm_hbeatiowait仍不能完成，则会将该磁盘组dismount， 以保护数据一致性。_asm_hbeatiowait的默认值为15s，也就是上述告警中OCRVOTE磁盘组的超时时间。 （该特性只针对normal及high冗余的磁盘组生效，对于external冗余的磁盘组不会产生影响。DATA磁盘组为external冗余， 所以虽然PST IO超时超过51s，但未受到影响）。 OCRVOTE为normal冗余，所以由于该特性导致磁盘组被dismount。 由于该磁盘组只用于存储OCR和VOTE的相关信息， 数据库相关文件都在DATA及FRA磁盘组中， 所以尽管Wed Apr 17 03:40:03 2019 OCRVOTE磁盘组就已经被dismount但却并未影响数据库的正常读写。
+接下来继续来分析集群crs相关进程宕掉的原因：
+
+4.2 crsd日志
+2019-04-17 05:26:53.298: [ CRSMAIN][1] CRS Daemon Starting
+2019-04-17 05:26:53.299: [    CRSD][1] Logging level for Module: allcomp  0
+2019-04-17 05:26:53.299: [    CRSD][1] Logging level for Module: default  0
+2019-04-17 05:26:53.299: [    CRSD][1] Logging level for Module: COMMCRS  0
+2019-04-17 05:26:53.299: [    CRSD][1] Logging level for Module: COMMNS  0
+2019-04-17 05:26:53.299: [    CRSD][1] Logging level for Module: CSSCLNT  0
+…………此次省略部分信息……………….
+2019-04-17 05:26:53.302: [ CRSMAIN][1] Checking the OCR device
+2019-04-17 05:26:53.302: [ CRSMAIN][1] Sync-up with OCR
+2019-04-17 05:26:53.302: [ CRSMAIN][1] Connecting to the CSS Daemon
+2019-04-17 05:26:53.302: [ CRSMAIN][1] Getting local node number
+2019-04-17 05:26:53.303: [ CRSMAIN][1] Initializing OCR
+[   CLWAL][1]clsw_Initialize: OLR initlevel [70000]
+2019-04-17 05:26:53.744: [  OCRASM][1]proprasmo: Error in open/create file in dg [OCRVOTE]
+[  OCRASM][1]SLOS : SLOS: cat=8, opn=kgfoOpen01, dep=15056, loc=kgfokge
+
+2019-04-17 05:26:53.744: [  OCRASM][1]ASM Error Stack : 
+2019-04-17 05:26:53.830: [  OCRASM][1]proprasmo: kgfoCheckMount returned [6]
+2019-04-17 05:26:53.830: [  OCRASM][1]proprasmo: The ASM disk group OCRVOTE is not found or not mounted
+2019-04-17 05:26:53.831: [  OCRRAW][1]proprioo: Failed to open [+OCRVOTE]. Returned proprasmo() with [26]. Marking location as UNAVAILABLE.
+2019-04-17 05:26:53.831: [  OCRRAW][1]proprioo: No OCR/OLR devices are usable
+2019-04-17 05:26:53.831: [  OCRASM][1]proprasmcl: asmhandle is NULL
+2019-04-17 05:26:53.832: [    GIPC][1] gipcCheckInitialization: possible incompatible non-threaded init from [prom.c : 690], original from [clsss.c : 5343]
+2019-04-17 05:26:53.855: [ default][1]clsvactversion:4: Retrieving Active Version from local storage.
+2019-04-17 05:26:53.874: [  OCRRAW][1]proprrepauto: The local OCR configuration matches with the configuration published by OCR Cache Writer. No repair required.
+2019-04-17 05:26:53.875: [  OCRRAW][1]proprinit: Could not open raw device 
+2019-04-17 05:26:53.875: [  OCRASM][1]proprasmcl: asmhandle is NULL
+2019-04-17 05:26:53.877: [  OCRAPI][1]a_init:16!: Backend init unsuccessful : [26]
+2019-04-17 05:26:53.878: [  CRSOCR][1] OCR context init failure.  Error: PROC-26: Error while accessing the physical storage
+
+2019-04-17 05:26:53.878: [    CRSD][1] Created alert : (:CRSD00111:) :  Could not init OCR, error: PROC-26: Error while accessing the physical storage
+
+2019-04-17 05:26:53.878: [    CRSD][1][PANIC] CRSD exiting: Could not init OCR, code: 26
+2019-04-17 05:26:53.878: [    CRSD][1] Done.
+
+2019-04-17 05:26:54.576: [ CRSMAIN][1] First attempt: init CSS context succeeded.
+[  clsdmt][515]Listening to (ADDRESS=(PROTOCOL=ipc)(KEY=hisdbbDBG_CRSD))
+2019-04-17 05:26:54.611: [  clsdmt][515]PID for the Process [42402622], connkey 1 
+2019-04-17 05:26:54.612: [  clsdmt][515]Creating PID [42402622] file for home /u01/oragrid/11.2.0/grid host hisdbb bin crs to /u01/oragrid/11.2.0/grid/crs/init/
+2019-04-17 05:26:54.612: [  clsdmt][515]Writing PID [42402622] to the file [/u01/oragrid/11.2.0/grid/crs/init/hisdbb.pid] 
+2019-04-17 05:26:55.376: [ CRSMAIN][515] Policy Engine is not initialized yet!</code></pre><h3 id="trc日志信息"><a href="#trc日志信息" class="headerlink" title="trc日志信息"></a>trc日志信息</h3><h4 id=""><a href="#" class="headerlink" title=""></a></h4><pre><code>+ASM2_ora_2622396.trc日志内容
+# cat /u01/oragrid/grid/diag/asm/+asm/+ASM2/trace/+ASM2_ora_2622396.trc
+Trace file /u01/oragrid/grid/diag/asm/+asm/+ASM2/trace/+ASM2_ora_2622396.trc
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Real Application Clusters and Automatic Storage Management options
+ORACLE_HOME = /u01/oragrid/11.2.0/grid
+System name:    AIX
+Node name:      hisdbb
+Release:        1
+Version:        7
+Machine:        00F914484C00
+Instance name: +ASM2
+Redo thread mounted by this instance: 0 &lt;none&gt;
+Oracle process number: 24
+Unix process pid: 2622396, image: oracle@hisdbb (TNS V1-V3)
+*** 2019-04-17 03:40:08.584
+*** SESSION ID:(769.3) 2019-04-17 03:40:08.584
+*** CLIENT ID:() 2019-04-17 03:40:08.584
+*** SERVICE NAME:() 2019-04-17 03:40:08.584
+*** MODULE NAME:(crsd.bin@hisdbb (TNS V1-V3)) 2019-04-17 03:40:08.584
+*** ACTION NAME:() 2019-04-17 03:40:08.584
+Received ORADEBUG command (#1) &#39;CLEANUP_KFK_FD&#39; from process &#39;Unix process pid: 42270836, image: &lt;none&gt;&#39;
+*** 2019-04-17 03:40:08.597
+Finished processing ORADEBUG command (#1) &#39;CLEANUP_KFK_FD&#39;
+*** 2019-04-17 03:40:23.525
+Received ORADEBUG command (#2) &#39;CLEANUP_KFK_FD&#39; from process &#39;Unix process pid: 42270836, image: &lt;none&gt;&#39;
+*** 2019-04-17 03:40:23.525
+Finished processing ORADEBUG command (#2) &#39;CLEANUP_KFK_FD&#39;
+*** 2019-04-17 03:40:33.260
+WARNING:failed xlate 1 
+ORA-15078: ASM diskgroup was forcibly dismounted
+…………此次省略部分信息……………….
+
+*** 2019-04-17 05:26:26.036
+WARNING:failed xlate 1 
+ORA-15078: ASM diskgroup was forcibly dismounted
+ksfdrfms:Mirror Read file=+OCRVOTE.255.4294967295 fob=700010039003d68 bufp=110751000 blkno=1452 nbytes=4096
+WARNING:failed xlate 1 
+WARNING: requested mirror side 1 of virtual extent 5 logical extent 0 offset 704512 is not allocated; I/O request failed
+ksfdrfms:Read failed from mirror side=1 logical extent number=0 dskno=65535
+WARNING:failed xlate 1 
+WARNING: requested mirror side 2 of virtual extent 5 logical extent 1 offset 704512 is not allocated; I/O request failed
+ksfdrfms:Read failed from mirror side=2 logical extent number=1 dskno=65535
+ORA-15078: ASM diskgroup was forcibly dismounted
+ORA-15078: ASM diskgroup was forcibly dismounted</code></pre><pre><code>+ASM1_gmon_27098.trc日志内容：
+Trace file /u01/oragrid/grid/diag/asm/+asm/+ASM2/trace/+ASM2_gmon_4653254.trc
+…………此次省略部分信息……………….
+*** 2019-04-17 03:40:02.533
+WARNING: Waited 15 secs for write IO to PST disk 1 in group 2.
+WARNING: Waited 15 secs for write IO to PST disk 2 in group 2.
+NOTE: Set to be offline flag for disk OCRVOTE_0000 only locally: flag 0x3211
+NOTE: Set to be offline flag for disk OCRVOTE_0001 only locally: flag 0x3211
+NOTE: Set to be offline flag for disk OCRVOTE_0002 only locally: flag 0x3211
+WARNING: Waited 15 secs for write IO to PST disk 0 in group 2.
+WARNING: Waited 15 secs for write IO to PST disk 1 in group 2.
+WARNING: Waited 15 secs for write IO to PST disk 2 in group 2.
+----- Abridged Call Stack Trace -----
+ksedsts()+240&lt;-kfdpGc_doTobeoflnAsync()+44&lt;-kfdpGc_checkTobeofln()+632&lt;-kfdpGc_timeout()+20&lt;-kfdp_timeoutBg()+1156&lt;-ksbcti()+5928&lt;-ksbabs()+796&lt;-ksbrdp()+2216&lt;-opirip()+1620&lt;-opidrv()+608&lt;-sou2o()+136&lt;-opimai_real()+188&lt;-ssthrdmain()+276&lt;-main()+204&lt;-__start()+112
+
+----- End of Abridged Call Stack Trace -----
+GMON checking disk modes for group 2 at 10 for pid 28, osid 24379752
+  dsk = 0/0xdbf11d86, mask = 0x7e, op = clear
+  dsk = 1/0xdbf11d87, mask = 0x7e, op = clear
+  dsk = 2/0xdbf11d88, mask = 0x7e, op = clear
+POST (justCheck) res = 0 
+=============== PST ==================== 
+grpNum:    2 
+state:     2 
+callCnt:   10 
+(lockvalue) valid=1 ver=1.1 ndisks=3 flags=0x0 from inst=1 (I am 2) last=2
+(lockvalue) dsks: 0 1 2
+--------------- HDR -------------------- 
+next:      2 
+last:      2 
+pst count:      255 (invalid pst count) 
+incarn:        1 
+dta size:      0 
+version:      1 
+ASM version:      186646528 = 11.2.0.0.0
+contenttype:      1
+partnering pattern:      [ ]
+--------------- LOC MAP ---------------- 
+--------------- DTA -------------------- 
+--------------- HBEAT ------------------ 
+kfdpHbeat_dump: state=1, inst=2, ts=33083849.1420414976, 
+    rnd=454597524.4167353850.218858772.3095438849.
+kfk io-queue:    0
+kfdpHbeatCB_dump: at 1108307f8 with ts=04/17/2019 03:39:47 iop=110830808, grp=2, disk=0/3690012038, isWrite=1 Hbeat #95 state=4 iostate=3
+kfdpHbeatCB_dump: at 110830630 with ts=04/17/2019 03:39:47 iop=110830640, grp=2, disk=1/3690012039, isWrite=1 Hbeat #95 state=4 iostate=3
+kfdpHbeatCB_dump: at 110830468 with ts=04/17/2019 03:39:47 iop=110830478, grp=2, disk=2/3690012040, isWrite=1 Hbeat #95 state=4 iostate=3
+GMON updating disk modes for group 2 at 11 for pid 28, osid 24379752
+  dsk = 0/0xdbf11d86, mask = 0x6a, op = clear
+  dsk = 1/0xdbf11d87, mask = 0x6a, op = clear
+  dsk = 2/0xdbf11d88, mask = 0x6a, op = clear
+POST res = 0 
+=============== PST ==================== 
+grpNum:    2 
+state:     2 
+callCnt:   11 
+(lockvalue) valid=1 ver=1.1 ndisks=3 flags=0x0 from inst=1 (I am 2) last=2
+(lockvalue) dsks: 0 1 2
+--------------- HDR -------------------- 
+next:      2 
+last:      2 
+pst count:      255 (invalid pst count) 
+incarn:        1 
+dta size:      0 
+version:      1 
+ASM version:      186646528 = 11.2.0.0.0
+contenttype:      1
+partnering pattern:      [ ]
+--------------- LOC MAP ---------------- 
+--------------- DTA -------------------- 
+--------------- HBEAT ------------------ 
+kfdpHbeat_dump: state=1, inst=2, ts=33083849.1420414976, 
+    rnd=454597524.4167353850.218858772.3095438849.
+kfk io-queue:    0
+kfdpHbeatCB_dump: at 1108307f8 with ts=04/17/2019 03:39:47 iop=110830808, grp=2, disk=0/3690012038, isWrite=1 Hbeat #95 state=4 iostate=3
+kfdpHbeatCB_dump: at 110830630 with ts=04/17/2019 03:39:47 iop=110830640, grp=2, disk=1/3690012039, isWrite=1 Hbeat #95 state=4 iostate=3
+kfdpHbeatCB_dump: at 110830468 with ts=04/17/2019 03:39:47 iop=110830478, grp=2, disk=2/3690012040, isWrite=1 Hbeat #95 state=4 iostate=3
+NOTE: kfdp_updateInt: forceDismount grp 2
+NOTE: GMON: failed to update modes: triggering force dismount of group 2
+2019-04-17 03:40:02.614046 : kfdpHbeatblk_transfer: Found pending Hbeat I/O in grp=2 @
+    HBeatCblk=0x1108307f8 iop=0x110830808 iostate=3.
+kfdpHbeatCB_dump: at 1108307f8 with ts=04/17/2019 03:39:47 iop=110830808, grp=2, disk=0/3690012038, isWrite=1 Hbeat #95 state=4 iostate=3
+2019-04-17 03:40:02.614121 : kfdpHbeatblk_transfer: Found pending Hbeat I/O in grp=2 @
+    HBeatCblk=0x110830630 iop=0x110830640 iostate=3.
+kfdpHbeatCB_dump: at 110830630 with ts=04/17/2019 03:39:47 iop=110830640, grp=2, disk=1/3690012039, isWrite=1 Hbeat #95 state=4 iostate=3
+2019-04-17 03:40:02.614146 : kfdpHbeatblk_transfer: Found pending Hbeat I/O in grp=2 @
+    HBeatCblk=0x110830468 iop=0x110830478 iostate=3.
+kfdpHbeatCB_dump: at 110830468 with ts=04/17/2019 03:39:47 iop=110830478, grp=2, disk=2/3690012040, isWrite=1 Hbeat #95 state=4 iostate=3
+----- Abridged Call Stack Trace -----
+ksedsts()+240&lt;-kfdpHbeatblk_transfer()+904&lt;-kfdp_forceDismountAsyncGmon()+576&lt;-kfdp_updateInt()+1404&lt;-kfdp_updateDskBg()+908&lt;-ksbabs()+2800&lt;-ksbrdp()+2216&lt;-opirip()+1620&lt;-opidrv()+608&lt;-sou2o()+136&lt;-opimai_real()+188&lt;-ssthrdmain()+276&lt;-main()+204&lt;-__start()+112
+
+----- End of Abridged Call Stack Trace -----
+
+*** 2019-04-17 03:40:03.134
+GMON dismounting group 2 at 12 for pid 32, osid 19661688
+NOTE: kfdp_doDismount: dismount grp 2
+
+*** 2019-04-17 03:40:05.585
+NOTE: kfdpUtil_freeSlMsg: ksvtst for grp: 2348936589 KSV status 0x10
+
+*** 2019-04-17 03:40:35.978
+NOTE: kfdpUtil_freeSlMsg: ksvtst for grp: 2348936589 KSV status 0x10
+InvalLck (group 1) force released 
+
+*** 2019-04-17 07:50:38.365
+InvalLck (group 1) re-acquired in S 
+InvalLck (group 3) force released 
+InvalLck (group 3) re-acquired in S</code></pre><h3 id="oraagent-grid日志"><a href="#oraagent-grid日志" class="headerlink" title="oraagent_grid日志"></a>oraagent_grid日志</h3><pre><code>2019-04-17 05:26:52.185: [ CRSCOMM][772] IpcC: IPC client connection 7b to member 0 has been removed
+2019-04-17 05:26:52.204: [CLSFRAME][772] Removing IPC Member:{Relative|Node:0|Process:0|Type:1}
+2019-04-17 05:26:52.204: [CLSFRAME][772] Disconnected from CRSD:hisdbb process: {Relative|Node:0|Process:0|Type:1}
+2019-04-17 05:26:52.211: [   AGENT][2057]{0:1:7} {0:1:7} Created alert : (:CRSAGF00117:) :  Disconnected from server, Agent is shutting down.
+2019-04-17 05:26:52.211: [    AGFW][2057]{0:1:7} Agent is exiting with exit code: 1</code></pre><h3 id="listener-scan相关日志"><a href="#listener-scan相关日志" class="headerlink" title="listener_scan相关日志"></a>listener_scan相关日志</h3><pre><code>节点2 listener_scan1日志:
+
+No longer listening on: (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=172.17.100.5)(PORT=1521)))
+17-APR-2019 05:26:52 * service_died * LsnrAgt * 12537
+
+节点1 listenr_scan1日志
+上一次集群重启后此资源一直在节点2，故无日志输出。</code></pre><h2 id="分析过程"><a href="#分析过程" class="headerlink" title="分析过程"></a>分析过程</h2><p>可以看到在OCRVOTE磁盘组dismount之后，集群进行了对于OCR所在磁盘组的header check， 需要对OCRVOTE磁盘组进行IO操作， 然而OCRVOTE已经dismount， 无法进行操作， 使得header check失败， 导致了crs进程宕掉。之后集群多次尝试重启crs进程都因为无法访问ocr所在磁盘组而失败， 达到最大尝试次数后不再尝试， crs进程彻底挂掉。这里会产生一个疑问，为什么crsd挂掉，但是ora.cssd没有OFFLINE（通过crsctl stat res -t -init可以确认ora.cssd没有挂掉，数据库实例还正常运行，节点并没有被踢出去），原因在于OCRVOTE对应的磁盘可能只是短暂的不可访问， cssd进程是直接访问OCRVOTE对应的3个ASM磁盘，并不依赖于CRS_DG磁盘组是mount状态，并且Clusterware默认的磁盘心跳超时时间为200秒，所以cssd进程没有出现问题。Cssd进程的正常运行，保证了集群节点间通讯可以正常完成， 该节点不会被整个集群踢掉重启，这也是为什么crs服务已经宕掉而数据库一直未受到影响的原因。</p>
+<h2 id="过程梳理"><a href="#过程梳理" class="headerlink" title="过程梳理"></a>过程梳理</h2><p>故障过程：</p>
+<p>Wed Apr 17 03:40:02 2019时OCRVOTE磁盘组的PST无法进行IO操作超过15s，Wed Apr 17 03:40:03 2019 ASM实例强制dismount OCRVOTE磁盘组，Wed Apr 17 05:26:26 2019 OCR Device Header Check Fail，Wed Apr 17 05:26:52 2019 CRS服务相关进程宕掉，此刻节点2 crsd offline。</p>
+<p>恢复过程：</p>
+<p>17-APR-2019 05:26:52 业务发现故障，Wed Apr 17 07:35:40 2019重启了hisdb2节点，Wed Apr 17 07:41:37 2019开始重启hisdb1节点集群服务，Wed Apr 17 07:51:43 2019开始重新启动hisdb1集群服务，Wed Apr 17 08:01:43 2019开始重新启动hisdb2集群服务，OCRVOTE磁盘组及crs服务状态恢复正常</p>
+<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>首先：这是oracle11g 一个bug ！！！！！</p>
+<p>其次经查看集群相关日志可以确定，由于存储磁盘出现IO问题（或光线闪断、或IO延迟），导致集群CRS异常宕机。但是，比较奇怪的是，虽然CSR掉线了，ASM实例和DB实例却好好的，还可以正常使用。查询oracle support发现一篇文章1581864.1 提到ASM CRS仲裁盘访问超时与隐藏参数_asm_hbeatiowait有关系，而ASM的隐藏参数_asm_hbeatiowait由于操作系统多路径Multipath配置的polling_interval有关，具体的故障原因是操作系统盘的判断访问超时远大于数据库ASM仲裁盘访问超时，导致ORACLE RAC判定ASM中仲裁盘无法访问从而将仲裁盘强制Offline。解决的思路是：首先，确定操作系统polling_interval参数与数据库ASM隐藏参数值_asm_hbeatiowait，将_asm_hbeatiowait的值调整到比polling_interval值大即可。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="临时处理办法"><a href="#临时处理办法" class="headerlink" title="临时处理办法"></a>临时处理办法</h3><pre><code>step1.mount 问题ASM盘
+su - grid
+sqlplus / as sysasm
+SQL&gt; alter diskgroup OCRVDISK mount;
+Diskgroup altered.
+step2.恢复服务
+
+cd /u01/app/11.2.0/grid/bin 
+#./crsctl start crs
+[13:54:28]CRS-4640: Oracle High Availability Services is already active
+[13:54:28]CRS-4000: Command Start failed, or completed with errors.
+使用该方法拉起集群
+./crsctl start res ora.crsd -init
+检查
+
+#./crsctl check crs
+#./crsctl check cluster -all
+#./crs_stat -t</code></pre><h3 id="永久解决办法"><a href="#永久解决办法" class="headerlink" title="永久解决办法"></a>永久解决办法</h3><ol>
+<li>查看数据库RAC ASM的_asm_hbeatiowait值（默认是15秒）：</li>
+</ol>
+<pre><code>SQL&gt; SELECT   ksppinm, ksppstvl, ksppdesc
+   FROM   x$ksppi x, x$ksppcv y
+  WHERE   x.indx = y.indx AND  ksppinm = &#39;_asm_hbeatiowait&#39;;
+KSPPINM     KSPPSTVL KSPPDESC
+-------------------- ---------- ------------------------------------------------------------
+_asm_hbeatiowait     15 number of secs to wait for PST Async Hbeat IO return
+SQL&gt; </code></pre><ol start="2">
+<li>查看操作存储盘访问超时时间（默认是30秒）</li>
+</ol>
+<pre><code># cat /sys/block/sdb/device/timeout 
+30
+[root@rac1 ~]# cat /etc/redhat-release 
+Red Hat Enterprise Linux Server release 6.8 (Santiago)
+[root@rac1 ~]# </code></pre><ol start="3">
+<li>将_asm_hbeatiowait 的值调整为45秒（该参数是静态参数，需要重启集群）</li>
+</ol>
+<pre><code>SQL&gt; alter system set &quot;_asm_hbeatiowait&quot;=120 scope=spfile sid=&#39;*&#39;;
+System altered.</code></pre><p>4、重启集群并重启服务器</p>
+<h2 id="补充：官方解决建议"><a href="#补充：官方解决建议" class="headerlink" title="补充：官方解决建议"></a>补充：官方解决建议</h2><p>SOLUTION</p>
+<p>1] Check with OS and Storage admin that there is disk unresponsiveness.</p>
+<p>2] Possibly keep the disk responsiveness to below 15 seconds. </p>
+<p>This will depend on various factors like</p>
+<p>+ Operating System</p>
+<p>+ Presence of Multipath ( and Multipath Type )</p>
+<p>+ Any kernel parameter</p>
+<p>So you need to find out, what is the ‘maximum’ possible disk unresponsiveness for your set up.For example, on AIX rw_timeout setting affects this and defaults to 30 seconds.</p>
+<p>Another example is Linux with native multipathing. In such set up, number of physical paths and polling_interval value in multipath.conf file, will dictate this maximum disk unresponsiveness.</p>
+<p>So for your set up ( combination of OS / multipath / storage ), you need to find out this.</p>
+<p>3] If you can not keep the disk unresponsiveness to below 15 seconds, then the below parameter can be set in the ASM instance ( on all the Nodes of RAC ):</p>
+<p>  _asm_hbeatiowait</p>
+<p>As per internal bug 17274537 , based on internal testing the value should be increased to 120 secs, the same will be fixed in 12.2</p>
+<p>Run below in asm instance to set desired value for _asm_hbeatiowait</p>
+<p> alter system set “_asm_hbeatiowait”=<value> scope=spfile sid=’*’;</p>
+<p>And then restart asm instance / crs, to take new parameter value in effect.</p>
+
             </div>
             <hr/>
 
@@ -527,7 +826,7 @@ tmpfs          tmpfs     177M     0  177M   0% /run/user/0
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nealcf.github.io/2020/04/22/ci-pan-wu-fen-qu-xfs-growfs-kuo-zhan-wen-jian-xi-tong/">http://nealcf.github.io/2020/04/22/ci-pan-wu-fen-qu-xfs-growfs-kuo-zhan-wen-jian-xi-tong/</a>
+                    <a href="http://nealcf.github.io/2018/07/03/ji-lu-yi-ci-ci-pan-chao-shi-crs-gu-zhang-bao-gao/">http://nealcf.github.io/2018/07/03/ji-lu-yi-ci-ci-pan-chao-shi-crs-gu-zhang-bao-gao/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,8 +864,16 @@ tmpfs          tmpfs     177M     0  177M   0% /run/user/0
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/xfs-growfs/">
-                                    <span class="chip bg-color">xfs_growfs</span>
+                                <a href="/tags/oracle/">
+                                    <span class="chip bg-color">oracle</span>
+                                </a>
+                            
+                                <a href="/tags/rac/">
+                                    <span class="chip bg-color">rac</span>
+                                </a>
+                            
+                                <a href="/tags/crs/">
+                                    <span class="chip bg-color">crs</span>
                                 </a>
                             
                         </div>
@@ -634,32 +941,46 @@ tmpfs          tmpfs     177M     0  177M   0% /run/user/0
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/06/25/hello-world/">
+                <a href="/2020/04/22/ci-pan-wu-fen-qu-xfs-growfs-kuo-zhan-wen-jian-xi-tong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="磁盘无分区xfs_growfs扩展文件系统">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">磁盘无分区xfs_growfs扩展文件系统</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            清除分区信息[root@disk-test ~]# umount /mnt
+[root@disk-test ~]# dd if=/dev/zero of=/dev/vdb bs=1M count=1000
+1000+0 records in
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-22
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Neal
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/xfs-growfs/">
+                        <span class="chip bg-color">xfs_growfs</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -668,7 +989,7 @@ tmpfs          tmpfs     177M     0  177M   0% /run/user/0
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
                 <a href="/2018/07/03/ji-lu-yi-ci-ci-pan-chao-shi-crs-gu-zhang-bao-gao/">
@@ -702,6 +1023,7 @@ tmpfs          tmpfs     177M     0  177M   0% /run/user/0
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
