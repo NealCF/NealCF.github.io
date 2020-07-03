@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="在MAC上通过Hexo+Github Page搭建个人博客, Share,Technology,Grown">
+    <meta name="keywords" content="CSS心跳说明及调整方式, Share,Technology,Grown">
     <meta name="description" content="世人慌慌张张不过图这碎银几两，偏这碎银几两能解万种惆怅！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>在MAC上通过Hexo+Github Page搭建个人博客 | 星辰大海</title>
+    <title>CSS心跳说明及调整方式 | 星辰大海</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">在MAC上通过Hexo+Github Page搭建个人博客</h1>
+                    <h1 class="description center-align post-title">CSS心跳说明及调整方式</h1>
                 </div>
             </div>
         </div>
@@ -367,31 +367,22 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Mac/">
-                                <span class="chip bg-color">Mac</span>
+                            <a href="/tags/oracle/">
+                                <span class="chip bg-color">oracle</span>
                             </a>
                         
-                            <a href="/tags/Hexo/">
-                                <span class="chip bg-color">Hexo</span>
+                            <a href="/tags/rac/">
+                                <span class="chip bg-color">rac</span>
                             </a>
                         
-                            <a href="/tags/Github-Page/">
-                                <span class="chip bg-color">Github Page</span>
+                            <a href="/tags/css/">
+                                <span class="chip bg-color">css</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/other/" class="post-category">
-                                other
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -400,28 +391,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-25
+                    2020-07-03
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-06-25
+                    2020-07-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.8k
+                    243
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    1 分
                 </div>
                 
 
@@ -436,141 +427,27 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>开篇提示，此文档为自己的部署过程，顾做一次搬运工文章搬运工，也是第一次写博客练手啦。</p>
-<h2 id="环境描述"><a href="#环境描述" class="headerlink" title="环境描述"></a>环境描述</h2><p>OS：macOS Mojave 10.14.5<br>Repositories：<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a><br>评论功能：<a href="https://livere.com/" target="_blank" rel="noopener">https://livere.com/</a><br>留言板功能：<a href="https://www.daocloud.io/" target="_blank" rel="noopener">https://www.daocloud.io/</a></p>
-<p>参考文献：<a href="https://blog.csdn.net/weixin_41160054/article/details/89531921" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41160054/article/details/89531921</a></p>
-<p>​                   <a href="https://www.jianshu.com/p/921efd17b844" target="_blank" rel="noopener">https://www.jianshu.com/p/921efd17b844</a></p>
-<p>​                   <a href="https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1" target="_blank" rel="noopener">https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1</a></p>
-<h2 id="仓库准备"><a href="#仓库准备" class="headerlink" title="仓库准备"></a>仓库准备</h2><h3 id="Github仓库建立"><a href="#Github仓库建立" class="headerlink" title="Github仓库建立"></a>Github仓库建立</h3><p>登录<a href="https://github.com/后，点击右上角头像，点击“Your" target="_blank" rel="noopener">https://github.com/后，点击右上角头像，点击“Your</a> repositories”后进入个人github仓库。而后点击“New”创建新的仓库，因为我们要建网站，所以我们的「Repository name」应该和我们的github名字保持一致。同时仓库属性为public。设置完成后点击下方的“create repository”<br>例如：你的账户名字为NealCF，那么我们需要填写的是NealCF.github.io。同时，因为我自己的网站已经搭建好了，所以出现了下面的警告⚠️，不用在意。</p>
-<p>![image-20200625142434759](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625142434759.png)</p>
-<p>![image-20200625142448912](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625142448912.png)</p>
-<p>![image-20200625142455009](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625142455009.png)</p>
-<h3 id="配置github仓库免密"><a href="#配置github仓库免密" class="headerlink" title="配置github仓库免密"></a>配置github仓库免密</h3><p>生成新的SSH keys：</p>
-<pre><code>$ ssh-keygen -t rsa -C &quot;你的邮箱地址&quot;
-Generating public/private rsa key pair.
-Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa):&lt;回车&gt;
-Enter passphrase (empty for no passphrase):&lt;输入加密串&gt;&lt;如不想设置密码可直接回车表示为空&gt;
-Enter same passphrase again:&lt;再次输入加密串&gt;&lt;接着回车确认&gt;
-Your identification has been saved in /Users/你的名字/.ssh/id_rsa).
-Your public key has been saved in /Users/你的名字/.ssh/id_rsa.pub.
-The key fingerprint is:
-43:c5:5b:5f:b1:f1:50:43:ad:20:a6:92:6a:1f:9a:3a &quot;你的邮箱地址&quot; </code></pre><p>打开本地刚生成的.ssh/id_rsa.pub（若看不到，则需显示隐藏文件）,准确复制文件中所有内容。然后进入github主页，点击右上角头像进入settings，选择SSH and GPG keys，再点击New SSH Key。将内容复制进key，title可以为空。最后Add SSH key。<br>可以通过如下命令进行测试是否成功：</p>
-<pre><code>$ ssh -T git@GitHub.com #全部复制，无需更改</code></pre><p>若出现以下提示，表示SSH key添加成功：</p>
-<pre><code>The authenticity of host &#39;GitHub.com (207.97.227.239)&#39; can&#39;t be established.
-RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
-Are you sure you want to continue connecting (yes/no)?&lt;输入yes&gt;
-Hi 你的用户名! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code></pre><p>测试github pages是否创建成功：</p>
-<pre><code>echo &quot;# 你的用户名.github.io&quot; &gt;&gt; README.md
-git init    
-git add README.md
-git commit -m &quot;first commit&quot;
-git remote add origin https://github.com/你的用户名/你的用户名.github.io.git
-git push -u origin master</code></pre><p>之后在浏览器中输入 【你的名字】.github.io ，如果成功出现页面，并且页面上是你刚输入的地址，那么github pages配置成功。</p>
-<h2 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h2><h3 id="什么是Node-js"><a href="#什么是Node-js" class="headerlink" title="什么是Node.js"></a>什么是Node.js</h3><p>简单的说 Node.js 就是运行在服务端的 JavaScript。Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。更多Node.js的基础教程参考：<a href="https://www.runoob.com/nodejs/nodejs-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/nodejs/nodejs-tutorial.html</a></p>
-<h3 id="Node-js的组成"><a href="#Node-js的组成" class="headerlink" title="Node.js的组成"></a>Node.js的组成</h3><p>ECMAScript（语言基础，如：语法、数据类型结构以及一些内置对象）<br>OS（操作系统）<br>file（文件系统）<br>net（网络系统）<br>database（数据库）<br>注意：</p>
-<p>ECMAScript （是js的标准，js是它的具体实现和扩展，他描述语言的语法和基本对象，如：语法、运算符、语句、继承机制、数据结构以及一些内置对象）<br>DOM（文档对象模型，描述处理网页内容的方法和接口，将整个文档document解析成dom树供用户使用js对文档进行处理）。<br>BOM（浏览器对象模型，描述可以和浏览器窗口交互的方法和接口「对象结构」，如：window对象，history，location，navigator等）</p>
-<h3 id="Node-js安装-1"><a href="#Node-js安装-1" class="headerlink" title="Node.js安装"></a>Node.js安装</h3><blockquote>
-<p>需要注意的是，在我们安装<code>node.js</code>的时候，也需要同时安装<code>npm</code>。而这是最容易出问题的地方。</p>
-</blockquote>
-<h4 id="什么是npm"><a href="#什么是npm" class="headerlink" title="什么是npm"></a>什么是npm</h4><p>npm的全称node package manager，是一个node包的管理工具。</p>
-<p>npm（Node Package Manager）是Node.js下的主流套件管理程式。它在Node.js v0.6.x版本之后，内建于Node系统。通过npm可以协助开发者安装、卸载、删除、更新Node.js套件。因此安装Node.js的时候最好一起也安装npm!</p>
-<h4 id="如何安装Node-js和npm"><a href="#如何安装Node-js和npm" class="headerlink" title="如何安装Node.js和npm"></a>如何安装Node.js和npm</h4><blockquote>
-<p>使用一个node version manager来安装 <code>Node.js</code>和<code>npm</code>。</p>
-</blockquote>
-<p>第一步：安装nvm和确认是否成功</p>
-<pre><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</code></pre><p>然后，输入代码</p>
-<pre><code>command -v nvm</code></pre><p>返回结果为nvm：</p>
-<p>![image-20200625144450053](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625144450053.png)</p>
-<p>若无此返回结果可重启terminal后尝试。</p>
-<p>第二步：用nvm安装node</p>
-<pre><code>nvm install node # &quot;node&quot; is an alias for the latest version</code></pre><p>![image-20200625144654479](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625144654479.png)</p>
-<h2 id="Hexo安装"><a href="#Hexo安装" class="headerlink" title="Hexo安装"></a>Hexo安装</h2><p>hexo的安装只需要使用npm进行安装，包的名字为hexo-cli</p>
-<pre><code>npm install -g hexo-cli</code></pre><h2 id="网站配置"><a href="#网站配置" class="headerlink" title="网站配置"></a>网站配置</h2><p>安装 Hexo 完成后，我们可以在本地新建一个文件夹或采用下载仓库的方式进行完整初始化。</p>
-<h3 id="下载仓库"><a href="#下载仓库" class="headerlink" title="下载仓库"></a>下载仓库</h3><p>规划好网站在本地的存放位置后，将github上的仓库clone下来，进行网站初始化：</p>
-<p>备注：我规划的位置为/Users/{用户名}/Documents下。</p>
-<pre><code>$ cd /Users/cjm/Documents/
-$ git clone https://github.com/yourGithubName/yourGithubName.github.io</code></pre><h3 id="清空本地仓库目录，进行网站初始化"><a href="#清空本地仓库目录，进行网站初始化" class="headerlink" title="清空本地仓库目录，进行网站初始化"></a>清空本地仓库目录，进行网站初始化</h3><blockquote>
-<p>必须确认当前工作目录是否为本地仓库目录。或可采用mv进行目录重命名后新建原目录的方式</p>
-</blockquote>
-<pre><code>进入本地仓库目录：
-$ cd /Users/cjm/Documents/NealCF.github.io/
-确认目录结构：
-$ pwd
-/Users/cjm/Documents/NealCF.github.io
+                <h2 id="CSS心跳说明"><a href="#CSS心跳说明" class="headerlink" title="CSS心跳说明"></a>CSS心跳说明</h2><p> CSS 服务通过多种心跳机制实时监控集群状态，提供脑裂保护等基础集群服务功能。 CSS 服务有2种心跳机制： 一种是通过私有网络的<code>Network Heartbeat</code>，另一种是通过Voting Disk的<code>Disk Heartbeat</code>.<br>这2种心跳都有最大延时，对于<code>Disk Heartbeat</code>， 这个延时叫作IOT (I/O Timeout);对于<code>Network Heartbeat</code>, 这个延时叫MC(Misscount)。 这2个参数都以秒为单位，缺省时IOT大于MC</p>
+<h2 id="MC调整方式"><a href="#MC调整方式" class="headerlink" title="MC调整方式"></a>MC调整方式</h2><pre><code>su - grid
 
-确认目录中文件内容（包含隐藏文件）
-$ ls -al
+#获取当前心跳值
+crsctl get css misscount
+#设置新的心跳值
+crsctl set css misscount    240</code></pre><h2 id="disktimeout调整方式"><a href="#disktimeout调整方式" class="headerlink" title="disktimeout调整方式"></a>disktimeout调整方式</h2><pre><code>su - grid
+#获取当前心跳值
+crsctl get css disktimeout
+#设置新的心跳值
+crsctl set css disktimeout  300</code></pre><h2 id="asm心跳时间间隔调整"><a href="#asm心跳时间间隔调整" class="headerlink" title="asm心跳时间间隔调整"></a>asm心跳时间间隔调整</h2><pre><code>在rac正常状态下 grid账号下执行：
+sqlplus / as sysasm
+alter system set &quot;_asm_hbeatiowait&quot;=120 scope=spfile sid=&#39;*&#39;;
 
-清空本地仓库内容
-$ rm -rf *</code></pre><h3 id="Hexo初始化"><a href="#Hexo初始化" class="headerlink" title="Hexo初始化"></a>Hexo初始化</h3><p>建立初始化方式如下：</p>
-<pre><code>$ cd /Users/cjm/Documents/NealCF.github.io/
-$ hexo init ./
-$ hexo generate</code></pre><p>下面介绍几个常用的hexo命令(括号里面的命令为缩写形式，效果一样)：</p>
-<ol>
-<li>hexo generate(hexo g) #生成静态文件，会在当前目录下生成一个新的叫做public的文件夹</li>
-<li>hexo new “postTitle” #新建博客文章</li>
-<li>hexo new page “pageTitle” #新建1个页面</li>
-<li>hexo server(hexo s) #启动本地web服务预览(加参数–debug,用于调试，如：hexo s –debug)</li>
-<li>hexo deploy(hexo d) #部署播客到远端（比如Github,coding,heroku等平台）</li>
-</ol>
-<p>在命令行中输入<code>hexo s --debug</code>后，运行成功后，可以在浏览器中输入：<a href="http://localhost:4000看到自己新建的博客了。">http://localhost:4000看到自己新建的博客了。</a></p>
-<h3 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h3><blockquote>
-<p>在本地仓库的根目录下存在_config.yml，同时在theme下的每个主图目录内仍有_config.yml。根config.yml为全局配置，主题的config.yml为主题自定义配置。配置过程中注意区分。</p>
-</blockquote>
-<p>一般我们初始化博客的文件夹后，文件结构大概如下：</p>
-<pre><code>$ ll
-total 1352
--rw-r--r--    1 builder34  staff    32B  4 14 01:34 README.md
--rw-r--r--    1 builder34  staff   2.3K  6 25 10:40 _config.yml
--rw-r--r--    1 builder34  staff    32K  6 26 15:50 db.json
--rw-r--r--    1 builder34  staff   458K  6 26 15:56 debug.log
-drwxr-xr-x  293 builder34  staff   9.2K  6 25 10:42 node_modules
--rw-r--r--    1 builder34  staff   110K  6 22 23:59 package-lock.json
--rw-r--r--    1 builder34  staff   564B  6 22 23:59 package.json
-drwxr-xr-x   14 builder34  staff   448B  6 25 10:40 public
-drwxr-xr-x    5 builder34  staff   160B  4 17 23:12 scaffolds
-drwxr-xr-x    3 builder34  staff    96B  6 25 10:57 source
-drwxr-xr-x    6 builder34  staff   192B  6 25 11:33 themes</code></pre><p>themes文件夹是我们博客主题的存放地方，大家可以在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a>  上选择自己喜欢的主题，建议选择文档描述清楚的，可以减轻自己的配置测试的次数。我所使用的是：<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank" rel="noopener">hexo-theme-matery</a>。 </p>
-<pre><code>$ cd themes/
-$ git clone https://github.com/blinkfox/hexo-theme-matery.git</code></pre><p>在Hexo配置文件（$your_blog_path/_config.yml）中把主题设置修改为hexo-theme-matery。</p>
-<pre><code>修改 Hexo 根目录下的 _config.yml 的 theme 的值：theme: hexo-theme-matery</code></pre><p>_config.yml 文件的其它修改建议:<br>请修改 _config.yml 的 url 的值为你的网站主 URL（如：<a href="http://xxx.github.io）。" target="_blank" rel="noopener">http://xxx.github.io）。</a><br>建议修改两个 per_page 的分页条数值为 6 的倍数，如：12、18 等，这样文章列表在各个屏幕下都能较好的显示。<br>如果你是中文用户，则建议修改 language 的值为 zh-CN，timezone的值为 Asia/Shanghai。</p>
-<p>具体配置文档为：<a href="https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1" target="_blank" rel="noopener">https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1</a></p>
-<h3 id="Hexo部署到github"><a href="#Hexo部署到github" class="headerlink" title="Hexo部署到github"></a>Hexo部署到github</h3><p>安装hexo deployer 插件</p>
-<pre><code>使用 hexo deploy 命名部署到github所需要的hexo插件
-$ npm install hexo-deployer-git --save</code></pre><p>配置根_config.yml的deloyment:</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># Deployment</span>
-<span class="token comment" spellcheck="true">## Docs: https://hexo.io/docs/deployment.html</span>
-deploy:
-  type: <span class="token function">git</span>
-  repo: https://github.com/your_githubName/your_githubName.github.io.git</code></pre>
-<p>生成静态页面并部署到远端github pages</p>
-<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true">#删除静态文件,即 public 文件</span>
-$ hexo clean
-<span class="token comment" spellcheck="true">#生成静态文件,即 public 文件</span>
-$ hexo generate
-<span class="token comment" spellcheck="true">#部署到远程站点</span>
-$ hexo deploy
-<span class="token comment" spellcheck="true">#也可以使用组合命令(替代上面2条命令)：生成静态命令并部署到远程站点</span>
-$ hexo deploy <span class="token operator">-</span>g</code></pre>
-<h2 id="设置博客域名"><a href="#设置博客域名" class="headerlink" title="设置博客域名"></a>设置博客域名</h2><p>进入自己博客的repository仓库，默认博客域名为<a href="https://your_githubName.github.io。" target="_blank" rel="noopener">https://your_githubName.github.io。</a> 可以通过类似如下的页面进行设置自定义域名：</p>
-<p>![image-20200625152625436](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625152625436.png)</p>
-<p>![image-20200625152629998](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625152629998.png)</p>
-<p>所填的自定义域名是需要自己已经注册，并且如果勾选了 Enforce HTTPS 的话，你的域名是需要ssl证书。</p>
-<h2 id="注意事项-自行判读是否配置"><a href="#注意事项-自行判读是否配置" class="headerlink" title="注意事项(自行判读是否配置)"></a>注意事项(自行判读是否配置)</h2><h3 id="上传README-md并防止被渲染成文章"><a href="#上传README-md并防止被渲染成文章" class="headerlink" title="上传README.md并防止被渲染成文章"></a>上传README.md并防止被渲染成文章</h3><pre><code>#在博客根目录下，新建或编辑你的README.md文件
-$ vim README.md
-$ mv README.md ./sources
-#修改_config.yml文件,设置不渲染的文件
-$ vim _config.yml
-skip_render: README.md</code></pre><h3 id="自定义域名重置问题"><a href="#自定义域名重置问题" class="headerlink" title="自定义域名重置问题"></a>自定义域名重置问题</h3><p>每次<code>hexo deploy</code>后Github Pages自定义域名会被重置，需要在sources目录下新建CNAME文件(注意为全大写无后缀的文件哦),文件内容为你需要映射到的自定义域名：</p>
-<pre><code>$ vim CNAME
-blog.monbuilder.top
+重启crs服务
+/u01/app/11.2.0/grid/bin
+./crsctl stop cluster -all
+./crsctl start cluster -all
 
-$ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配合Hexo配置Typora" class="headerlink" title="配合Hexo配置Typora"></a>配合Hexo配置Typora</h2><p>使用typora添加图片配置，参考<a href="https://wanglin0c.github.io/2020/06/25/blog_hexo/" target="_blank" rel="noopener">https://wanglin0c.github.io/2020/06/25/blog_hexo/</a></p>
-<p>配置typora的图像设置部分，偏好设置&gt;图像，选择复制到指定路径，并勾选”优先使用相对路径”，这样在粘贴图片到文档上的时候，就会在文档所在目录创建一个同名的目录存放该文档上的图片，并且图片的路径显示为该文件夹的相对路径，如“blog_hexo/xxxxx.png”，此时typora就可以显示该相对路径的图片，如图：</p>
-<p>![image-20200625153331989](在MAC上通过Hexo+Github Page搭建个人博客/image-20200625153331989.png)</p>
-<p>修改hexo配置，如我的项目myblog_web目录下的配置文件_config.yml, 修改post_asset_folder的值为true，即使用相对路径。</p>
-<pre><code>post_asset_folder: true1</code></pre><p>本地安装插件， 执行命令<code>npm install hexo-image-link --save</code> 解决typora图片路径问题，本地预览的时候就可以看到图片了。</p>
-
+检查参数：
+show parameter  _asm_hbeatiowait;</code></pre>
             </div>
             <hr/>
 
@@ -595,7 +472,7 @@ $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nealcf.github.io/2020/06/25/zai-mac-shang-tong-guo-hexo-github-page-da-jian-ge-ren-bo-ke/">http://nealcf.github.io/2020/06/25/zai-mac-shang-tong-guo-hexo-github-page-da-jian-ge-ren-bo-ke/</a>
+                    <a href="http://nealcf.github.io/2020/07/03/css-xin-tiao-shuo-ming-ji-diao-zheng-fang-shi/">http://nealcf.github.io/2020/07/03/css-xin-tiao-shuo-ming-ji-diao-zheng-fang-shi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -633,16 +510,16 @@ $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配�
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Mac/">
-                                    <span class="chip bg-color">Mac</span>
+                                <a href="/tags/oracle/">
+                                    <span class="chip bg-color">oracle</span>
                                 </a>
                             
-                                <a href="/tags/Hexo/">
-                                    <span class="chip bg-color">Hexo</span>
+                                <a href="/tags/rac/">
+                                    <span class="chip bg-color">rac</span>
                                 </a>
                             
-                                <a href="/tags/Github-Page/">
-                                    <span class="chip bg-color">Github Page</span>
+                                <a href="/tags/css/">
+                                    <span class="chip bg-color">css</span>
                                 </a>
                             
                         </div>
@@ -706,9 +583,10 @@ $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/07/03/css-xin-tiao-shuo-ming-ji-diao-zheng-fang-shi/">
                     <div class="card-image">
@@ -726,9 +604,9 @@ $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配�
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -737,6 +615,7 @@ $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配�
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -763,19 +642,19 @@ $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配�
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/25/hello-world/">
+                <a href="/2020/06/25/zai-mac-shang-tong-guo-hexo-github-page-da-jian-ge-ren-bo-ke/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="在MAC上通过Hexo+Github Page搭建个人博客">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">在MAC上通过Hexo+Github Page搭建个人博客</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            Mac Node.js Hexo Github 等等，开始动手吧
                         
                     </div>
                     <div class="publish-info">
@@ -784,11 +663,31 @@ $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配�
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Neal
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/other/" class="post-category">
+                                    other
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Mac/">
+                        <span class="chip bg-color">Mac</span>
+                    </a>
+                    
+                    <a href="/tags/Hexo/">
+                        <span class="chip bg-color">Hexo</span>
+                    </a>
+                    
+                    <a href="/tags/Github-Page/">
+                        <span class="chip bg-color">Github Page</span>
+                    </a>
+                    
                 </div>
                 
             </div>
