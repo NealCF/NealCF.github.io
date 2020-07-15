@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="磁盘无分区xfs_growfs扩展文件系统, Share,Technology,Grown">
+    <meta name="keywords" content="CentOS7 自定义服务方法及文件格式讲解（2）, Share,Technology,Grown">
     <meta name="description" content="世人慌慌张张不过图这碎银几两，偏这碎银几两能解万种惆怅！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>磁盘无分区xfs_growfs扩展文件系统 | 星辰大海</title>
+    <title>CentOS7 自定义服务方法及文件格式讲解（2） | 星辰大海</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">磁盘无分区xfs_growfs扩展文件系统</h1>
+                    <h1 class="description center-align post-title">CentOS7 自定义服务方法及文件格式讲解（2）</h1>
                 </div>
             </div>
         </div>
@@ -367,8 +367,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/xfs-growfs/">
-                                <span class="chip bg-color">xfs_growfs</span>
+                            <a href="/tags/CentOS7/">
+                                <span class="chip bg-color">CentOS7</span>
+                            </a>
+                        
+                            <a href="/tags/systemd/">
+                                <span class="chip bg-color">systemd</span>
                             </a>
                         
                     </div>
@@ -379,8 +383,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                操作系统
+                            <a href="/categories/linux/" class="post-category">
+                                linux
                             </a>
                         
                     </div>
@@ -392,28 +396,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-22
+                    2020-07-15
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-06-25
+                    2020-07-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    641
+                    2.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    9 分
                 </div>
                 
 
@@ -428,81 +432,191 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="清除分区信息"><a href="#清除分区信息" class="headerlink" title="清除分区信息"></a>清除分区信息</h2><pre><code>[root@disk-test ~]# umount /mnt
-[root@disk-test ~]# dd if=/dev/zero of=/dev/vdb bs=1M count=1000
-1000+0 records in
-1000+0 records out
-1048576000 bytes (1.0 GB) copied, 15.9085 s, 65.9 MB/s
-[root@disk-test ~]# 
-[root@disk-test ~]# 
-[root@disk-test ~]# 
-[root@disk-test ~]# lsblk
-NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sr0     11:0    1 1024M  0 rom  
-sr1     11:1    1  464K  0 rom  
-vda    253:0    0   40G  0 disk 
-└─vda1 253:1    0   40G  0 part /
-vdb    253:16   0  110G  0 disk </code></pre><h2 id="格式化磁盘并挂载"><a href="#格式化磁盘并挂载" class="headerlink" title="格式化磁盘并挂载"></a>格式化磁盘并挂载</h2><pre><code>[root@disk-test ~]# mkfs.xfs /dev/vdb
-meta-data=/dev/vdb               isize=512    agcount=4, agsize=7208960 blks
-         =                       sectsz=512   attr=2, projid32bit=1
-         =                       crc=1        finobt=0, sparse=0
-data     =                       bsize=4096   blocks=28835840, imaxpct=25
-         =                       sunit=0      swidth=0 blks
-naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
-log      =internal log           bsize=4096   blocks=14080, version=2
-         =                       sectsz=512   sunit=0 blks, lazy-count=1
-realtime =none                   extsz=4096   blocks=0, rtextents=0
-[root@disk-test ~]# 
+                <p>一个服务怎么启动，完全由它的配置文件决定。下面就来看，配置文件有些什么内容。</p>
+<p>前面说过，配置文件主要放在/usr/lib/systemd/system目录，也可能在/etc/systemd/system目录。找到配置文件以后，使用文本编辑器打开即可。</p>
+<p>systemctl cat命令可以用来查看配置文件，下面以sshd.service文件为例，它的作用是启动一个 SSH 服务器，供其他用户以 SSH 方式登录。</p>
+<pre><code>[root@neal ~]# systemctl cat sshd
+# /usr/lib/systemd/system/sshd.service
+[Unit]
+Description=OpenSSH server daemon
+Documentation=man:sshd(8) man:sshd_config(5)
+After=network.target sshd-keygen.service
+Wants=sshd-keygen.service
 
-[root@disk-test ~]# mount /dev/vdb /mnt </code></pre><h2 id="确认分区信息"><a href="#确认分区信息" class="headerlink" title="确认分区信息"></a>确认分区信息</h2><pre><code>[root@disk-test ~]# lsblk
-NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sr0     11:0    1 1024M  0 rom  
-sr1     11:1    1  464K  0 rom  
-vda    253:0    0   40G  0 disk 
-└─vda1 253:1    0   40G  0 part /
-vdb    253:16   0  110G  0 disk /mnt
-[root@disk-test ~]# df -Th
-Filesystem     Type      Size  Used Avail Use% Mounted on
-/dev/vda1      ext4       40G  1.2G   37G   4% /
-devtmpfs       devtmpfs  873M     0  873M   0% /dev
-tmpfs          tmpfs     883M     0  883M   0% /dev/shm
-tmpfs          tmpfs     883M   17M  866M   2% /run
-tmpfs          tmpfs     883M     0  883M   0% /sys/fs/cgroup
-tmpfs          tmpfs     177M     0  177M   0% /run/user/0
-/dev/vdb       xfs       110G   33M  110G   1% /mnt</code></pre><h2 id="后台扩容磁盘"><a href="#后台扩容磁盘" class="headerlink" title="后台扩容磁盘"></a>后台扩容磁盘</h2><pre><code>[root@disk-test ~]# lsblk
-NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sr0     11:0    1 1024M  0 rom  
-sr1     11:1    1  464K  0 rom  
-vda    253:0    0   40G  0 disk 
-└─vda1 253:1    0   40G  0 part /
-vdb    253:16   0  120G  0 disk /mnt</code></pre><h2 id="确认文件系统没有变化"><a href="#确认文件系统没有变化" class="headerlink" title="确认文件系统没有变化"></a>确认文件系统没有变化</h2><pre><code>[root@disk-test ~]# df -Th
-Filesystem     Type      Size  Used Avail Use% Mounted on
-/dev/vda1      ext4       40G  1.2G   37G   4% /
-devtmpfs       devtmpfs  873M     0  873M   0% /dev
-tmpfs          tmpfs     883M     0  883M   0% /dev/shm
-tmpfs          tmpfs     883M   17M  866M   2% /run
-tmpfs          tmpfs     883M     0  883M   0% /sys/fs/cgroup
-tmpfs          tmpfs     177M     0  177M   0% /run/user/0
-/dev/vdb       xfs       110G   33M  110G   1% /mnt</code></pre><h2 id="自增涨文件系统"><a href="#自增涨文件系统" class="headerlink" title="自增涨文件系统"></a>自增涨文件系统</h2><pre><code>[root@disk-test ~]# xfs_growfs /dev/vdb
-meta-data=/dev/vdb               isize=512    agcount=4, agsize=7208960 blks
-         =                       sectsz=512   attr=2, projid32bit=1
-         =                       crc=1        finobt=0 spinodes=0
-data     =                       bsize=4096   blocks=28835840, imaxpct=25
-         =                       sunit=0      swidth=0 blks
-naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
-log      =internal               bsize=4096   blocks=14080, version=2
-         =                       sectsz=512   sunit=0 blks, lazy-count=1
-realtime =none                   extsz=4096   blocks=0, rtextents=0
-data blocks changed from 28835840 to 31457280</code></pre><h2 id="确认文件系统大小"><a href="#确认文件系统大小" class="headerlink" title="确认文件系统大小"></a>确认文件系统大小</h2><pre><code>[root@disk-test ~]# df -Th
-Filesystem     Type      Size  Used Avail Use% Mounted on
-/dev/vda1      ext4       40G  1.2G   37G   4% /
-devtmpfs       devtmpfs  873M     0  873M   0% /dev
-tmpfs          tmpfs     883M     0  883M   0% /dev/shm
-tmpfs          tmpfs     883M   17M  866M   2% /run
-tmpfs          tmpfs     883M     0  883M   0% /sys/fs/cgroup
-tmpfs          tmpfs     177M     0  177M   0% /run/user/0
-/dev/vdb       xfs       120G   33M  120G   1% /mnt</code></pre><h2 id="写文件系统，确认没问题"><a href="#写文件系统，确认没问题" class="headerlink" title="写文件系统，确认没问题"></a>写文件系统，确认没问题</h2><pre><code>[root@disk-test ~]# cd /mnt/
-[root@disk-test mnt]# touch 1.txt</code></pre>
+[Service]
+Type=notify
+EnvironmentFile=/etc/sysconfig/sshd
+ExecStart=/usr/sbin/sshd -D $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target</code></pre><p>根据文件内容，我们将其分为三个区块<code>Unit</code>、<code>Service</code>、<code>Install</code>，每个区块可以包含各种键值对。下面自上而下依次解释每个区块的内容。</p>
+<h2 id="Unit-区块：启动顺序与依赖关系。"><a href="#Unit-区块：启动顺序与依赖关系。" class="headerlink" title="[Unit] 区块：启动顺序与依赖关系。"></a>[Unit] 区块：启动顺序与依赖关系。</h2><p>Unit区块的字段讲解</p>
+<ul>
+<li><p>Description字段给出当前服务的简单描述</p>
+</li>
+<li><p>Documentation字段给出文档位置。</p>
+</li>
+</ul>
+<p>接下来的设置是启动顺序和依赖关系，这个比较重要：</p>
+<ul>
+<li><p>After字段：表示如果network.target或sshd-keygen.service需要启动，那么sshd.service应该在它们之后启动。</p>
+</li>
+<li><p>Before字段：定义sshd.service应该在哪些服务之前启动。</p>
+</li>
+</ul>
+<blockquote>
+<p>注意，After和Before字段只涉及启动顺序，不涉及依赖关系。</p>
+</blockquote>
+<p>举例来说，某 Web 应用需要 postgresql 数据库储存数据。在配置文件中，它只定义要在 postgresql 之后启动，而没有定义依赖 postgresql 。上线后，由于某种原因，postgresql 需要重新启动，在停止服务期间，该 Web 应用就会无法建立数据库连接。</p>
+<p>设置依赖关系，需要使用Wants字段和Requires字段。</p>
+<ul>
+<li><p>Wants字段：表示sshd.service与sshd-keygen.service之间存在”弱依赖”关系，即如果”sshd-keygen.service”启动失败或停止运行，不影响sshd.service继续执行。</p>
+</li>
+<li><p>Requires字段则表示”强依赖”关系，即如果该服务启动失败或异常退出，那么sshd.service也必须退出。<br>注意，Wants字段与Requires字段只涉及依赖关系，与启动顺序无关，默认情况下是同时启动的。</p>
+</li>
+</ul>
+<h2 id="Service-区块：启动行为"><a href="#Service-区块：启动行为" class="headerlink" title="[Service] 区块：启动行为"></a>[Service] 区块：启动行为</h2><h3 id="启动命令"><a href="#启动命令" class="headerlink" title="启动命令"></a>启动命令</h3><p>许多软件都有自己的环境参数文件，该文件可以用EnvironmentFile字段读取。</p>
+<p>EnvironmentFile字段：指定当前服务的环境参数文件。该文件内部的key=value键值对，可以用$key的形式，在当前配置文件中获取。</p>
+<p>上面的例子中，sshd 的环境参数文件是/etc/sysconfig/sshd。</p>
+<p>配置文件里面最重要的字段是ExecStart。ExecStart字段：定义启动进程时执行的命令。</p>
+<p>上面的例子中，启动sshd，执行的命令是/usr/sbin/sshd -D $OPTIONS，其中的变量$OPTIONS就来自EnvironmentFile字段指定的环境参数文件。</p>
+<p>与之作用相似的，还有如下这些字段。</p>
+<ul>
+<li>ExecReload字段：重启服务时执行的命令</li>
+<li>ExecStop字段：停止服务时执行的命令</li>
+<li>ExecStartPre字段：启动服务之前执行的命令</li>
+<li>ExecStartPost字段：启动服务之后执行的命令</li>
+<li>ExecStopPost字段：停止服务之后执行的命令</li>
+</ul>
+<p>请看下面的例子。</p>
+<pre><code>[Service]
+ExecStart=/bin/echo execstart1
+ExecStart=
+ExecStart=/bin/echo execstart2
+ExecStartPost=/bin/echo post1
+ExecStartPost=/bin/echo post2</code></pre><p>上面这个配置文件，第二行ExecStart设为空值，等于取消了第一行的设置，运行结果如下。</p>
+<pre><code>execstart2
+post1
+post2</code></pre><blockquote>
+<p>所有的启动设置之前，都可以加上一个连词号（-），表示”抑制错误”，即发生错误的时候，不影响其他命令的执行。比如，EnvironmentFile=-/etc/sysconfig/sshd（注意等号后面的那个连词号），就表示即使/etc/sysconfig/sshd文件不存在，也不会抛出错误。</p>
+</blockquote>
+<h3 id="启动类型"><a href="#启动类型" class="headerlink" title="启动类型"></a>启动类型</h3><p>Type字段定义启动类型。它可以设置的值如下。</p>
+<ul>
+<li><p>simple（默认值）：ExecStart字段启动的进程为主进程</p>
+</li>
+<li><p>forking：ExecStart字段将以fork()方式启动，此时父进程将会退出，子进程将成为主进程</p>
+</li>
+<li><p>oneshot：类似于simple，但只执行一次，Systemd 会等它执行完，才启动其他服务</p>
+</li>
+<li><p>dbus：类似于simple，但会等待 D-Bus 信号后启动</p>
+</li>
+<li><p>notify：类似于simple，启动结束后会发出通知信号，然后 Systemd 再启动其他服务</p>
+</li>
+<li><p>idle：类似于simple，但是要等到其他任务都执行完，才会启动该服务。一种使用场合是为让该服务的输出，不与其他服务的输出相混合</p>
+</li>
+</ul>
+<p>下面是一个oneshot的例子，笔记本电脑启动时，要把触摸板关掉，配置文件可以这样写。</p>
+<pre><code>[Unit]
+Description=Switch-off Touchpad
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/touchpad-off
+
+[Install]
+WantedBy=multi-user.target</code></pre><p>上面的配置文件，启动类型设为oneshot，就表明这个服务只要运行一次就够了，不需要长期运行。</p>
+<p>如果关闭以后，将来某个时候还想打开，配置文件修改如下。</p>
+<pre><code>[Unit]
+Description=Switch-off Touchpad
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/touchpad-off start
+ExecStop=/usr/bin/touchpad-off stop
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target</code></pre><p>上面配置文件中，RemainAfterExit字段设为yes，表示进程退出以后，服务仍然保持执行。这样的话，一旦使用systemctl stop命令停止服务，ExecStop指定的命令就会执行，从而重新开启触摸板。</p>
+<h3 id="重启行为"><a href="#重启行为" class="headerlink" title="重启行为"></a>重启行为</h3><p>Service区块有一些字段，定义了重启行为。sshd示例中KillMode字段定义 Systemd 如何停止 sshd 服务。</p>
+<p>上面这个例子中，将KillMode设为process，表示只停止主进程，不停止任何sshd 子进程，即子进程打开的 SSH session 仍然保持连接。这个设置不太常见，但对 sshd 很重要，否则你停止服务的时候，会连自己打开的 SSH session 一起杀掉。</p>
+<p>KillMode字段可以设置的值如下。</p>
+<ul>
+<li><p>control-group（默认值）：当前控制组里面的所有子进程，都会被杀掉</p>
+</li>
+<li><p>process：只杀主进程</p>
+</li>
+<li><p>mixed：主进程将收到 SIGTERM 信号，子进程收到 SIGKILL 信号</p>
+</li>
+<li><p>none：没有进程会被杀掉，只是执行服务的 stop 命令。</p>
+</li>
+</ul>
+<p>接下来是Restart字段。sshd示例中Restart字段定义了 sshd 退出后，Systemd 的重启方式。</p>
+<p>上面的例子中，Restart设为on-failure，表示任何意外的失败，就将重启sshd。如果 sshd 正常停止（比如执行systemctl stop命令），它就不会重启。</p>
+<p>Restart字段可以设置的值如下：</p>
+<ul>
+<li><p>no（默认值）：退出后不会重启</p>
+</li>
+<li><p>on-success：只有正常退出时（退出状态码为0），才会重启</p>
+</li>
+<li><p>on-failure：非正常退出时（退出状态码非0），包括被信号终止和超时，才会重启</p>
+</li>
+<li><p>on-abnormal：只有被信号终止和超时，才会重启</p>
+</li>
+<li><p>on-abort：只有在收到没有捕捉到的信号终止时，才会重启</p>
+</li>
+<li><p>on-watchdog：超时退出，才会重启</p>
+</li>
+<li><p>always：不管是什么退出原因，总是重启</p>
+</li>
+</ul>
+<p>对于守护进程，推荐设为on-failure。对于那些允许发生错误退出的服务，可以设为on-abnormal。</p>
+<p>最后是RestartSec字段。sshd示例中RestartSec字段表示 Systemd 重启服务之前，需要等待的秒数。上面的例子设为等待42秒。</p>
+<h2 id="Install-区块"><a href="#Install-区块" class="headerlink" title="[Install] 区块"></a>[Install] 区块</h2><p>Install区块，定义如何安装这个配置文件，即怎样做到开机启动。sshd示例中的WantedBy字段表示该服务所在的 Target。Target的含义是服务组，表示一组服务。WantedBy=multi-user.target指的是，sshd 所在的 Target 是multi-user.target。</p>
+<p>这个设置非常重要，因为执行systemctl enable sshd.service命令时，sshd.service的一个符号链接，就会放在/etc/systemd/system目录下面的multi-user.target.wants子目录之中。</p>
+<p>Systemd 有默认的启动 Target。</p>
+<pre><code>[root@neal ~]# systemctl get-default
+multi-user.target</code></pre><p>上面的结果表示，默认的启动 Target 是multi-user.target。在这个组里的所有服务，都将开机启动。这就是为什么systemctl enable命令能设置开机启动的原因。</p>
+<p>使用 Target 的时候，<code>systemctl list-dependencies</code>命令和<code>systemctl isolate</code>命令也很有用。</p>
+<p>查看 multi-user.target 包含的所有服务</p>
+<p>[root@neal ~]#  systemctl list-dependencies multi-user.target</p>
+<p>切换到另一个 target</p>
+<pre><code>[root@neal ~]#  systemctl isolate shutdown.target
+
+shutdown.target 就是关机状态</code></pre><p>一般来说，常用的 Target 有两个：一个是multi-user.target，表示多用户命令行状态；另一个是graphical.target，表示图形用户状态，它依赖于multi-user.target。官方文档有一张非常清晰的 [Target 依赖关系图](<a href="https://www.freedesktop.org/software/systemd/man/bootup.html#System" target="_blank" rel="noopener">https://www.freedesktop.org/software/systemd/man/bootup.html#System</a> Manager Bootup)。</p>
+<h2 id="Target-的配置文件"><a href="#Target-的配置文件" class="headerlink" title="Target 的配置文件"></a>Target 的配置文件</h2><p>Target 也有自己的配置文件。</p>
+<pre><code>[root@neal ~]#  systemctl cat multi-user.target
+
+[Unit]
+Description=Multi-User System
+Documentation=man:systemd.special(7)
+Requires=basic.target
+Conflicts=rescue.service rescue.target
+After=basic.target rescue.service rescue.target
+AllowIsolate=yes</code></pre><p>注意，Target 配置文件里面没有启动命令。</p>
+<p>上面输出结果中，主要字段含义如下。</p>
+<ul>
+<li><p>Requires字段：要求basic.target一起运行。</p>
+</li>
+<li><p>Conflicts字段：冲突字段。如果rescue.service或rescue.target正在运行，multi-user.target就不能运行，反之亦然。</p>
+</li>
+<li><p>After：表示multi-user.target在basic.target 、 rescue.service、 rescue.target之后启动，如果它们有启动的话。</p>
+</li>
+<li><p>AllowIsolate：允许使用systemctl isolate命令切换到multi-user.target。</p>
+</li>
+</ul>
+<h2 id="修改配置文件后重启"><a href="#修改配置文件后重启" class="headerlink" title="修改配置文件后重启"></a>修改配置文件后重启</h2><p>修改配置文件以后，需要重新加载配置文件，然后重新启动相关服务。</p>
+<p>重新加载配置文件</p>
+<p>[root@neal ~]# systemctl daemon-reload</p>
+<p>重启相关服务</p>
+<p>[root@neal ~]# systemctl restart sshd</p>
+<h2 id="文献检索"><a href="#文献检索" class="headerlink" title="文献检索"></a>文献检索</h2><p>[<a href="https://www.freedesktop.org/software/systemd/man/bootup.html#System%20Manager%20Bootup]" target="_blank" rel="noopener">https://www.freedesktop.org/software/systemd/man/bootup.html#System%20Manager%20Bootup]</a>(<a href="https://www.freedesktop.org/software/systemd/man/bootup.html#System" target="_blank" rel="noopener">https://www.freedesktop.org/software/systemd/man/bootup.html#System</a> Manager Bootup)</p>
+<p><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html</a></p>
+<p><a href="https://www.cnblogs.com/klb561/p/9245657.html" target="_blank" rel="noopener">https://www.cnblogs.com/klb561/p/9245657.html</a></p>
+
             </div>
             <hr/>
 
@@ -527,7 +641,7 @@ tmpfs          tmpfs     177M     0  177M   0% /run/user/0
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nealcf.github.io/2020/04/22/ci-pan-wu-fen-qu-xfs-growfs-kuo-zhan-wen-jian-xi-tong/">http://nealcf.github.io/2020/04/22/ci-pan-wu-fen-qu-xfs-growfs-kuo-zhan-wen-jian-xi-tong/</a>
+                    <a href="http://nealcf.github.io/2020/07/15/centos7-zi-ding-yi-fu-wu-fang-fa-ji-wen-jian-ge-shi-jiang-jie-2/">http://nealcf.github.io/2020/07/15/centos7-zi-ding-yi-fu-wu-fang-fa-ji-wen-jian-ge-shi-jiang-jie-2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,8 +679,12 @@ tmpfs          tmpfs     177M     0  177M   0% /run/user/0
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/xfs-growfs/">
-                                    <span class="chip bg-color">xfs_growfs</span>
+                                <a href="/tags/CentOS7/">
+                                    <span class="chip bg-color">CentOS7</span>
+                                </a>
+                            
+                                <a href="/tags/systemd/">
+                                    <span class="chip bg-color">systemd</span>
                                 </a>
                             
                         </div>
@@ -630,74 +748,36 @@ tmpfs          tmpfs     177M     0  177M   0% /run/user/0
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/06/25/hello-world/">
+                <a href="/2020/07/15/centos7-zi-ding-yi-fu-wu-fang-fa-ji-wen-jian-ge-shi-jiang-jie-2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="CentOS7 自定义服务方法及文件格式讲解（2）">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">CentOS7 自定义服务方法及文件格式讲解（2）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Neal
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/04/22/ci-pan-wu-fen-qu-xfs-growfs-kuo-zhan-wen-jian-xi-tong/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="磁盘无分区xfs_growfs扩展文件系统">
-                        
-                        <span class="card-title">磁盘无分区xfs_growfs扩展文件系统</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            清除分区信息[root@disk-test ~]# umount /mnt
-[root@disk-test ~]# dd if=/dev/zero of=/dev/vdb bs=1M count=1000
-1000+0 records in
+                            第二节主要讲究systemd下service文件配置，在上一节已初步讲解了文件内容。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                    操作系统
+                            <a href="/categories/linux/" class="post-category">
+                                    linux
                                 </a>
                             
                             
@@ -708,8 +788,65 @@ tmpfs          tmpfs     177M     0  177M   0% /run/user/0
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/xfs-growfs/">
-                        <span class="chip bg-color">xfs_growfs</span>
+                    <a href="/tags/CentOS7/">
+                        <span class="chip bg-color">CentOS7</span>
+                    </a>
+                    
+                    <a href="/tags/systemd/">
+                        <span class="chip bg-color">systemd</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/07/15/centos7-zi-ding-yi-fu-wu-fang-fa-ji-wen-jian-ge-shi-jiang-jie-1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="CentOS7 自定义服务方法及文件格式讲解（1）">
+                        
+                        <span class="card-title">CentOS7 自定义服务方法及文件格式讲解（1）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            第一节主要讲究systemd和systemctl命令，为后续的自定义服务进行铺垫。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/linux/" class="post-category">
+                                    linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CentOS7/">
+                        <span class="chip bg-color">CentOS7</span>
+                    </a>
+                    
+                    <a href="/tags/systemd/">
+                        <span class="chip bg-color">systemd</span>
                     </a>
                     
                 </div>
