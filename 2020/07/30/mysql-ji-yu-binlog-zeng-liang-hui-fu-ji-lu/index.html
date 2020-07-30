@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="在MAC上通过Hexo+Github Page搭建个人博客, Share,Technology,Grown">
+    <meta name="keywords" content="mysql基于binlog增量恢复记录, Share,Technology,Grown">
     <meta name="description" content="世人慌慌张张不过图这碎银几两，偏这碎银几两能解万种惆怅！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>在MAC上通过Hexo+Github Page搭建个人博客 | 星辰大海</title>
+    <title>mysql基于binlog增量恢复记录 | 星辰大海</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">在MAC上通过Hexo+Github Page搭建个人博客</h1>
+                    <h1 class="description center-align post-title">mysql基于binlog增量恢复记录</h1>
                 </div>
             </div>
         </div>
@@ -365,33 +365,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/Mac/">
-                                <span class="chip bg-color">Mac</span>
-                            </a>
-                        
-                            <a href="/tags/Hexo/">
-                                <span class="chip bg-color">Hexo</span>
-                            </a>
-                        
-                            <a href="/tags/Github-Page/">
-                                <span class="chip bg-color">Github Page</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/other/" class="post-category">
-                                other
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -400,28 +379,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-03
+                    2020-07-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-07-03
+                    2020-07-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    15 分
                 </div>
                 
 
@@ -436,151 +415,271 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>开篇提示，此文档为自己的部署过程，顾做一次搬运工文章搬运工，也是第一次写博客练手啦。</p>
-<h2 id="环境描述"><a href="#环境描述" class="headerlink" title="环境描述"></a>环境描述</h2><p>OS：macOS Mojave 10.14.5<br>Repositories：<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a><br>评论功能：<a href="https://livere.com/" target="_blank" rel="noopener">https://livere.com/</a><br>留言板功能：<a href="https://www.daocloud.io/" target="_blank" rel="noopener">https://www.daocloud.io/</a></p>
-<p>参考文献：<a href="https://blog.csdn.net/weixin_41160054/article/details/89531921" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41160054/article/details/89531921</a></p>
-<p>​                   <a href="https://www.jianshu.com/p/921efd17b844" target="_blank" rel="noopener">https://www.jianshu.com/p/921efd17b844</a></p>
-<p>​                   <a href="https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1" target="_blank" rel="noopener">https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1</a></p>
-<h2 id="仓库准备"><a href="#仓库准备" class="headerlink" title="仓库准备"></a>仓库准备</h2><h3 id="Github仓库建立"><a href="#Github仓库建立" class="headerlink" title="Github仓库建立"></a>Github仓库建立</h3><p>登录<a href="https://github.com/后，点击右上角头像，点击“Your" target="_blank" rel="noopener">https://github.com/后，点击右上角头像，点击“Your</a> repositories”后进入个人github仓库。而后点击“New”创建新的仓库，因为我们要建网站，所以我们的「Repository name」应该和我们的github名字保持一致。同时仓库属性为public。设置完成后点击下方的“create repository”<br>例如：你的账户名字为NealCF，那么我们需要填写的是NealCF.github.io。同时，因为我自己的网站已经搭建好了，所以出现了下面的警告⚠️，不用在意。</p>
-<img src="/2020/07/03/hexo-githubpage-for-selfblog/image-20200625142434759.png" class="" title="image-20200625142434759">
+                <hr>
+<p>title: mysql基于binlog增量恢复过程记录<br>date: 2020-07-30 8:10:00<br>author: Neal<br>summary: 应用运维人员在日常变更中变更失败，回退过程中错误应用数据库备份导致数据回滚到7月初，回滚过程中日志目录空间使用率100%，多层问题导致生成数据库异常宕机。后续DBA通过9号备份加binlog进行数据增量恢复进而恢复业务。<br>categories: Markdown<br>tags:</p>
+<ul>
+<li>mysql</li>
+<li>mysqlbinlog</li>
+</ul>
+<hr>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在7月28号接到前同事电话，数据库中数据丢失只有7号之前的数据，但是7号以后的binlog还在。因为当时生产数据库运行在docker容器下，有人认为是镜像分层导致，我虽然略知一二，也不便提出过多质疑。我提出异机恢复的要求，在虚拟化平台上开出了一台CentOS虚拟机，配置好测试环境数据库后，将数据文件放置在data_dir下，启动数据库并针对7月9日的mysqldump文件进行数据库恢复；后进行基于binlog的增量恢复。</p>
+<p>数据库版本信息：Server version: 5.7.31-log MySQL Community Server (GPL)</p>
+<h2 id="恢复步骤"><a href="#恢复步骤" class="headerlink" title="恢复步骤"></a>恢复步骤</h2><p>数据库的部署和mysqldump文件的恢复没有参与，顾不做过多介绍。</p>
+<p>这期间还出过一个小插曲，运维人员进行再进行异机环境准备过程中，直接用生产环境的data_dir目录下的文件让我进行增量恢复，恢复过程中各种主键冲突，后我查询一些时间敏感的表，发现内容均接近当前时间，顾这个数据并不是当时他们回退数据的正常结果版，才提出重新进行数据库的全量mysqldump恢复。</p>
+<h3 id="获取时间戳"><a href="#获取时间戳" class="headerlink" title="获取时间戳"></a>获取时间戳</h3><h4 id="备份时间戳"><a href="#备份时间戳" class="headerlink" title="备份时间戳"></a>备份时间戳</h4><p>查看mysqldump文件的时间，由于应用人员使用nivicat进行的备份，顾文件 开头并没有<code>CHANGE MATER</code>这样的字段。可通过以下命令获取备份时间戳：</p>
+<pre><code># head -30 testdb.sql |grep &#39;Date&#39;
+Date: 2020-07-09 23:21:56</code></pre><h4 id="异常恢复前时间戳"><a href="#异常恢复前时间戳" class="headerlink" title="异常恢复前时间戳"></a>异常恢复前时间戳</h4><p>这个时间戳获取起来比较麻烦，第一：通过当时现场操作人员提供的时间活动，第二：根据查看binlog中记录的SQL语句核查现场人员提供的信息是否正确。</p>
+<p>获取备份当天及以后的binlog</p>
+<pre><code># ls -al mysql-bin.000* |grep -v &quot;\.sql&quot;
+-rw-r--r-- 1 root root 1249407791 Jul 28 00:52 mysql-bin.000159
+-rw-r--r-- 1 root root 1073786340 Jul 28 00:52 mysql-bin.000160
+-rw-r--r-- 1 root root 1073848574 Jul 28 00:52 mysql-bin.000161
+-rw-r--r-- 1 root root 1073917736 Jul 28 00:52 mysql-bin.000162
+-rw-r--r-- 1 root root 1073742014 Jul 28 00:52 mysql-bin.000163
+-rw-r--r-- 1 root root 1073743378 Jul 28 00:52 mysql-bin.000164
+-rw-r--r-- 1 root root 1073742645 Jul 28 00:52 mysql-bin.000165
+-rw-r--r-- 1 root root 1073742080 Jul 28 00:52 mysql-bin.000166
+-rw-r--r-- 1 root root 1372708378 Jul 28 00:52 mysql-bin.000167
+-rw-r--r-- 1 root root 1749854755 Jul 28 00:52 mysql-bin.000168
+-rw-r--r-- 1 root root 1338347485 Jul 28 00:52 mysql-bin.000169
+-rw-r--r-- 1 root root 1459827926 Jul 28 00:52 mysql-bin.000170
+-rw-r--r-- 1 root root 1595885740 Jul 28 00:52 mysql-bin.000171
+-rw-r--r-- 1 root root 1345422321 Jul 28 00:53 mysql-bin.000172
+-rw-r--r-- 1 root root 1285211974 Jul 28 00:53 mysql-bin.000173
+-rw-r--r-- 1 root root 1218169190 Jul 28 00:53 mysql-bin.000174
+-rw-r--r-- 1 root root 1186744526 Jul 28 00:53 mysql-bin.000175
+-rw-r--r-- 1 root root 1816854997 Jul 28 00:53 mysql-bin.000176
+-rw-r--r-- 1 root root 1120717660 Jul 28 00:53 mysql-bin.000177
+-rw-r--r-- 1 root root 2910805824 Jul 28 00:53 mysql-bin.000178
+-rw-r--r-- 1 root root    3163792 Jul 28 00:53 mysql-bin.000179</code></pre><h3 id="Binlog解析"><a href="#Binlog解析" class="headerlink" title="Binlog解析"></a>Binlog解析</h3><p>对变更期间生成的binlog转换为可读sql文件</p>
+<pre><code># mysqlbinlog --base64-output=DECODE-ROWS -v mysql-bin.000168&gt;mysql-bin.000168temp.sql</code></pre><p>在文件中查找变更中第一条执行的非select语句的SQL，最终确认前一个commit语句的提交时间和end_log_pos。然后根据这个position再针对此binlog进行截断并解析SQL。</p>
+<h4 id="批量解析binlog"><a href="#批量解析binlog" class="headerlink" title="批量解析binlog"></a>批量解析binlog</h4><p>根据以下命令进行mysql binlog转换sql</p>
+<pre><code> # f_name=`ls mysql-bin.000*|grep -v &#39;\.sql&#39;`
 
-<img src="/2020/07/03/hexo-githubpage-for-selfblog/image-20200625142448912.png" class="" title="image-20200625142448912">
-
-<img src="/2020/07/03/hexo-githubpage-for-selfblog/image-20200625142455009.png" class="" title="image-20200625142455009">
-
-<h3 id="配置github仓库免密"><a href="#配置github仓库免密" class="headerlink" title="配置github仓库免密"></a>配置github仓库免密</h3><p>生成新的SSH keys：</p>
-<pre><code>$ ssh-keygen -t rsa -C &quot;你的邮箱地址&quot;
-Generating public/private rsa key pair.
-Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa):&lt;回车&gt;
-Enter passphrase (empty for no passphrase):&lt;输入加密串&gt;&lt;如不想设置密码可直接回车表示为空&gt;
-Enter same passphrase again:&lt;再次输入加密串&gt;&lt;接着回车确认&gt;
-Your identification has been saved in /Users/你的名字/.ssh/id_rsa).
-Your public key has been saved in /Users/你的名字/.ssh/id_rsa.pub.
-The key fingerprint is:
-43:c5:5b:5f:b1:f1:50:43:ad:20:a6:92:6a:1f:9a:3a &quot;你的邮箱地址&quot; </code></pre><p>打开本地刚生成的.ssh/id_rsa.pub（若看不到，则需显示隐藏文件）,准确复制文件中所有内容。然后进入github主页，点击右上角头像进入settings，选择SSH and GPG keys，再点击New SSH Key。将内容复制进key，title可以为空。最后Add SSH key。<br>可以通过如下命令进行测试是否成功：</p>
-<pre><code>$ ssh -T git@GitHub.com #全部复制，无需更改</code></pre><p>若出现以下提示，表示SSH key添加成功：</p>
-<pre><code>The authenticity of host &#39;GitHub.com (207.97.227.239)&#39; can&#39;t be established.
-RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
-Are you sure you want to continue connecting (yes/no)?&lt;输入yes&gt;
-Hi 你的用户名! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code></pre><p>测试github pages是否创建成功：</p>
-<pre><code>echo &quot;# 你的用户名.github.io&quot; &gt;&gt; README.md
-git init    
-git add README.md
-git commit -m &quot;first commit&quot;
-git remote add origin https://github.com/你的用户名/你的用户名.github.io.git
-git push -u origin master</code></pre><p>之后在浏览器中输入 【你的名字】.github.io ，如果成功出现页面，并且页面上是你刚输入的地址，那么github pages配置成功。</p>
-<h2 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h2><h3 id="什么是Node-js"><a href="#什么是Node-js" class="headerlink" title="什么是Node.js"></a>什么是Node.js</h3><p>简单的说 Node.js 就是运行在服务端的 JavaScript。Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。更多Node.js的基础教程参考：<a href="https://www.runoob.com/nodejs/nodejs-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/nodejs/nodejs-tutorial.html</a></p>
-<h3 id="Node-js的组成"><a href="#Node-js的组成" class="headerlink" title="Node.js的组成"></a>Node.js的组成</h3><p>ECMAScript（语言基础，如：语法、数据类型结构以及一些内置对象）<br>OS（操作系统）<br>file（文件系统）<br>net（网络系统）<br>database（数据库）<br>注意：</p>
-<p>ECMAScript （是js的标准，js是它的具体实现和扩展，他描述语言的语法和基本对象，如：语法、运算符、语句、继承机制、数据结构以及一些内置对象）<br>DOM（文档对象模型，描述处理网页内容的方法和接口，将整个文档document解析成dom树供用户使用js对文档进行处理）。<br>BOM（浏览器对象模型，描述可以和浏览器窗口交互的方法和接口「对象结构」，如：window对象，history，location，navigator等）</p>
-<h3 id="Node-js安装-1"><a href="#Node-js安装-1" class="headerlink" title="Node.js安装"></a>Node.js安装</h3><blockquote>
-<p>需要注意的是，在我们安装<code>node.js</code>的时候，也需要同时安装<code>npm</code>。而这是最容易出问题的地方。</p>
+ # for i in $f_name;do mysqlbinlog --start-datetime=&#39;2020-07-09 23:21:56&#39; --stop-datatime=&#39;2020-07-27 12:59:59&#39; $i -d testdb -r ${i}testdb_dump.sql;echo ${i}testdb_dump.sql;done</code></pre><blockquote>
+<p>如果日志类型为mixed或row，同时相同mysqlbinlog 命令导出可读SQL，可采用以下命令</p>
 </blockquote>
-<h4 id="什么是npm"><a href="#什么是npm" class="headerlink" title="什么是npm"></a>什么是npm</h4><p>npm的全称node package manager，是一个node包的管理工具。</p>
-<p>npm（Node Package Manager）是Node.js下的主流套件管理程式。它在Node.js v0.6.x版本之后，内建于Node系统。通过npm可以协助开发者安装、卸载、删除、更新Node.js套件。因此安装Node.js的时候最好一起也安装npm!</p>
-<h4 id="如何安装Node-js和npm"><a href="#如何安装Node-js和npm" class="headerlink" title="如何安装Node.js和npm"></a>如何安装Node.js和npm</h4><blockquote>
-<p>使用一个node version manager来安装 <code>Node.js</code>和<code>npm</code>。</p>
+<pre><code># mysqlbinlog --base64-output=DECODE-ROWS -v mysql-bin.000160 --start-datetime=&#39;2020-07-09 23:21:56&#39; -d testdb -r mysql-bin.000160.sql</code></pre><h4 id="手动进行binlog解析"><a href="#手动进行binlog解析" class="headerlink" title="手动进行binlog解析"></a>手动进行binlog解析</h4><p>我只有对最后的那个变更中生成的binlog进行了手动解析，方式如下：</p>
+<pre><code>先基于此position进行binlog明文解析确认无误后再进行下一步的应用。
+# mysqlbinlog --base64-output=DECODE-ROWS -v --stop-position=897844374 mysql-bin.000167 --database=testdb -r mysql-bin.000167_stop_temp.sql 
+# mysqlbinlog --stop-position=897844374 mysql-bin.000167 --database=erp -r mysql-bin.000167_stop.sql </code></pre><h3 id="数据库增量恢复"><a href="#数据库增量恢复" class="headerlink" title="数据库增量恢复"></a>数据库增量恢复</h3><p>根据Binlog的解析结果，进行数据库增量恢复，同时生成xbackup备份</p>
+<h4 id="自动化方式"><a href="#自动化方式" class="headerlink" title="自动化方式"></a>自动化方式</h4><pre><code># cat mysql_recover.sh
+#!/bin/bash
+# AUTHER: Neal
+# Email: 872045789@qq.com
+# Date: 2020-07-29
+
+cd /opt/mysqlbin_bak/
+
+f_name=`ls /opt/mysqlbin_bak/*.sql`
+#f_name=&quot;/opt/mysqlbin_bak/mysql-bin.000159testdb_dump.sql&quot;
+OLD_BINLOG_NUM=0
+
+
+for i in $f_name
+do
+    echo -e &quot;\n\n\n&quot;
+    echo &quot;#########################################################################&quot;
+    NOW_TIME=`date`
+    echo &quot;Current Time is: ${NOW_TIME}&quot;
+    echo &quot;current recover binlogSQL is : ${i}&quot;
+    mysql -uroot -pSgzx@20201234! --database=erp &lt; $i
+    echo &quot;${i} recover finshed,start XtraBackup!!!!!!&quot;
+
+    echo -e &quot;\n\n\n&quot;
+    echo &quot;#########################################################################&quot;
+    BINLOG_NUM=`echo ${i:31:3}`
+    echo &quot;create backup dir is:/opt/xbak/full_${BINLOG_NUM}&quot;
+    innobackupex --defaults-file=/etc/my.cnf  --user=root --password=&#39;Sgzx@20201234!&#39; --slave-info --no-timestamp /opt/xbak/full_${BINLOG_NUM}
+    echo -e &quot;\n\n\n&quot;
+    echo &quot;#########################################################################&quot;
+    echo &quot;Begin Apply Log!!!!!!&quot;
+    innobackupex --defaults-file=/etc/my.cnf  --apply-log  /opt/xbak/full_${BINLOG_NUM}
+    echo &quot;Backup Finshed!!!!!!&quot;
+
+    echo -e &quot;\n\n\n&quot;
+    echo &quot;#########################################################################&quot;
+    echo &quot;Delete old Backup:/opt/xbak/full_${OLD_BINLOG_NUM}&quot;
+    cd /opt/xbak/
+    rm -rf full_${OLD_BINLOG_NUM}
+    echo &quot;Old Backup Delete Finshed!!!!!!&quot;
+
+    OLD_BINLOG_NUM=${BINLOG_NUM}
+done
+echo -e &quot;\n\n\n&quot;
+echo &quot;#########################################################################&quot;
+echo &quot;ALL binlog SQL Recovery Finshed!!!!!!&quot;</code></pre><p>将增量恢复脚本进行后台执行并打印日志</p>
+<pre><code># nohup bash mysql_recover.sh &gt;/tmp/mysql_recover.log 2&gt;&amp;1 &amp;</code></pre><h4 id="手动方式"><a href="#手动方式" class="headerlink" title="手动方式"></a>手动方式</h4><p>由于binlog文件较大，在进行增量恢复期间避免ssh回话中断导致回话终止，进而恢复失败的问题，可以通过screen工具进行规避。</p>
+<p>安装方式：</p>
+<pre><code># yum install -y screen</code></pre><blockquote>
+<p>对于使用方式，后面单独拿一篇博客进行讲解。</p>
 </blockquote>
-<p>第一步：安装nvm和确认是否成功</p>
-<pre><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</code></pre><p>然后，输入代码</p>
-<pre><code>command -v nvm</code></pre><p>返回结果为nvm：</p>
-<img src="/2020/07/03/hexo-githubpage-for-selfblog/image-20200625144450053.png" class="" title="image-20200625144450053">
+<p>进行单个文件的增量恢复</p>
+<pre><code> mysql -uroot -p&#39;Test1234!&#39; --database=testdb &lt; /opt/mysqlbin_bak/mysql-bin.000159testdb_dump.sql</code></pre><p>确认恢复进度</p>
+<pre><code># cat exec_percentage.sh
+#!/bin/bash
+# AUTHER: Neal
+# Email: 872045789@qq.com
+# Date: 2020-07-30
 
-<p>若无此返回结果可重启terminal后尝试。</p>
-<p>第二步：用nvm安装node</p>
-<pre><code>nvm install node # &quot;node&quot; is an alias for the latest version</code></pre>{% asset_img image-20200625144654479.png image-20200625144654479 %}
+BINLOG_SQL_FILE=$1
 
+END_POSITION=`tail -n 100 ${BINLOG_SQL_FILE} |grep end_log_pos|awk &#39;END{print $7}&#39;`
+CURRENT_PROCESS=`mysql -uroot -pSgzx@20201234! -e &#39;show processlist&#39; |grep localhost|grep erp |awk &#39;{print $10}&#39;`
+CURRENT_POSITION=`cat ${BINLOG_SQL_FILE}|grep -C 5 ${CURRENT_PROCESS:9:20}|grep end_log_pos|awk &#39;END{print $7}&#39;`
 
-
-<h2 id="Hexo安装"><a href="#Hexo安装" class="headerlink" title="Hexo安装"></a>Hexo安装</h2><p>hexo的安装只需要使用npm进行安装，包的名字为hexo-cli</p>
-<pre><code>npm install -g hexo-cli</code></pre><h2 id="网站配置"><a href="#网站配置" class="headerlink" title="网站配置"></a>网站配置</h2><p>安装 Hexo 完成后，我们可以在本地新建一个文件夹或采用下载仓库的方式进行完整初始化。</p>
-<h3 id="下载仓库"><a href="#下载仓库" class="headerlink" title="下载仓库"></a>下载仓库</h3><p>规划好网站在本地的存放位置后，将github上的仓库clone下来，进行网站初始化：</p>
-<p>备注：我规划的位置为/Users/{用户名}/Documents下。</p>
-<pre><code>$ cd /Users/cjm/Documents/
-$ git clone https://github.com/yourGithubName/yourGithubName.github.io</code></pre><h3 id="清空本地仓库目录，进行网站初始化"><a href="#清空本地仓库目录，进行网站初始化" class="headerlink" title="清空本地仓库目录，进行网站初始化"></a>清空本地仓库目录，进行网站初始化</h3><blockquote>
-<p>必须确认当前工作目录是否为本地仓库目录。或可采用mv进行目录重命名后新建原目录的方式</p>
+echo &quot;The ${BINLOG_SQL_FILE} &#39;s end position is : ${END_POSITION}&quot;
+echo &quot;The Current exec position is : ${CURRENT_POSITION}&quot;
+CURRENT_PERCENTAGE=`awk &#39;BEGIN{printf &quot;%.1f%%\n&quot;,(&#39;${CURRENT_POSITION}&#39;/&#39;${END_POSITION}&#39;)*100}&#39;`
+echo &quot;Now has been exec ${CURRENT_PERCENTAGE}&quot;</code></pre><pre><code># bash exec_percentage.sh /opt/mysqlbin_bak/mysql-bin.000159testdb_dump.sql
+mysql: [Warning] Using a password on the command line interface can be insecure.
+The mysql-bin.000159testdb_dump.sql &#39;s end position is : 897844374
+The Current exec position is : 871514320
+Now has been current 97.1%</code></pre><blockquote>
+<p>手动恢复，应用到变更期间的binlog就可以。自动化后续加入binlog的时间判断，减少不必要的计算机工作。</p>
 </blockquote>
-<pre><code>进入本地仓库目录：
-$ cd /Users/cjm/Documents/NealCF.github.io/
-确认目录结构：
-$ pwd
-/Users/cjm/Documents/NealCF.github.io
-
-确认目录中文件内容（包含隐藏文件）
-$ ls -al
-
-清空本地仓库内容
-$ rm -rf *</code></pre><h3 id="Hexo初始化"><a href="#Hexo初始化" class="headerlink" title="Hexo初始化"></a>Hexo初始化</h3><p>建立初始化方式如下：</p>
-<pre><code>$ cd /Users/cjm/Documents/NealCF.github.io/
-$ hexo init ./
-$ hexo generate</code></pre><p>下面介绍几个常用的hexo命令(括号里面的命令为缩写形式，效果一样)：</p>
-<ol>
-<li>hexo generate(hexo g) #生成静态文件，会在当前目录下生成一个新的叫做public的文件夹</li>
-<li>hexo new “postTitle” #新建博客文章</li>
-<li>hexo new page “pageTitle” #新建1个页面</li>
-<li>hexo server(hexo s) #启动本地web服务预览(加参数–debug,用于调试，如：hexo s –debug)</li>
-<li>hexo deploy(hexo d) #部署播客到远端（比如Github,coding,heroku等平台）</li>
-</ol>
-<p>在命令行中输入<code>hexo s --debug</code>后，运行成功后，可以在浏览器中输入：<a href="http://localhost:4000看到自己新建的博客了。">http://localhost:4000看到自己新建的博客了。</a></p>
-<h3 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h3><blockquote>
-<p>在本地仓库的根目录下存在_config.yml，同时在theme下的每个主图目录内仍有_config.yml。根config.yml为全局配置，主题的config.yml为主题自定义配置。配置过程中注意区分。</p>
+<p>每一个基于binlog的增量恢复完成后，都要做备份，备份语句如下：</p>
+<blockquote>
+<p>命名规则可以自定义</p>
 </blockquote>
-<p>一般我们初始化博客的文件夹后，文件结构大概如下：</p>
-<pre><code>$ ll
-total 1352
--rw-r--r--    1 builder34  staff    32B  4 14 01:34 README.md
--rw-r--r--    1 builder34  staff   2.3K  6 25 10:40 _config.yml
--rw-r--r--    1 builder34  staff    32K  6 26 15:50 db.json
--rw-r--r--    1 builder34  staff   458K  6 26 15:56 debug.log
-drwxr-xr-x  293 builder34  staff   9.2K  6 25 10:42 node_modules
--rw-r--r--    1 builder34  staff   110K  6 22 23:59 package-lock.json
--rw-r--r--    1 builder34  staff   564B  6 22 23:59 package.json
-drwxr-xr-x   14 builder34  staff   448B  6 25 10:40 public
-drwxr-xr-x    5 builder34  staff   160B  4 17 23:12 scaffolds
-drwxr-xr-x    3 builder34  staff    96B  6 25 10:57 source
-drwxr-xr-x    6 builder34  staff   192B  6 25 11:33 themes</code></pre><p>themes文件夹是我们博客主题的存放地方，大家可以在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a>  上选择自己喜欢的主题，建议选择文档描述清楚的，可以减轻自己的配置测试的次数。我所使用的是：<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank" rel="noopener">hexo-theme-matery</a>。 </p>
-<pre><code>$ cd themes/
-$ git clone https://github.com/blinkfox/hexo-theme-matery.git</code></pre><p>在Hexo配置文件（$your_blog_path/_config.yml）中把主题设置修改为hexo-theme-matery。</p>
-<pre><code>修改 Hexo 根目录下的 _config.yml 的 theme 的值：theme: hexo-theme-matery</code></pre><p>_config.yml 文件的其它修改建议:<br>请修改 _config.yml 的 url 的值为你的网站主 URL（如：<a href="http://xxx.github.io）。" target="_blank" rel="noopener">http://xxx.github.io）。</a><br>建议修改两个 per_page 的分页条数值为 6 的倍数，如：12、18 等，这样文章列表在各个屏幕下都能较好的显示。<br>如果你是中文用户，则建议修改 language 的值为 zh-CN，timezone的值为 Asia/Shanghai。</p>
-<p>具体配置文档为：<a href="https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1" target="_blank" rel="noopener">https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/#toc-heading-1</a></p>
-<h3 id="Hexo部署到github"><a href="#Hexo部署到github" class="headerlink" title="Hexo部署到github"></a>Hexo部署到github</h3><p>安装hexo deployer 插件</p>
-<pre><code>使用 hexo deploy 命名部署到github所需要的hexo插件
-$ npm install hexo-deployer-git --save</code></pre><p>配置根_config.yml的deloyment:</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># Deployment</span>
-<span class="token comment" spellcheck="true">## Docs: https://hexo.io/docs/deployment.html</span>
-deploy:
-  type: <span class="token function">git</span>
-  repo: https://github.com/your_githubName/your_githubName.github.io.git</code></pre>
-<p>生成静态页面并部署到远端github pages</p>
-<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true">#删除静态文件,即 public 文件</span>
-$ hexo clean
-<span class="token comment" spellcheck="true">#生成静态文件,即 public 文件</span>
-$ hexo generate
-<span class="token comment" spellcheck="true">#部署到远程站点</span>
-$ hexo deploy
-<span class="token comment" spellcheck="true">#也可以使用组合命令(替代上面2条命令)：生成静态命令并部署到远程站点</span>
-$ hexo deploy <span class="token operator">-</span>g</code></pre>
-<h2 id="设置博客域名"><a href="#设置博客域名" class="headerlink" title="设置博客域名"></a>设置博客域名</h2><p>进入自己博客的repository仓库，默认博客域名为<a href="https://your_githubName.github.io。" target="_blank" rel="noopener">https://your_githubName.github.io。</a> 可以通过类似如下的页面进行设置自定义域名：</p>
-<img src="/2020/07/03/hexo-githubpage-for-selfblog/image-20200625152625436.png" class="" title="image-20200625152625436">
+<pre><code># innobackupex --defaults-file=/etc/my.cnf  --user=root --password=&#39;Test1234!&#39; --slave-info --no-timestamp /opt/xbak/full_165
+# innobackupex --defaults-file=/etc/my.cnf  --apply-log  /opt/xbak/full_165</code></pre><h2 id="恢复知识补充"><a href="#恢复知识补充" class="headerlink" title="恢复知识补充"></a>恢复知识补充</h2><h3 id="binlog-format"><a href="#binlog-format" class="headerlink" title="binlog_format"></a>binlog_format</h3><p>binlog有三种格式：Statement、Row以及Mixed。</p>
+<p>–基于SQL语句的复制(statement-based replication,SBR)，<br>–基于行的复制(row-based replication,RBR)，<br>–混合模式复制(mixed-based replication,MBR)。</p>
+<ul>
+<li>Statement</li>
+</ul>
+<p>每一条会修改数据的sql都会记录在binlog中。</p>
+<p>优点：不需要记录每一行的变化，减少了binlog日志量，节约了IO，提高性能。</p>
+<p>缺点：由于记录的只是执行语句，为了这些语句能在slave上正确运行，因此还必须记录每条语句在执行的时候的一些相关信息，以保证所有语句能在slave得到和在master端执行时候相同 的结果。另外<a href="http://lib.csdn.net/base/mysql" target="_blank" rel="noopener">mysql</a> 的复制,像一些特定函数功能，slave可与master上要保持一致会有很多相关问题。</p>
+<p>ps：<em>相比row能节约多少性能与日志量，这个取决于应用的SQL情况，正常同一条记录修改或者插入row格式所产生的日志量还小于Statement产生的日志量，但是考虑到如果带条件的update操作，以及整表删除，alter表等操作，ROW格式会产生大量日志，因此在考虑是否使用ROW格式日志时应该跟据应用的实际情况，其所产生的日志量会增加多少，以及带来的IO性能问题</em>。</p>
+<ul>
+<li>Row</li>
+</ul>
+<p>5.1.5版本的MySQL才开始支持row level的复制,它不记录sql语句上下文相关信息，仅保存哪条记录被修改。</p>
+<p>优点： binlog中可以不记录执行的sql语句的上下文相关的信息，仅需要记录那一条记录被修改成什么了。所以rowlevel的日志内容会非常清楚的记录下每一行数据修改的细节。而且不会出现某些特定情况下的存储过程，或function，以及trigger的调用和触发无法被正确复制的问题.</p>
+<p>缺点:所有的执行的语句当记录到日志中的时候，都将以每行记录的修改来记录，这样可能会产生大量的日志内容。</p>
+<p>ps:<em>新版本的MySQL中对row level模式也被做了优化，并不是所有的修改都会以row level来记录，像遇到表结构变更的时候就会以statement模式来记录，如果sql语句确实就是update或者delete等修改数据的语句，那么还是会记录所有行的变更</em>。</p>
+<ul>
+<li>Mixed</li>
+</ul>
+<p>从5.1.8版本开始，MySQL提供了Mixed格式，实际上就是Statement与Row的结合。</p>
+<p>在Mixed模式下，一般的语句修改使用statment格式保存binlog，如一些函数，statement无法完成主从复制的操作，则采用row格式保存binlog，MySQL会根据执行的每一条具体的sql语句来区分对待记录的日志形式，也就是在Statement和Row之间选择一种。</p>
+<h3 id="mysqlbinlog使用方法"><a href="#mysqlbinlog使用方法" class="headerlink" title="mysqlbinlog使用方法"></a>mysqlbinlog使用方法</h3><table>
+<thead>
+<tr>
+<th>mysqlbinlog命令常用参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-d ,–database=name</td>
+<td>根据指定库拆分binlog（拆分单表binlog可通过SQL关键字过滤）</td>
+</tr>
+<tr>
+<td>-r ,–result-file=name</td>
+<td>指定解析binlog输出SQL语句的文件</td>
+</tr>
+<tr>
+<td>-R，–read-from-remote-server</td>
+<td>从mysql服务器读取binlog日志，是下面参数的别名</td>
+</tr>
+<tr>
+<td>-j,–start-position=#</td>
+<td>读取binlog的起始位置点，#号是具体的位置点</td>
+</tr>
+<tr>
+<td>-stop-position=#</td>
+<td>读取binlog的停止位置点，#号是具体的位置点</td>
+</tr>
+<tr>
+<td>–start-datetime=name</td>
+<td>读取binlog的起始位置点，name是具体的时间，格式为：2004-12-25 11:25:26</td>
+</tr>
+<tr>
+<td>–stop-datetime=name</td>
+<td>读取binlog的停止位置点，name是具体的时间，格式为：2004-12-25 11:25:26</td>
+</tr>
+<tr>
+<td>–base64-output=decode-rows**</td>
+<td>解析row级别binlog日志的方法，例如：mysqlbinlog –base64-output=decode-rows -v  mysqlbin.000016</td>
+</tr>
+</tbody></table>
+<h3 id="binlog文件内容讲解"><a href="#binlog文件内容讲解" class="headerlink" title="binlog文件内容讲解"></a>binlog文件内容讲解</h3><h4 id="binlog日志内容查看方式"><a href="#binlog日志内容查看方式" class="headerlink" title="binlog日志内容查看方式"></a>binlog日志内容查看方式</h4><ul>
+<li>mysqlbinlog命令</li>
+</ul>
+<p>binlog是二进制文件，普通文件查看器cat more vi等都无法打开，必须使用自带的 mysqlbinlog 命令查看<br>binlog日志与数据库文件在同目录中(我的环境配置安装是选择在/usr/local/mysql/data中)<br>在MySQL5.5以下版本使用mysqlbinlog命令时如果报错，就加上 “–no-defaults”选项</p>
+<p>通过此方式读取出binlog日志的全文内容较多，不容易分辨查看pos点信息</p>
+<pre><code>
 
-<img src="/2020/07/03/hexo-githubpage-for-selfblog/image-20200625152629998.png" class="" title="image-20200625152629998">
+# /usr/local/mysql/bin/mysqlbinlog /usr/local/mysql/data/mysql-bin.000013
+下面截取一个片段分析：
 
-<p>所填的自定义域名是需要自己已经注册，并且如果勾选了 Enforce HTTPS 的话，你的域名是需要ssl证书。</p>
-<h2 id="注意事项-自行判读是否配置"><a href="#注意事项-自行判读是否配置" class="headerlink" title="注意事项(自行判读是否配置)"></a>注意事项(自行判读是否配置)</h2><h3 id="上传README-md并防止被渲染成文章"><a href="#上传README-md并防止被渲染成文章" class="headerlink" title="上传README.md并防止被渲染成文章"></a>上传README.md并防止被渲染成文章</h3><pre><code>#在博客根目录下，新建或编辑你的README.md文件
-$ vim README.md
-$ mv README.md ./sources
-#修改_config.yml文件,设置不渲染的文件
-$ vim _config.yml
-skip_render: README.md</code></pre><h3 id="自定义域名重置问题"><a href="#自定义域名重置问题" class="headerlink" title="自定义域名重置问题"></a>自定义域名重置问题</h3><p>每次<code>hexo deploy</code>后Github Pages自定义域名会被重置，需要在sources目录下新建CNAME文件(注意为全大写无后缀的文件哦),文件内容为你需要映射到的自定义域名：</p>
-<pre><code>$ vim CNAME
-blog.monbuilder.top
+...............................................................................
+# at 552
+#131128 17:50:46 server id 1  end_log_pos 665   Query   thread_id=11    exec_time=0     error_code=0 ----&gt;执行时间:17:50:46；pos点:665
+SET TIMESTAMP=1385632246/*!*/;
+update zyyshop.stu set name=&#39;李四&#39; where id=4              ----&gt;执行的SQL
+/*!*/;
+# at 665
+#131128 17:50:46 server id 1  end_log_pos 692   Xid = 1454 ----&gt;执行时间:17:50:46；pos点:692 
+...............................................................................</code></pre><blockquote>
+<p>注意：</p>
+<p>位置：位于文件中的位置，“at 552”说明“事件”的起点，是以第294字节开始；“end_log_pos 388  ”说明以第388 字节结束</p>
+<p>时间戳：事件发生的时间戳：“131128 17:50:46”</p>
+<p>事件执行时间：事件执行花费的时间:”exec_time=0”</p>
+<p>错误码：错误码为：“error_code=0”</p>
+<p>服务器的标识：服务器的标识id：“server id 1”</p>
+</blockquote>
+<ul>
+<li>show binlog events</li>
+</ul>
+<pre><code>mysql&gt; show binlog events [IN &#39;log_name&#39;] [FROM pos] [LIMIT [offset,] row_count];
 
-$ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配合Hexo配置Typora" class="headerlink" title="配合Hexo配置Typora"></a>配合Hexo配置Typora</h2><p>使用typora添加图片配置，参考<a href="https://wanglin0c.github.io/2020/06/25/blog_hexo/" target="_blank" rel="noopener">https://wanglin0c.github.io/2020/06/25/blog_hexo/</a></p>
-<p>配置typora的图像设置部分，偏好设置&gt;图像，选择复制到指定路径，并勾选”优先使用相对路径”，这样在粘贴图片到文档上的时候，就会在文档所在目录创建一个同名的目录存放该文档上的图片，并且图片的路径显示为该文件夹的相对路径，如“blog_hexo/xxxxx.png”，此时typora就可以显示该相对路径的图片，如图：</p>
-<img src="/2020/07/03/hexo-githubpage-for-selfblog/image-20200625153331989.png" class="" title="image-20200625153331989">
+             选项解析：
+               IN &#39;log_name&#39;   指定要查询的binlog文件名(不指定就是第一个binlog文件)
+               FROM pos        指定从哪个pos起始点开始查起(不指定就是从整个文件首个pos点开始算)
+               LIMIT [offset,] 偏移量(不指定就是0)
+               row_count       查询总条数(不指定就是所有行)
 
-<p>修改hexo配置，如我的项目myblog_web目录下的配置文件_config.yml, 修改post_asset_folder的值为true，即使用相对路径。</p>
-<pre><code>post_asset_folder: true1</code></pre><p>本地安装插件， 执行命令<code>npm install hexo-image-link --save</code> 解决typora图片路径问题，本地预览的时候就可以看到图片了。</p>
+             截取部分查询结果：
+             *************************** 20. row ***************************
+                Log_name: mysql-bin.000021  ----------------------------------------------&gt; 查询的binlog日志文件名
+                     Pos: 11197 ----------------------------------------------------------&gt; pos起始点:
+              Event_type: Query ----------------------------------------------------------&gt; 事件类型：Query
+               Server_id: 1 --------------------------------------------------------------&gt; 标识是由哪台服务器执行的
+             End_log_pos: 11308 ----------------------------------------------------------&gt; pos结束点:11308(即：下行的pos起始点)
+                    Info: use `zyyshop`; INSERT INTO `team2` VALUES (0,345,&#39;asdf8er5&#39;) ---&gt; 执行的sql语句
+             *************************** 21. row ***************************
+                Log_name: mysql-bin.000021
+                     Pos: 11308 ----------------------------------------------------------&gt; pos起始点:11308(即：上行的pos结束点)
+              Event_type: Query
+               Server_id: 1
+             End_log_pos: 11417
+                    Info: use `zyyshop`; /*!40000 ALTER TABLE `team2` ENABLE KEYS */
+             *************************** 22. row ***************************
+                Log_name: mysql-bin.000021
+                     Pos: 11417
+              Event_type: Query
+               Server_id: 1
+             End_log_pos: 11510
+                    Info: use `zyyshop`; DROP TABLE IF EXISTS `type`
 
+      这条语句可以将指定的binlog日志文件，分成有效事件行的方式返回，并可使用limit指定pos点的起始偏移，查询条数；
+
+      A.查询第一个(最早)的binlog日志：
+        mysql&gt; show binlog events\G; 
+
+      B.指定查询 mysql-bin.000021 这个文件：
+        mysql&gt; show binlog events in &#39;mysql-bin.000021&#39;\G;
+
+      C.指定查询 mysql-bin.000021 这个文件，从pos点:8224开始查起：
+        mysql&gt; show binlog events in &#39;mysql-bin.000021&#39; from 8224\G;
+
+      D.指定查询 mysql-bin.000021 这个文件，从pos点:8224开始查起，查询10条
+        mysql&gt; show binlog events in &#39;mysql-bin.000021&#39; from 8224 limit 10\G;
+
+      E.指定查询 mysql-bin.000021 这个文件，从pos点:8224开始查起，偏移2行，查询10条
+        mysql&gt; show binlog events in &#39;mysql-bin.000021&#39; from 8224 limit 2,10\G;</code></pre>
             </div>
             <hr/>
 
@@ -605,7 +704,7 @@ $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://nealcf.github.io/2020/07/03/hexo-githubpage-for-selfblog/">http://nealcf.github.io/2020/07/03/hexo-githubpage-for-selfblog/</a>
+                    <a href="http://nealcf.github.io/2020/07/30/mysql-ji-yu-binlog-zeng-liang-hui-fu-ji-lu/">http://nealcf.github.io/2020/07/30/mysql-ji-yu-binlog-zeng-liang-hui-fu-ji-lu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -642,19 +741,7 @@ $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配�
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/Mac/">
-                                    <span class="chip bg-color">Mac</span>
-                                </a>
-                            
-                                <a href="/tags/Hexo/">
-                                    <span class="chip bg-color">Hexo</span>
-                                </a>
-                            
-                                <a href="/tags/Github-Page/">
-                                    <span class="chip bg-color">Github Page</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -716,29 +803,69 @@ $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/07/15/supervisord-shou-hu-jin-cheng-de-shi-yong/">
+                <a href="/2020/07/30/mysql-ji-yu-binlog-zeng-liang-hui-fu-ji-lu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="supervisord守护进程的使用">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="mysql基于binlog增量恢复记录">
                         
-                        <span class="card-title">supervisord守护进程的使用</span>
+                        <span class="card-title">mysql基于binlog增量恢复记录</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Supervisor 是一个用 Python 写的进程管理工具，可以很方便的用来在 UNIX-like 系统（不支持 Windows）下启动、重启（自动重启程序）、关闭进程（不仅仅是 Python 进程）
+                            
+title: mysql基于binlog增量恢复过程记录date: 2020-07-30 8:10:00author: Nealsummary: 应用运维人员在日常变更中变更失败，回退过程中错误应用数据库备份导致数据回滚到7月初，回滚过程
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-15
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Neal
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/07/20/linux-ming-ling-xing-chang-yong-kuai-jie-fang-shi-zong-jie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Linux 命令行常用快捷方式总结">
+                        
+                        <span class="card-title">Linux 命令行常用快捷方式总结</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            老男孩LInux运维核心系统命令实战读书记录
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -754,69 +881,12 @@ $ mv CNAME ./sources</code></pre><h2 id="配合Hexo配置Typora"><a href="#配�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CentOS7/">
-                        <span class="chip bg-color">CentOS7</span>
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
                     </a>
                     
-                    <a href="/tags/supervisor/">
-                        <span class="chip bg-color">supervisor</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/07/03/css-xin-tiao-shuo-ming-ji-diao-zheng-fang-shi/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="CSS心跳说明及调整方式">
-                        
-                        <span class="card-title">CSS心跳说明及调整方式</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            CSS 服务有2种心跳机制： 一种是通过私有网络的Network Heartbeat，另一种是通过Voting Disk的Disk Heartbeat.
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-03
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/oracle/" class="post-category">
-                                    oracle
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/oracle/">
-                        <span class="chip bg-color">oracle</span>
-                    </a>
-                    
-                    <a href="/tags/rac/">
-                        <span class="chip bg-color">rac</span>
-                    </a>
-                    
-                    <a href="/tags/css/">
-                        <span class="chip bg-color">css</span>
+                    <a href="/tags/command/">
+                        <span class="chip bg-color">command</span>
                     </a>
                     
                 </div>
