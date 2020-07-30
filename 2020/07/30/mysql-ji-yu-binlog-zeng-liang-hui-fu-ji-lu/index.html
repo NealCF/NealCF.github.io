@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="mysql基于binlog增量恢复记录, Share,Technology,Grown">
+    <meta name="keywords" content="mysql基于binlog增量恢复过程记录, Share,Technology,Grown">
     <meta name="description" content="世人慌慌张张不过图这碎银几两，偏这碎银几两能解万种惆怅！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>mysql基于binlog增量恢复记录 | 星辰大海</title>
+    <title>mysql基于binlog增量恢复过程记录 | 星辰大海</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">mysql基于binlog增量恢复记录</h1>
+                    <h1 class="description center-align post-title">mysql基于binlog增量恢复过程记录</h1>
                 </div>
             </div>
         </div>
@@ -365,12 +365,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/mysql/">
+                                <span class="chip bg-color">mysql</span>
+                            </a>
+                        
+                            <a href="/tags/mysqlbinlog/">
+                                <span class="chip bg-color">mysqlbinlog</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/MySQL/" class="post-category">
+                                MySQL
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -393,7 +410,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.6k
+                    3.4k
                 </div>
                 
 
@@ -415,14 +432,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <hr>
-<p>title: mysql基于binlog增量恢复过程记录<br>date: 2020-07-30 8:10:00<br>author: Neal<br>summary: 应用运维人员在日常变更中变更失败，回退过程中错误应用数据库备份导致数据回滚到7月初，回滚过程中日志目录空间使用率100%，多层问题导致生成数据库异常宕机。后续DBA通过9号备份加binlog进行数据增量恢复进而恢复业务。<br>categories: mysql<br>tags:</p>
-<ul>
-<li>mysql</li>
-<li>mysqlbinlog</li>
-</ul>
-<hr>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在7月28号接到前同事电话，数据库中数据丢失只有7号之前的数据，但是7号以后的binlog还在。因为当时生产数据库运行在docker容器下，有人认为是镜像分层导致，我虽然略知一二，也不便提出过多质疑。我提出异机恢复的要求，在虚拟化平台上开出了一台CentOS虚拟机，配置好测试环境数据库后，将数据文件放置在data_dir下，启动数据库并针对7月9日的mysqldump文件进行数据库恢复；后进行基于binlog的增量恢复。</p>
+                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在7月28号接到前同事电话，数据库中数据丢失只有7号之前的数据，但是7号以后的binlog还在。因为当时生产数据库运行在docker容器下，有人认为是镜像分层导致，我虽然略知一二，也不便提出过多质疑。我提出异机恢复的要求，在虚拟化平台上开出了一台CentOS虚拟机，配置好测试环境数据库后，将数据文件放置在data_dir下，启动数据库并针对7月9日的mysqldump文件进行数据库恢复；后进行基于binlog的增量恢复。</p>
 <p>数据库版本信息：Server version: 5.7.31-log MySQL Community Server (GPL)</p>
 <h2 id="恢复步骤"><a href="#恢复步骤" class="headerlink" title="恢复步骤"></a>恢复步骤</h2><p>数据库的部署和mysqldump文件的恢复没有参与，顾不做过多介绍。</p>
 <p>这期间还出过一个小插曲，运维人员进行再进行异机环境准备过程中，直接用生产环境的data_dir目录下的文件让我进行增量恢复，恢复过程中各种主键冲突，后我查询一些时间敏感的表，发现内容均接近当前时间，顾这个数据并不是当时他们回退数据的正常结果版，才提出重新进行数据库的全量mysqldump恢复。</p>
@@ -741,7 +751,15 @@ update zyyshop.stu set name=&#39;李四&#39; where id=4              ----&gt;执
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/mysql/">
+                                    <span class="chip bg-color">mysql</span>
+                                </a>
+                            
+                                <a href="/tags/mysqlbinlog/">
+                                    <span class="chip bg-color">mysqlbinlog</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -812,16 +830,15 @@ update zyyshop.stu set name=&#39;李四&#39; where id=4              ----&gt;执
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="mysql基于binlog增量恢复记录">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="mysql基于binlog增量恢复过程记录">
                         
-                        <span class="card-title">mysql基于binlog增量恢复记录</span>
+                        <span class="card-title">mysql基于binlog增量恢复过程记录</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-title: mysql基于binlog增量恢复过程记录date: 2020-07-30 8:10:00author: Nealsummary: 应用运维人员在日常变更中变更失败，回退过程中错误应用数据库备份导致数据回滚到7月初，回滚过程
+                            应用运维人员在日常变更中变更失败，回退过程中错误应用数据库备份导致数据回滚到7月初，回滚过程中日志目录空间使用率100%，多层问题导致生成数据库异常宕机。后续DBA通过9号备份加binlog进行数据增量恢复进而恢复业务。
                         
                     </div>
                     <div class="publish-info">
@@ -830,13 +847,29 @@ title: mysql基于binlog增量恢复过程记录date: 2020-07-30 8:10:00author: 
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Neal
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MySQL/" class="post-category">
+                                    MySQL
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/mysql/">
+                        <span class="chip bg-color">mysql</span>
+                    </a>
+                    
+                    <a href="/tags/mysqlbinlog/">
+                        <span class="chip bg-color">mysqlbinlog</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1130,7 +1163,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">23.9k</span>&nbsp;字
+                class="white-color">23.8k</span>&nbsp;字
             
             
             
